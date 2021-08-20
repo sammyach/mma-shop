@@ -1,0 +1,41 @@
+.container {
+    padding: 0 100px;
+}
+
+.product-info {
+    display: flex;    
+}
+
+.product-image {
+    width: 50%;
+}
+
+.product-carting {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.product-main-data h2{
+    color: #7F2613;
+}
+
+.product-price {
+    margin-top: 40px;
+    color: #daa520;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.wr-qty-carting {
+    margin-top: 20px;
+    display: flex;
+}
+
+.product-qty {
+    margin-right: 10px;
+}
+
+.product-extra-data {
+    margin-top: 25px;
+}

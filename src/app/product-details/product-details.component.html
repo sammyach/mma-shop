@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="product-info">
+        <div class="product-image">
+            <!-- <img [src]="product.image"/> -->
+        </div>
+        <div class="product-carting">
+            <div class="product-main-data">
+                <h2>Product Name</h2>
+
+                <p class="product-price">GHS 0.00</p>
+
+                <div class="wr-qty-carting">
+                    <div class="product-qty">
+                        <!-- <label for="horizontal">Quantity</label> -->
+                        <p-inputNumber [(ngModel)]="qty" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1" size="1" min="1"
+                        decrementButtonClass="p-button-outlined" incrementButtonClass="p-button-outlined" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal">
+                        </p-inputNumber>
+                    </div>
+        
+                    <button pButton type="button" label="Add to cart" icon="pi pi-shopping-cart"></button>
+                </div>
+            </div>
+            
+
+            <div class="product-extra-data">
+                <p-tabView>
+                    <p-tabPanel header="Description">
+                       Product description here
+                    </p-tabPanel>
+                    <p-tabPanel header="Reviews(0)">
+                        Reviews here
+                    </p-tabPanel>
+                    <!-- <p-tabPanel header="Header 3">
+                        Content 3
+                    </p-tabPanel> -->
+                </p-tabView>
+            </div>
+            
+        </div>
+    </div>
+</div>

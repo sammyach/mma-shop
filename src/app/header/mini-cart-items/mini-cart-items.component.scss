@@ -1,0 +1,22 @@
+.cart-items {
+    display: flex;
+    border-top: 1px solid #daa520;
+    border-bottom: 1px solid #daa520;
+    padding: 5px;
+}
+
+.cart-item-image {
+    width: 100px;
+    margin-right: 5px ;
+}
+
+.cart-item-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+}
+
+.cart-item-price{
+    font-weight: 600;
+}

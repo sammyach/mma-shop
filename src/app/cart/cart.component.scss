@@ -1,0 +1,39 @@
+.container {
+    padding: 0 100px;
+}
+
+.page-label {
+    color: #7F2613;
+    padding: 50px 0;
+}
+
+.cart-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-items {
+    width: 70%;
+}
+
+.cart-total-summary {
+    display: flex;
+    flex-direction: column;
+    color: lightslategrey;
+}
+
+.sub-total, .shipping, .total {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.shipping .right-value{
+    font-size: .7rem;
+}
+
+.total .right-value {
+    color: #7F2613;
+    font-size: 1.5rem;
+    font-weight: 500;
+}

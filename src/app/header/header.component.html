@@ -1,0 +1,55 @@
+<div class="header">
+    <div class="pre-header">
+        <div class="pr-contact-info">
+            <div class="pr-icon"><i class="pi pi-envelope"></i> info@mma.com</div> 
+            <div class="pr-icon"><i class="pi pi-phone"></i> +233 244123456</div>
+        </div>
+        <div class="pr-account">
+            <div class="pr-icon"><i class="pi pi-user"></i> Login </div>
+          </div>
+    </div>
+    <div class="main-header">
+        <div class="toggle" (click)="onToggle()"><i class="pi pi-bars" style="font-size: 2rem"></i></div>
+        <a href="#"><img src="assets/img/mma_logo-r.png" alt="mma logo" class="logo"></a>
+
+        <div class="menu-header">
+            <ul class="navigation">
+                <li class="mn-item {{activeLabelBP}}"><a (click)="onFilterCategory('BP')">Beauty & Personal Care</a></li>
+                <li class="mn-item {{activeLabelFG}}"><a (click)="onFilterCategory('FG')">Food & Groceries</a></li>
+                <li class="mn-item {{activeLabelCF}}"><a (click)="onFilterCategory('CF')">Clothing & Fashion</a></li>
+            </ul>
+        </div>
+
+        <div class="main-header-cart">
+            <div class="mh-icon">
+                <i (click)="onShowCart()" class="pi pi-shopping-cart"  pBadge style="font-size: 2rem" value="{{totalItemsInCart}}"></i>
+            </div>
+            <div class="main-header-cart-info">
+                GHS 0.00
+            </div>
+        </div>
+    </div>
+    <!-- <div class="menu-header">
+        <ul class="navigation">
+            <li class="mn-item"><a href="#">Beauty & Personal Care</a></li>
+            <li class="mn-item"><a href="#">Food & Groceries</a></li>
+            <li class="mn-item"><a href="#">Clothing & Fashion</a></li>
+        </ul>
+    </div> -->
+</div>
+<p-dialog header="SHOPPING CART" [(visible)]="displayDialog" [position]="'right'" [modal]="true" [style]="{width: '25vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+        
+        
+        <div *ngFor="let product of products">
+            <app-mini-cart-items [product]="product"></app-mini-cart-items>
+        </div>      
+            
+        
+        
+        <ng-template pTemplate="footer">
+            <button style="width: 100%;" pButton type="button" label="VIEW CART" icon="pi pi-eye" (click)="onViewCart()"></button>
+            <!-- <button style="width: 100%; margin-top: 10px;" pButton type="button" label="PROCEED TO CHECKOUT" icon="pi pi-check"></button> -->
+            <!-- <p-button icon="pi pi-check" (click)="displayPosition=false" label="Ok" styleClass="p-button-text"></p-button> -->
+        </ng-template>
+</p-dialog>

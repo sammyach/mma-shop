@@ -1,0 +1,148 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    background: #daa520;
+}
+
+.pre-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 80%;
+    color: #7F2613;
+    padding: 10px 100px;
+    border-bottom: 1px solid #FFC107;
+    margin-bottom: 5px;
+}
+
+.pr-contact-info {
+    display: flex;
+}
+
+.pr-icon {
+    padding: 5px;
+}
+
+.main-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 100px;
+    border-bottom: 1px solid #afa401;
+    align-items: center;
+}
+
+.toggle {
+    display: none;
+}
+
+.logo {
+    max-width: 100px;
+}
+
+.menu-header .navigation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 100px;
+}
+
+.menu-header .navigation li{
+    list-style: none;
+    cursor: pointer;
+}
+
+.menu-header .navigation li a {
+    display: inline-block;
+    color: #7F2613;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 80%;
+    /* margin-left: 40px; */
+}
+
+/*menu header item*/
+.mn-item {
+    padding: 5px 20px;
+}
+
+.menu-header .navigation li.active{
+    border-bottom: 3px solid #7F2613;
+}
+
+// .navigation .mn-item .active {
+//     border-bottom: 3px solid #7F2613;
+// }
+
+.main-header-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.main-header-cart-info {
+    color: #7F2613;
+    font-size: .7em;
+    // display: flex;
+    // flex-direction: column; 
+    // font-size: 80%;
+}
+
+.main-header-cart-info p {
+    margin: 0;
+    color: #7F2613;
+}
+
+.mh-icon {
+    // font-size: 160%;
+    color: #7F2613;
+    padding: 5px 15px;
+}
+
+.mh-icon:hover {
+    cursor: pointer;
+}
+
+// .mini-cart-items {
+//     max-height: 150px;
+// }
+
+
+
+@media (max-width: 991px) {
+    .pre-header {
+        display: none;
+    }
+    .menu-header {
+        display: none;
+    }
+
+    .logo {
+        max-width: 70px;
+    }
+
+    .main-header{
+       padding: 20px; 
+    }
+
+    .toggle {
+        display: inline-block;
+        color: #7F2613;
+    }
+
+    .menu-header .navigation.active 
+    {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: goldenrod;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+    }
+}
+
