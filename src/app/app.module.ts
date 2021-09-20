@@ -35,6 +35,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartComponent } from './cart/cart.component';
 import { MiniCartItemsComponent } from './header/mini-cart-items/mini-cart-items.component';
 import { FooterComponent } from './footer/footer.component';
+import { SearchBarComponent } from './header/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { FooterComponent } from './footer/footer.component';
     ProductDetailsComponent,
     CartComponent,
     MiniCartItemsComponent,
-    FooterComponent
+    FooterComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
