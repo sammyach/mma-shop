@@ -1,1 +1,54 @@
-<app-list-products></app-list-products>
+<div class="container">
+    <div class="content-peps">
+        <div class="pep">
+            <img src="assets/img/shipping.png" alt="">
+            <p>Within Accra</p>
+        </div>
+
+        <div class="pep">
+            <img src="assets/img/delivery-truck.png" alt="">
+            <p>Fast delivery</p>
+        </div>
+
+        <div class="pep">
+            <img src="assets/img/worldwide.png" alt="">
+            <p>Worldwide delivery</p>
+        </div>        
+
+        <div class="pep">
+            <img src="assets/img/medal.png" alt="" >
+            <p>High Quality</p>
+        </div>
+    </div>
+
+
+    <div class="featured-items">
+        <p-carousel [value]="products" styleClass="custom-carousel" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
+            <ng-template pTemplate="header">
+                <div class="title">Featured Items</div>
+            </ng-template>
+            <ng-template let-product pTemplate="item">
+                <div class="product-item">
+                    <div class="product-item-content">
+                        <div class="p-mb-3">
+                            <img [src]="product.Product.ImageUrl" [alt]="product.Product.Name" class="product-image" />
+                        </div>
+                        <div>
+                            <h4 class="p-mb-1">{{product.Product.Name}}</h4>
+                            <h3 class="p-mt-0 p-mb-3">GHS {{product.Price}}</h3>
+                            <!-- <span [class]="'product-badge status-'+product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
+                            <div class="car-buttons p-mt-5">
+                                <p-button type="button" (click)="onViewDetails(product.Id)" styleClass="p-button p-button-rounded p-mr-2" icon="pi pi-search"></p-button>
+                                <p-button type="button" styleClass="p-button-help p-button-rounded p-mr-2" icon="pi pi-heart"></p-button>
+                                <p-button type="button" (click)="onAddToCart(product)" styleClass="p-button-success p-button-rounded " icon="pi pi-shopping-cart"></p-button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+</div>
+
+<!-- <app-list-products></app-list-products> -->

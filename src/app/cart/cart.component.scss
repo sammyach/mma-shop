@@ -1,10 +1,11 @@
 .container {
-    padding: 0 100px;
+    margin: 30px 200px;
+    height: 100vh;
 }
 
 .page-label {
-    color: #7F2613;
-    padding: 50px 0;
+    color: #FFC107; //#7F2613;
+    // padding: 50px 0;
 }
 
 .cart-info {
@@ -16,24 +17,110 @@
     width: 70%;
 }
 
-.cart-total-summary {
+.side-cart-info{
     display: flex;
     flex-direction: column;
-    color: lightslategrey;
 }
 
-.sub-total, .shipping, .total {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
+.cart-total-summary {
+    width: 300px;
+    background: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #85929E;
+    height: 250px;
+    border-top: 5px solid #FFC107;
+    margin-top: 80px;
+    margin-bottom: 50px;
 }
+
+.cart-total-summary .title {
+    text-align: center;
+    font-weight: 600;
+    color: #FFC107;
+    margin-bottom: 20px;
+}
+
+.pi {
+    margin-right: 10px;
+}
+.coupon-box .pi:hover{
+    color: #FFC107;
+    cursor: pointer;
+}
+// .coupon-box{
+//     font-size: 12px;
+// }
+
+:host ::ng-deep .p-inputtext{
+    width: 100%;
+    border-radius: 30px;
+    height: 30px;
+}
+
+:host ::ng-deep .p-tooltip{
+    background: red;
+}
+
+:host ::ng-deep .p-tooltip-text{
+    color: yellow
+}
+
+// .cart-total-summary {
+//     display: flex;
+//     flex-direction: column;
+//     color: lightslategrey;
+// }
+
+// .sub-total, .shipping, .total {
+//     display: flex;
+//     justify-content: space-between;
+//     padding: 20px;
+// }
 
 .shipping .right-value{
     font-size: .7rem;
 }
 
+
+
 .total .right-value {
-    color: #7F2613;
+    color: #FFC107;
     font-size: 1.5rem;
     font-weight: 500;
 }
+
+table {
+    //font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    //border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+//   tr:nth-child(even) {
+//     background-color: #dddddd;
+//   }
+
+  .cts-price {
+      text-align: right;
+  }
+
+  :host ::ng-deep .p-datatable .p-datatable-header{
+      background: #fff;
+      border: none;
+  }
+
+//   :host ::ng-deep .p-datatable-scrollable-header, :host ::ng-deep.p-datatable-scrollable-header-box{
+//       background: #fff;
+//   }
+
+  :host ::ng-deep .p-datatable-scrollable-wrapper{
+    border-top: 5px solid #FFC107;
+  }

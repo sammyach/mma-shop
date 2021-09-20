@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -20,6 +20,13 @@ import {BadgeModule} from 'primeng/badge';
 import {TableModule} from 'primeng/table';
 import {TabViewModule} from 'primeng/tabview';
 import {ToastModule} from 'primeng/toast';
+import {MenuModule} from 'primeng/menu';
+import {CarouselModule} from 'primeng/carousel';
+import {SidebarModule} from 'primeng/sidebar';
+import {CheckboxModule} from 'primeng/checkbox';
+import {TooltipModule} from 'primeng/tooltip';
+import { ClickOutsideModule } from 'ng-click-outside';
+
 
 import { ListProductsComponent } from './list-products/list-products.component';
 import { HomeComponent } from './home/home.component';
@@ -27,6 +34,7 @@ import { HeaderComponent } from './header/header.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
 import { MiniCartItemsComponent } from './header/mini-cart-items/mini-cart-items.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +44,8 @@ import { MiniCartItemsComponent } from './header/mini-cart-items/mini-cart-items
     HeaderComponent,
     ProductDetailsComponent,
     CartComponent,
-    MiniCartItemsComponent
+    MiniCartItemsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -56,9 +65,16 @@ import { MiniCartItemsComponent } from './header/mini-cart-items/mini-cart-items
     BadgeModule,
     TableModule,
     TabViewModule,
-    ToastModule
+    ToastModule,
+    MenuModule,
+    CarouselModule,
+    SidebarModule,
+    CheckboxModule,
+    TooltipModule,
+    ClickOutsideModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

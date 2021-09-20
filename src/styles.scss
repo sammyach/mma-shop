@@ -11,3 +11,24 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #FFC107 #959491 ;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #959491;//#ffc800;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #FFC107;
+    border-radius: 20px;
+    border: 3px solid #FFC107;
+  }

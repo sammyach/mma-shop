@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService, PrimeNGConfig, SelectItem } from 'primeng/api';
 import { DataService } from '../data.service';
 import { Product } from '../product';
-import { ProductService } from '../product.service';
+import { ProductService } from '../_services/product.service';
 
 @Component({
   selector: 'app-list-products',
@@ -15,7 +15,7 @@ export class ListProductsComponent implements OnInit {
 
   
   currency = 'GHS';
-  products: Product[];
+  products: any[];
 
     sortOptions: SelectItem[];
 
@@ -25,7 +25,7 @@ export class ListProductsComponent implements OnInit {
 
     selectedCategory: string;
 
-    constructor(private productService: ProductService, private primengConfig: PrimeNGConfig,
+    constructor(private ps: ProductService, private primengConfig: PrimeNGConfig,
                  private router: Router, private ds: DataService, private messageService: MessageService,
                  private route: ActivatedRoute) { }
 
@@ -35,10 +35,11 @@ export class ListProductsComponent implements OnInit {
         this.route.queryParams.subscribe(params => {
           this.selectedCategory = params['cat'];
           console.log('selected cat: ', this.selectedCategory);
-          this.productService.getProducts(this.selectedCategory).then(data => this.products = data);
-          console.log('products from list-pro', this.products);
+          //this.productService.getProducts(this.selectedCategory).then(data => this.products = data);
+          this.getAllProductItems(this.selectedCategory);
+          //console.log('products from list-pro', this.products);
           
-          this.ds.productsStoredFromIndex = this.products;
+          //this.ds.productsStoredFromIndex = this.products;
         });
 
         
@@ -47,18 +48,27 @@ export class ListProductsComponent implements OnInit {
         
 
         this.sortOptions = [
-            {label: 'Price High to Low', value: '!price'},
-            {label: 'Price Low to High', value: 'price'}
+            {label: 'Price High to Low', value: '!Price'},
+            {label: 'Price Low to High', value: 'Price'}
         ];
 
         this.primengConfig.ripple = true;
+    }
+
+    getAllProductItems(cat){
+      this.ps.getAllProducts()
+        .subscribe(res => {
+          this.products = res;
+          this.ds.productsStoredFromIndex = this.products;
+        })
     }
     
     onSortChange(event) {
         console.log('sorting...', event);
         
         let value = event.value;
-
+        console.log('sort value', value);
+        
         if (value.indexOf('!') === 0) {
             this.sortOrder = -1;
             this.sortField = value.substring(1, value.length);

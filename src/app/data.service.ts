@@ -8,19 +8,19 @@ import { CartProduct, Product } from './product';
 })
 export class DataService {
 
-  productsStoredFromIndex: Product[] = [];
+  productsStoredFromIndex: any[] = [];
 
   shoppingCart: Product[] = [];
   shoppingCartItems: CartProduct[] = [];
 
-  private _subject = new Subject<Product[]>();
+  private _subject = new Subject<any[]>();
 
-  addToCart(item: Product){
+  addToCart(item: any){
     let itemToBeAddedToCart = {} as CartProduct;
-    itemToBeAddedToCart.productId = item.id;
-    itemToBeAddedToCart.name = item.name;
-    itemToBeAddedToCart.image = item.image;
-    itemToBeAddedToCart.price = item.price;
+    itemToBeAddedToCart.productId = item.Id;
+    itemToBeAddedToCart.name = item.Product.Name;
+    itemToBeAddedToCart.image = item.Product.ImageUrl;
+    itemToBeAddedToCart.price = item.Price;
     itemToBeAddedToCart.quantity = 1;
 
     console.log('ds => item to be added', itemToBeAddedToCart );
@@ -45,7 +45,7 @@ export class DataService {
     this._subject.next(this.shoppingCartItems);
   }
 
-  getItems(): Observable<Product[]> {
+  getItems(): Observable<any[]> {
     return this._subject.asObservable();
   }
 

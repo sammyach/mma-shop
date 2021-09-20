@@ -1,5 +1,5 @@
 .container{
-    padding: 0 100px;
+    margin: 0 200px;
 }
 
 :host ::ng-deep {
@@ -72,6 +72,7 @@
     
         .p-button {
             margin-bottom: .5rem;
+            border-radius: 30px;
         }
     }
 

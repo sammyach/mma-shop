@@ -12,23 +12,38 @@ export class CartComponent implements OnInit {
   //_subscription: Subscription;
   products: Product[];
 
+  subTotal;
+  total;
+  shipping = 'N/A';
+
+  checked;
+
     constructor(private ds: DataService) { }
 
     ngOnInit() {
       
-        // this._subscription = this.ds.getItems().subscribe((data)=>{
-        //   console.log('data', data);
-          
-        //   this.products = data;
-        // })
+      // this._subscription = this.ds.getItems().subscribe((data)=>{
+      //   console.log('data', data);
+        
+      //   this.products = data;
+      // })
 
-        console.log('cart', this.ds.shoppingCartItems);
-        this.products = this.ds.shoppingCartItems;
+      console.log('cart', this.ds.shoppingCartItems);
+      this.products = this.ds.shoppingCartItems;    
+      
+      this.calculateTotals();
+        
         
     }
 
-    calculateSubTotal(){
-      //this.products.forEach()
+    calculateTotals(){
+      this.total = this.subTotal = 0;
+
+      this.subTotal = this.products.reduce((a,b)=> a + (b.price * b.quantity), 0);
+      if(this.products){
+        console.log('sub total = ', this.subTotal);
+      }
+      this.total = this.subTotal;
     }
 
     // public ngOnDestroy(): void {

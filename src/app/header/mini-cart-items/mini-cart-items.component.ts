@@ -8,10 +8,12 @@ import { Product } from 'src/app/product';
 })
 export class MiniCartItemsComponent implements OnInit {
 
-  @Input() product: Product;
+  @Input() product: any;
   constructor() { }
 
   ngOnInit(): void {
+    console.log('in mini comp: product=>',this.product );
+    
   }
 
 }
