@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="shipping-form">
+        <form [formGroup]="shippingForm">
+            <h1>Shipping Info</h1>
+            <div class="info-side"> 
+                
+                <div class="p-field">
+                    <label class="c-label" for="fullname">Fullname</label>
+                    <input class="c-input" type="text" formControlName="fullname" pInputText />
+                </div> 
+                <div class="p-field">
+                    <label class="c-label" for="phone">Phone Number</label>
+                    <input class="c-input" type="text" formControlName="phone" pInputText />
+                </div>    
+                <div class="p-field">
+                    <label class="c-label" for="email">Email</label>
+                    <input class="c-input" type="text" formControlName="email" pInputText />
+                </div>  
+                <div class="p-field">
+                    <label class="c-label" for="country">Country</label>
+                    <input class="c-input" type="text" formControlName="country" pInputText />
+                </div> 
+                <div class="p-field">
+                    <label class="c-label" for="region">Region</label>
+                    <input class="c-input" type="text" formControlName="region" pInputText />
+                </div> 
+                <div class="p-field">
+                    <label class="c-label" for="city">City</label>
+                    <input class="c-input" type="text" formControlName="city" pInputText />
+                </div> 
+                <div class="p-field">
+                    <label class="c-label" for="digitalAddress">Digital Address</label>
+                    <input class="c-input" type="text" formControlName="digitalAddress" pInputText />
+                </div> 
+                    
+            </div>
+        </form>
+    </div>
+    
+
+    <div class="order-review">
+        <table>
+            <tr>
+                <td>SubTotal</td>
+                <td>233</td>
+            </tr>
+            <tr>
+                <td>Shipping & Handling</td>
+                <td>233</td>
+            </tr>
+            <tr>
+                <td>Grand Total</td>
+                <td>233</td>
+            </tr>
+        </table>
+        <button style="width: 100%; border-radius: 30px;" styleClass="p-button-sm" pButton type="button" (click)="proceedToPay()" label="PROCEED TO PAY" icon="pi pi-check-square"></button>
+
+    </div>
+</div>

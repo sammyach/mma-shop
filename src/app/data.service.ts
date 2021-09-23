@@ -18,8 +18,8 @@ export class DataService {
   addToCart(item: any){
     let itemToBeAddedToCart = {} as CartProduct;
     itemToBeAddedToCart.productId = item.Id;
-    itemToBeAddedToCart.name = item.Product.Name;
-    itemToBeAddedToCart.image = item.Product.ImageUrl;
+    itemToBeAddedToCart.name = item.Name;
+    itemToBeAddedToCart.image = item.ProductImages[0].ImageUrl;
     itemToBeAddedToCart.price = item.Price;
     itemToBeAddedToCart.quantity = 1;
 

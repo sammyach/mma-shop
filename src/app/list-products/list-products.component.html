@@ -17,12 +17,12 @@
             <ng-template let-product pTemplate="listItem">
                 <div class="p-col-12">
                     <div class="product-list-item">
-                        <img [src]="product.Product.ImageUrl" [alt]="product.Product.Name" (click)="onViewDetails(product.id)"/>                        
+                        <img [src]="product.ProductImages[0].ImageUrl" [alt]="product.Name" (click)="onViewDetails(product.Id)"/>                        
                         <div class="product-list-detail">
-                            <div class="product-name">{{product.Product.Name}}</div>
+                            <div class="product-name">{{product.Name}}</div>
                             <!-- <div class="product-description">{{product.description}}</div> -->
                             <!-- <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->
-                            <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{product.Product.CategoryId}}</span>
+                            <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{product.CategoryId}}</span>
                         </div>
                         <div class="product-list-action">
                             <span class="product-price">{{currency}} {{product.Price}}</span>
@@ -39,13 +39,13 @@
                         <div class="product-grid-item-top">
                             <div>
                                 <i class="pi pi-tag product-category-icon"></i>
-                                <span class="product-category">{{product.Product.CategoryId}}</span>
+                                <span class="product-category">{{product.CategoryId}}</span>
                             </div>
                             <!-- <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
                         </div>
                         <div  class="product-grid-item-content">
-                            <img (click)="onViewDetails(product.Id)" [src]="product.Product.ImageUrl" [alt]="product.Product.Name"/>
-                            <div class="product-name">{{product.Product.Name}}</div>
+                            <img (click)="onViewDetails(product.Id)" [src]="product.ProductImages[0].ImageUrl" [alt]="product.Name"/>
+                            <div class="product-name">{{product.Name}}</div>
                             <!-- <div class="product-description">{{product.description}}</div>
                             <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->
                         </div>

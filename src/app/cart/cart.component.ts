@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { Product } from '../product';
@@ -18,7 +19,7 @@ export class CartComponent implements OnInit {
 
   checked;
 
-    constructor(private ds: DataService) { }
+    constructor(private ds: DataService, private router: Router) { }
 
     ngOnInit() {
       
@@ -44,6 +45,10 @@ export class CartComponent implements OnInit {
         console.log('sub total = ', this.subTotal);
       }
       this.total = this.subTotal;
+    }
+
+    checkout(){
+      this.router.navigate(['checkout']);
     }
 
     // public ngOnDestroy(): void {

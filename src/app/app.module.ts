@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -36,6 +36,7 @@ import { CartComponent } from './cart/cart.component';
 import { MiniCartItemsComponent } from './header/mini-cart-items/mini-cart-items.component';
 import { FooterComponent } from './footer/footer.component';
 import { SearchBarComponent } from './header/search-bar/search-bar.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { SearchBarComponent } from './header/search-bar/search-bar.component';
     CartComponent,
     MiniCartItemsComponent,
     FooterComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +65,7 @@ import { SearchBarComponent } from './header/search-bar/search-bar.component';
     HttpClientModule,
     RatingModule,
     FormsModule,
+    ReactiveFormsModule,
     InputNumberModule,
     BadgeModule,
     TableModule,
