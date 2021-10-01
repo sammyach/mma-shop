@@ -1,5 +1,6 @@
 .container {
-    padding: 0 100px;
+    margin: 30px 200px;
+    height: 100vh;
 }
 
 .product-info {
@@ -20,11 +21,15 @@
     color: #7F2613;
 }
 
+.product-name{
+    font-size: 1.5rem;
+}
+
 .product-price {
     margin-top: 40px;
-    color: #daa520;
-    font-size: 2rem;
-    font-weight: 500;
+    color: #FFC107;
+    font-size: 2.5rem;
+    font-weight: 600;
 }
 
 .wr-qty-carting {

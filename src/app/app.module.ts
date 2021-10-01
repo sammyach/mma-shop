@@ -25,6 +25,9 @@ import {CarouselModule} from 'primeng/carousel';
 import {SidebarModule} from 'primeng/sidebar';
 import {CheckboxModule} from 'primeng/checkbox';
 import {TooltipModule} from 'primeng/tooltip';
+import {PasswordModule} from 'primeng/password';
+import { FlutterwaveModule } from "flutterwave-angular-v3"
+import { Angular4PaystackModule } from 'angular4-paystack';
 import { ClickOutsideModule } from 'ng-click-outside';
 
 
@@ -37,6 +40,10 @@ import { MiniCartItemsComponent } from './header/mini-cart-items/mini-cart-items
 import { FooterComponent } from './footer/footer.component';
 import { SearchBarComponent } from './header/search-bar/search-bar.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { MakePaymentComponent } from './checkout/make-payment/make-payment.component';
+import { MakePaymentPaystackComponent } from './checkout/make-payment-paystack/make-payment-paystack.component';
+import { LoginComponent } from './account/login/login.component';
+import { RegisterComponent } from './account/register/register.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +56,11 @@ import { CheckoutComponent } from './checkout/checkout.component';
     MiniCartItemsComponent,
     FooterComponent,
     SearchBarComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    MakePaymentComponent,
+    MakePaymentPaystackComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +87,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
     SidebarModule,
     CheckboxModule,
     TooltipModule,
+    PasswordModule,
+    FlutterwaveModule,
+    Angular4PaystackModule.forRoot('pk_test_22c6de9f298f39b950cd2e627328fcce2af2b13a'),
     ClickOutsideModule
   ],
   providers: [],

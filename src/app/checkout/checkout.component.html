@@ -1,59 +1,92 @@
 <div class="container">
-    <div class="shipping-form">
-        <form [formGroup]="shippingForm">
-            <h1>Shipping Info</h1>
-            <div class="info-side"> 
-                
-                <div class="p-field">
-                    <label class="c-label" for="fullname">Fullname</label>
-                    <input class="c-input" type="text" formControlName="fullname" pInputText />
-                </div> 
-                <div class="p-field">
-                    <label class="c-label" for="phone">Phone Number</label>
-                    <input class="c-input" type="text" formControlName="phone" pInputText />
-                </div>    
-                <div class="p-field">
-                    <label class="c-label" for="email">Email</label>
-                    <input class="c-input" type="text" formControlName="email" pInputText />
-                </div>  
-                <div class="p-field">
-                    <label class="c-label" for="country">Country</label>
-                    <input class="c-input" type="text" formControlName="country" pInputText />
-                </div> 
-                <div class="p-field">
-                    <label class="c-label" for="region">Region</label>
-                    <input class="c-input" type="text" formControlName="region" pInputText />
-                </div> 
-                <div class="p-field">
-                    <label class="c-label" for="city">City</label>
-                    <input class="c-input" type="text" formControlName="city" pInputText />
-                </div> 
-                <div class="p-field">
-                    <label class="c-label" for="digitalAddress">Digital Address</label>
-                    <input class="c-input" type="text" formControlName="digitalAddress" pInputText />
-                </div> 
+    <h1>Checkout</h1>
+    <div class="content">
+        <div class="shipping-form">
+            
+            <form [formGroup]="shippingForm" (ngSubmit)="onSubmit()">
+                <h2>Shipping Info</h2>
+                <div class="info-side"> 
                     
-            </div>
-        </form>
+                    <div class="p-field">
+                        <label class="c-label" for="fullname">Fullname</label>
+                        <input class="c-input" type="text" formControlName="fullname" pInputText />
+                    </div> 
+                    <div class="p-field">
+                        <label class="c-label" for="phone">Phone Number</label>
+                        <input class="c-input" type="tel" formControlName="phone" pInputText />
+                    </div>    
+                    <div class="p-field">
+                        <label class="c-label" for="email">Email</label>
+                        <input class="c-input" type="email" formControlName="email" pInputText />
+                    </div>  
+                    <div class="p-field">
+                        <label class="c-label" for="country">Country</label>
+                        <input class="c-input" type="text" formControlName="country" pInputText />
+                    </div> 
+                    <div class="p-field">
+                        <label class="c-label" for="region">Region</label>
+                        <input class="c-input" type="text" formControlName="region" pInputText />
+                    </div> 
+                    <div class="p-field">
+                        <label class="c-label" for="city">City / Town</label>
+                        <input class="c-input" type="text" formControlName="city" pInputText />
+                    </div> 
+                    <div class="p-field">
+                        <label class="c-label" for="streetAddress">Street Address</label>
+                        <input class="c-input" type="text" formControlName="streetAddress" pInputText />
+                    </div> 
+                    <div class="p-field">
+                        <label class="c-label" for="digitalAddress">Digital Address</label>
+                        <input class="c-input" type="text" formControlName="digitalAddress" pInputText />
+                    </div> 
+
+                    <button style="margin: 10px 0;border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="SUBMIT" icon="pi pi-check-square"></button>
+
+                        
+                </div>
+            </form>
+        </div>
+        
+    
+        <div class="order-review">
+            <h2>Your order</h2>
+    
+            <table class="orders">
+                <tr>
+                    <td>PRODUCT</td>
+                    <td class="pull-right">TOTAL</td>
+                </tr>
+
+
+
+                <tr *ngFor="let item of items">
+                    <td><span class="qty-span"> {{item.quantity}} x </span> {{item.name}}</td>
+                    <td class="pull-right">GHS {{item.quantity * item.price}}</td>
+                </tr>
+                <!-- <tr>
+                    <td><span class="qty-span">1 x </span> Coconut Oil</td>
+                    <td class="pull-right">GHS 30</td>
+                </tr> -->
+            </table>
+    
+            <table class="total-summary">
+                
+                <tr>
+                    <td>SubTotal</td>
+                    <td class="pull-right">GHS {{subTotal}}</td>
+                </tr>
+                <tr>
+                    <td>Shipping & Handling</td>
+                    <td class="pull-right">GHS {{shippingCost}}</td>
+                </tr>
+                <tr>
+                    <td>Grand Total</td>
+                    <td class="pull-right">GHS {{total}}</td>
+                </tr>
+            </table>
+            <button style="width: 100%; border-radius: 30px;" styleClass="p-button-sm" pButton type="button" (click)="proceedToPay()" label="PLACE ORDER" icon="pi pi-check-square"></button>
+    
+        </div>
     </div>
     
-
-    <div class="order-review">
-        <table>
-            <tr>
-                <td>SubTotal</td>
-                <td>233</td>
-            </tr>
-            <tr>
-                <td>Shipping & Handling</td>
-                <td>233</td>
-            </tr>
-            <tr>
-                <td>Grand Total</td>
-                <td>233</td>
-            </tr>
-        </table>
-        <button style="width: 100%; border-radius: 30px;" styleClass="p-button-sm" pButton type="button" (click)="proceedToPay()" label="PROCEED TO PAY" icon="pi pi-check-square"></button>
-
-    </div>
 </div>

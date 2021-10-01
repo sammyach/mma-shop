@@ -1,7 +1,7 @@
 header {
     display: flex;
     flex-direction: column;
-    background: #fff;//#bff;//#daa520;
+    background: #FCFBF8;//fff;//#bff;//#daa520;
     position: sticky;
     top: 0;
     border: 1px solid #ced4da;
@@ -29,8 +29,9 @@ header {
 .main-header{
     display: flex;
     justify-content: space-between;
-    margin: 0 200px;
+    padding: 0 200px;
     padding-top: 10px;
+    background: #FCFBF8;
     // border-bottom: 1px solid #afa401;
     align-items: center;
     // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -41,7 +42,10 @@ header {
 }
 
 .logo {
-    max-width: 70px;
+    max-width: 80px;
+    background: #FFC107;
+    padding: 10px;
+    border-radius: 50%;
 }
 
  .navigation{
@@ -81,6 +85,11 @@ header {
 /*menu header item*/
 .mn-item {
     padding: 5px 20px;
+}
+
+.mn-item:hover{
+    color: #7F2613;
+    
 }
 
  .navigation li.active{
@@ -200,7 +209,9 @@ header {
     text-align: center;
 }
 
-
+:host ::ng-deep .p-menu {
+    width: fit-content;
+}
 
 
 

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { Product } from '../product';
-import { ProductService } from '../product.service';
+import { ProductService } from '../_services/product.service';
+// import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-details',
@@ -12,7 +13,7 @@ import { ProductService } from '../product.service';
 export class ProductDetailsComponent implements OnInit {
 
   qty: number = 1;
-  product: Product;
+  product: any;
   products: Product[]=[];
   sub;
 
@@ -22,8 +23,19 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
 
     console.log('data from ds ',this.ds.productsStoredFromIndex);
-     
+    
+    this.route.paramMap.subscribe(params => {
+      console.log('params', params);
+      
+      let id:number = +params.get('id');
+      console.log('id', id);
+      this.getProductData(id);
+    })
+    
     //this.ps.getProductById(1);
+
+
+
     // this.ps.getProducts("BF").then(data => console.log('data', data));
     // console.log('products', this.products);
 
@@ -44,8 +56,22 @@ export class ProductDetailsComponent implements OnInit {
   //  });
   }
 
+  getProductData(id: number){
+    this.ps.getProductById(id)
+      .subscribe(res => {
+        console.log('res', res);
+        
+        this.product = res;
+      })
+  }
+
+  onAddToCart(product){
+    this.ds.addToCart(product);
+    //this.messageService.add({severity:'success', summary: 'Success', detail: 'Item added to cart successfully'});
+  }
+
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
 
 }

@@ -14,4 +14,14 @@ export class ProductService {
   getAllProducts(){
     return this.http.get<any[]>(`${this.baseUrl}/api/product`);
   }
+
+  getProductById(id){
+    return this.http.get<any>(`${this.baseUrl}/api/product/${id}`);
+  }
+
+  addShippingInfo(data: any){
+    // return this.http.post<any>(`${this.baseUrl}/api`)
+  }
+
+  
 }

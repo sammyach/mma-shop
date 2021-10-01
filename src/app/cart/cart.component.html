@@ -42,6 +42,16 @@
                     </div>
                 </ng-template>
             </p-table>
+
+            <div class="coupon-box">
+                
+                    <span class="p-input-icon-right" style="width: 100%;">
+                        <!-- <i class="pi pi-check-circle" pTooltip="Apply coupon"></i> -->
+                        <input type="text" pInputText class="p-inputtext-sm"  placeholder="Enter coupon code"/>
+                    </span>                                
+                
+                <button style="border-radius: 30px; height: 30px;width: 50%;" pButton styleClass="p-button-sm" label="Apply Coupon" icon="pi pi-check-circle"></button>
+            </div>
         </div>
 
         <div class="side-cart-info">
@@ -56,20 +66,7 @@
                         <td>Shipping</td>
                         <td class="cts-price">{{shipping}}</td>
                     </tr> -->
-                    <tr class="coupon-box">
-                        <td colspan="2">
-                            <!-- <div class="p-field-checkbox">
-                                <p-checkbox [(ngModel)]="checked" binary="true" inputId="binary"></p-checkbox>
-                                <label for="binary">I have a coupon code</label>
-                            </div> -->
-                            <div class="coupon-box">
-                                <span class="p-input-icon-right" style="width: 100%;">
-                                    <i class="pi pi-check-circle" pTooltip="Apply coupon"></i>
-                                    <input type="text" pInputText class="p-inputtext-sm"  placeholder="Enter coupon code"/>
-                                </span>                                
-                            </div>
-                        </td>                        
-                    </tr>
+                    
                     <tr class="total">
                         <td>Total</td>
                         <td class="cts-price right-value">GHS {{total}}</td>

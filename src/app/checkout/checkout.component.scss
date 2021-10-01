@@ -1,18 +1,23 @@
 .container {
-    margin: 30px 200px;
+    margin: 30px 200px 100px 200px;
     height: 100vh;
-    display: flex;
+    
     // justify-content: space-between;
+}
+
+.content{
+    display: flex;
+    color: #85929E;
 }
 
 .shipping-form{
     // flex: 1;
-    width: 60%;
+    width: 55%;
     padding-top: 20px;
 }
 
 .info-side {
-    
+    padding-bottom: 50px;
 }
 
 // .p-float-label{
@@ -36,14 +41,39 @@
 
 .order-review {
     width: 40%;
-    margin-left: 10px;
-    padding: 20px;
+    margin-left: 50px;
+    padding-top: 20px;
+    // padding: 20px;
 }
 
 table{
     width: 100%;
 }
 
+table .pull-right {
+    text-align: right;
+}
+
 tr{
+    height: 40px;
+}
+
+.qty-span{
+    font-weight: 500;
+}
+
+.orders{
+    margin-bottom: 30px;
     padding: 10px;
+}
+
+.total-summary{
+    background: #FCFBF8;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+h1{
+    color: #FFC107;
 }

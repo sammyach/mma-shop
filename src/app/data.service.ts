@@ -8,6 +8,9 @@ import { CartProduct, Product } from './product';
 })
 export class DataService {
 
+  subTotal = 0;
+  total = 0;
+
   productsStoredFromIndex: any[] = [];
 
   shoppingCart: Product[] = [];
@@ -47,6 +50,38 @@ export class DataService {
 
   getItems(): Observable<any[]> {
     return this._subject.asObservable();
+  }
+
+  calculateTotals(){
+    this.total = this.subTotal = 0;
+
+    this.subTotal = this.shoppingCartItems.reduce((a,b)=> a + (b.price * b.quantity), 0);
+    if(this.shoppingCartItems){
+      console.log('sub total = ', this.subTotal);
+    }
+    this.total = this.subTotal;
+  }
+
+  calculateSubTotal(){
+    this.subTotal = 0;
+
+    this.subTotal = this.shoppingCartItems.reduce((a,b)=> a + (b.price * b.quantity), 0);
+    if(this.shoppingCartItems){
+      console.log('sub total = ', this.subTotal);
+    }
+
+    return this.subTotal;
+    //this.total = this.subTotal;
+  }
+
+
+
+  get SubTotal(){
+    return this.subTotal;
+  }
+
+  get Total(){
+    return this.Total;
   }
 
 

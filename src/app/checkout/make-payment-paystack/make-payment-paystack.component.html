@@ -1,0 +1,52 @@
+<div class="container">
+
+    <div class="content">
+        <h1>Checkout</h1>
+        <table>
+            <tr>
+                <td>ORDER #</td>
+                <td>DATE</td>
+                <td>TOTAL</td>
+            </tr>
+            <tr>
+                <td>123654</td>
+                <td>September 24, 2021</td>
+                <td>GHS 456</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="btns-group">
+        <button class="p-button-danger" pButton label="CANCEL ORDER" icon="pi pi-times"></button>
+
+        <button pButton label="PROCEED TO PAY" icon="pi pi-money-bill"
+        angular4-paystack
+        [email]="'mailexample@mail.com'"
+        [amount]="200"
+        [ref]="reference"
+        [currency]="['GHS']"
+        [channels]="['mobile_money','card']"
+        [class]="'btn-pay'"
+        (onClose)="paymentCancel()"
+        (callback)="paymentDone($event)"
+      >    
+      </button>
+    </div>
+
+    <!-- <angular4-paystack
+    [email]="'mailexample@mail.com'"
+    [amount]="200"
+    [ref]="reference"
+    [currency]="['GHS']"
+    [channels]="['mobile_money','card']"
+    [class]="'btn-pay'"
+    (onClose)="paymentCancel()"
+    (callback)="paymentDone($event)"
+  >
+    Pay with Paystack
+  </angular4-paystack> -->
+
+  
+</div>
+
+

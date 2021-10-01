@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-checkout',
@@ -8,26 +10,46 @@ import { FormBuilder } from '@angular/forms';
 })
 export class CheckoutComponent implements OnInit {
 
+  subTotal=0;
+  shippingCost=0;
+  total=0;
   shippingForm;
-
+  items;
   readOnly = false;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router, private ds: DataService) { }
 
   ngOnInit(): void {
     this.createShippingForm();
+    this.items = this.ds.shoppingCartItems;  
+    this.subTotal = this.ds.calculateSubTotal();
+    this.total = this.shippingCost + this.subTotal;
+    // this.ds.getItems()
+    //   .subscribe(res=>{
+    //     console.log('items: frm checkout ', res);
+        
+    //     this.items = res;
+    //   })
   }
 
   createShippingForm(){
     this.shippingForm = this.fb.group({
-      fullname: [],
+      fullname: [null, Validators.required],
       phone: [],
       email: [],
       city: [],
       region: [],
       country: [],
-      digitalAddress:[]
+      digitalAddress:[],
+      streetAddress: []
     })
   }
 
-  proceedToPay(){}
+  onSubmit(){
+    console.log('submitting shipping info', this.shippingForm.value);
+    
+  }
+
+  proceedToPay(){
+    this.router.navigate(['checkout/make-payment-paystack'])
+  }
 }

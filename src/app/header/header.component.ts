@@ -1,10 +1,11 @@
 import { Component, ElementRef, HostListener, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MegaMenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { CartProduct, Product } from '../product';
 import { ProductService } from '../product.service';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -24,31 +25,77 @@ export class HeaderComponent implements OnInit {
 
   AccountNavClass;
 
-  items: MegaMenuItem[];
+  items;
+  accountMenuItems;
   clickedIn = false;
 
   beautyOverlay;
   foodOverlay;
   fashionOverlay;
-  
+
+  loggedIn = false;
+  currentUser: any;
   constructor(private productService: ProductService, private router: Router, private ds : DataService,
-              private eRef: ElementRef) { }
+              private eRef: ElementRef, private auth: AuthService, private route: ActivatedRoute) { 
+                //this.loggedIn = this.auth.loggedIn();
+                this.auth.currentUser.subscribe(x => {this.currentUser = x; console.log('headeruser', this.currentUser); if(this.currentUser) this.loggedIn = true;});
+              }
 
   ngOnInit(): void {
 
-    this.items = [
-      {
-          label: 'Account', icon: 'pi pi-fw pi-user',
-          items: [
-              [
-                  {
-                      label: 'Welcome',
-                      items: [{label: 'Sign In'}, {label: 'Create An Account'}, {label: 'Your Orders'}]
-                  }
-                  
-              ]
-          ]
+    this.accountMenuItems = [{
+      
+      items: [{
+        label: 'My Account',
+        icon: 'pi pi-user-edit',
+          command: () => {
+              //this.update();
+          }
+      
+      }]      
+    },
+    {
+      label: '',
+      items: [{
+        label: 'Log out',
+        icon: 'pi pi-sign-out',
+          command: () => {
+              this.auth.logout();
+          }
       }]
+    }]
+
+    this.items = [{
+      label: 'Options',
+      items: [{
+          label: 'Update',
+          icon: 'pi pi-refresh',
+          command: () => {
+              //this.update();
+          }
+      },
+      {
+          label: 'Delete',
+          icon: 'pi pi-times',
+          command: () => {
+              //this.delete();
+          }
+      }
+      ]},
+      {
+          label: 'Navigate',
+          items: [{
+              label: 'Angular',
+              icon: 'pi pi-external-link',
+              url: 'http://angular.io'
+          },
+          {
+              label: 'Router',
+              icon: 'pi pi-upload',
+              routerLink: '/fileupload'
+          }
+      ]}
+  ];
     this._subscription = this.ds.getItems().subscribe((data)=>{
       this.products = data;
 
@@ -133,6 +180,10 @@ export class HeaderComponent implements OnInit {
     //console.log('Clicked outside:', e);
     this.AccountNavClass = '';
     this.clickedIn = false;
+  }
+
+  goToPage(page: string){
+    this.router.navigate([page], {queryParams: {redirectUrl: this.route.snapshot.url}});
   }
 
   public ngOnDestroy(): void {

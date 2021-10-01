@@ -81,7 +81,7 @@ export class ListProductsComponent implements OnInit {
 
     onViewDetails(id){
       console.log('details...', id);
-      this.router.navigate(['/product', id]);
+      this.router.navigate(['/product', id, 'details']);
     }
 
     onAddToCart(product){

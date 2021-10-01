@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="content">
+        <div class="page-title">
+            <h1>Login to continue shopping</h1>
+        </div>
+
+        <div class="login-form">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="p-field">
+                    <label class="c-label" for="Username">Email / Phone</label>
+                    <input class="c-input" type="text" formControlName="username" pInputText />
+                </div> 
+                <div class="p-field">
+                    <label class="c-label" for="Password">Password</label>
+                    <input class="c-input" type="password" formControlName="password" pPassword />
+                </div>
+                <button style="margin: 10px 0;border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="LOGIN" icon="pi pi-sign-in"></button>
+                <div>
+                    Don't have an account? Click <a routerLink="/account/new">here</a> to create and continue shopping
+                </div>
+        
+            </form>
+        </div>
+    </div>
+</div>

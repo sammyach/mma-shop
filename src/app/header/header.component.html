@@ -10,7 +10,7 @@
     </div> -->
     <div class="main-header">
         <div class="toggle" (click)="onToggle()"><i class="pi pi-bars" style="font-size: 2rem"></i></div>
-        <a href="#"><img src="assets/img/mma_logo-r.png" alt="mma logo" class="logo"></a>
+        <a href=""><img src="assets/img/mma_logo-r.png" alt="mma logo" class="logo"></a>
 
         <div class="pr-icon"><i class="pi pi-phone"></i> +233 244123456</div>
         
@@ -18,8 +18,12 @@
 
         <div class="account-header">
             <ul class="navigation">
-                <li class="mn-item"><i class="pi pi-sign-in"></i> Login </li>
-                <li class="mn-item"><i class="pi pi-user-plus"></i> Register</li>
+                <li *ngIf="loggedIn" class="mn-item" (click)="accmenu.toggle($event)"><i class="pi pi-user"></i> Hi {{currentUser?.FirstName}} </li>
+                <p-menu #accmenu [popup]="true" [model]="accountMenuItems"></p-menu>
+                <!-- <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menu.toggle($event)"></button>
+                <p-menu #menu [popup]="true" [model]="items"></p-menu> -->
+                <li *ngIf="!loggedIn" class="mn-item"><a (click)="goToPage('login')"> <i class="pi pi-sign-in"></i> Login</a> </li>
+                <li *ngIf="!loggedIn" class="mn-item"><a (click)="goToPage('register')"></a><i class="pi pi-user-plus"></i> Register</li>
                 <li class="mn-item"><i class="pi pi-inbox"></i> My Orders</li>
                 <li class="mn-item"><i class="pi pi-heart"></i> My Wishlist</li>
             </ul>

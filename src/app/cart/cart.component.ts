@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { Product } from '../product';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,13 +14,19 @@ export class CartComponent implements OnInit {
   //_subscription: Subscription;
   products: Product[];
 
-  subTotal;
-  total;
+  subTotal=0;
+  total=0;
   shipping = 'N/A';
 
   checked;
 
-    constructor(private ds: DataService, private router: Router) { }
+  loggedIn = false;
+  currentUser: any;
+
+    constructor(private ds: DataService, private router: Router, private auth: AuthService, private route: ActivatedRoute) {
+      this.auth.currentUser.subscribe(x => {this.currentUser = x; console.log('headeruser', this.currentUser); if(this.currentUser) this.loggedIn = true;});
+
+     }
 
     ngOnInit() {
       
@@ -32,7 +39,8 @@ export class CartComponent implements OnInit {
       console.log('cart', this.ds.shoppingCartItems);
       this.products = this.ds.shoppingCartItems;    
       
-      this.calculateTotals();
+      //this.calculateTotals();
+      this.total = this.subTotal = this.ds.calculateSubTotal();
         
         
     }
@@ -48,6 +56,11 @@ export class CartComponent implements OnInit {
     }
 
     checkout(){
+
+      if(!this.loggedIn){
+        this.router.navigate(['login'], {queryParams: {redirectUrl: this.route.snapshot.url}});
+        return;
+      }
       this.router.navigate(['checkout']);
     }
 

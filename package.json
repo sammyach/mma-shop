@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~11.0.0",
     "@angular/platform-browser-dynamic": "~11.0.0",
     "@angular/router": "~11.0.0",
+    "angular4-paystack": "^3.0.2",
+    "flutterwave-angular-v3": "^1.2.1",
     "ng-click-outside": "^8.0.0",
     "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
