@@ -1,0 +1,13 @@
+// .container{
+//     height: 100vh;
+//     margin: 0 200px;
+// }
+
+// .content{
+//     padding: 0 200px
+// }
+
+:host ::ng-deep .p-inputtext{
+    width: 100%;
+    border-radius: 30px;
+}

@@ -1,8 +1,12 @@
 <div class="container">
     <h1>Checkout</h1>
     <div class="content">
+        
         <div class="shipping-form">
-            
+            <div class="p-field-checkbox">
+                <p-checkbox [(ngModel)]="UseMyShippingAddress" binary="true" inputId="binary" (onChange)="OnCheckboxChange($event)"></p-checkbox>
+                <label for="binary">Use my default shipping address</label>
+            </div>
             <form [formGroup]="shippingForm" (ngSubmit)="onSubmit()">
                 <h2>Shipping Info</h2>
                 <div class="info-side"> 
@@ -40,7 +44,7 @@
                         <input class="c-input" type="text" formControlName="digitalAddress" pInputText />
                     </div> 
 
-                    <button style="margin: 10px 0;border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="SUBMIT" icon="pi pi-check-square"></button>
+                    <button *ngIf="!UseMyShippingAddress" style="margin: 10px 0;border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="SUBMIT" icon="pi pi-check-square"></button>
 
                         
                 </div>

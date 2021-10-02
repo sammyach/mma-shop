@@ -23,7 +23,7 @@
                 <!-- <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menu.toggle($event)"></button>
                 <p-menu #menu [popup]="true" [model]="items"></p-menu> -->
                 <li *ngIf="!loggedIn" class="mn-item"><a (click)="goToPage('login')"> <i class="pi pi-sign-in"></i> Login</a> </li>
-                <li *ngIf="!loggedIn" class="mn-item"><a (click)="goToPage('register')"></a><i class="pi pi-user-plus"></i> Register</li>
+                <li *ngIf="!loggedIn" class="mn-item"><a (click)="goToPage('customer/account/new')"></a><i class="pi pi-user-plus"></i> Register</li>
                 <li class="mn-item"><i class="pi pi-inbox"></i> My Orders</li>
                 <li class="mn-item"><i class="pi pi-heart"></i> My Wishlist</li>
             </ul>

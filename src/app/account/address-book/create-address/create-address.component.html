@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="content">
+        <!-- <div class="page-title">
+            <h1>Add New Address</h1>
+        </div> -->
+
+        <div class="address-form">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="p-field">
+                    <label class="c-label" for="description">Address</label>
+                    <input class="c-input" type="text" formControlName="description" pInputText />
+                </div>
+                <div class="p-field">
+                    <label class="c-label" for="city">City</label>
+                    <input class="c-input" type="text" formControlName="city" pInputText />
+                </div> 
+                <div class="p-field">
+                    <label class="c-label" for="region">Region</label>
+                    <input class="c-input" type="text" formControlName="region" pInputText />
+                </div>
+                <div class="p-field">
+                    <label class="c-label" for="country">Country</label>
+                    <input class="c-input" type="text" formControlName="country" pInputText />
+                </div> 
+                
+                <!-- <div class="p-field">
+                    <label class="c-label" for="Phone">Phone</label>
+                    <input class="c-input" type="tel" formControlName="phone" pInputText />
+                </div>  -->
+                <button style="margin: 10px 0;border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="SAVE" icon="pi pi-save"></button>
+                
+        
+            </form>
+        </div>
+    </div>
+</div>

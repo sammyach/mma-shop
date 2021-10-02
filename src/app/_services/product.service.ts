@@ -23,5 +23,13 @@ export class ProductService {
     // return this.http.post<any>(`${this.baseUrl}/api`)
   }
 
+  getCustomerById(id){
+    return this.http.get<any>(`${this.baseUrl}/api/users/${id}`);
+  }
+
+  addNewAddress(data){
+    return this.http.post<any>(`${this.baseUrl}/api/users/address/new`, data);
+  }
+
   
 }

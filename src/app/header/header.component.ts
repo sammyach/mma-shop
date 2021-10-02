@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit {
         label: 'My Account',
         icon: 'pi pi-user-edit',
           command: () => {
-              //this.update();
+              this.router.navigate(['customer/account'])
           }
       
       }]      

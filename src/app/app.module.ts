@@ -44,6 +44,9 @@ import { MakePaymentComponent } from './checkout/make-payment/make-payment.compo
 import { MakePaymentPaystackComponent } from './checkout/make-payment-paystack/make-payment-paystack.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
+import { AccountComponent } from './account/account.component';
+import { AddressBookComponent } from './account/address-book/address-book.component';
+import { CreateAddressComponent } from './account/address-book/create-address/create-address.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,10 @@ import { RegisterComponent } from './account/register/register.component';
     MakePaymentComponent,
     MakePaymentPaystackComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AccountComponent,
+    AddressBookComponent,
+    CreateAddressComponent
   ],
   imports: [
     BrowserModule,

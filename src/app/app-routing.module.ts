@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AccountComponent } from './account/account.component';
+import { CreateAddressComponent } from './account/address-book/create-address/create-address.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 //import { MakePaymentComponent } from 'flutterwave-angular-v3';
@@ -21,7 +23,9 @@ const routes: Routes = [
   {path: 'checkout/make-payment', component: MakePaymentComponent},
   {path: 'checkout/make-payment-paystack', component: MakePaymentPaystackComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'account/new', component: RegisterComponent},
+  {path: 'customer/account/new', component: RegisterComponent},
+  {path: 'customer/account', component: AccountComponent},
+  {path: 'customer/account/address/create', component: CreateAddressComponent},
   {path: '**', redirectTo: ''}
 ];
 

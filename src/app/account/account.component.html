@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="page-title">
+        Account Overview
+    </div>
+    <div class="content">
+        <div class="panel">
+            <p-panel header="ACCOUNT DETAILS">
+                <ng-template pTemplate="icons">
+                        <button icon="pi pi-pencil" pButton class="p-panel-header-icon p-link" (click)="editAccountDetails()">
+                            <!-- <span class="pi pi-pencil"></span> -->
+                        </button>
+                </ng-template>
+                <div>
+                    <p>{{customer.FirstName}} {{customer.LastName}}</p>
+                    <p>{{customer.Email}}</p>
+                    <p>{{customer.Phone}}</p>
+                </div>
+            </p-panel>
+        </div>
+        
+        <div class="panel">
+            <p-panel header="ADDRESS BOOK">
+                <ng-template pTemplate="icons">
+                        <button icon="pi pi-pencil" pButton class="p-panel-header-icon p-link" (click)="menu.toggle($event)"></button>
+                        <button icon="pi pi-plus" pButton class="p-panel-header-icon p-link" (click)="toggleAddAddressModal()"></button>
+
+                </ng-template>
+                <div *ngIf="customer?.UserAddresses?.length > 0">
+                    <p>Your default shipping address:</p>
+
+                    <small>{{customer?.UserAddresses[0]?.Description}}</small><br/>
+                    <small>{{customer?.UserAddresses[0]?.City}}, {{customer?.UserAddresses[0]?.Region}}</small>
+                </div>
+                <div *ngIf="customer?.UserAddresses?.length == 0">
+                    <p>No default shipping address set. Click on the plus sign to add address</p>
+                </div>
+            </p-panel>
+        </div>
+
+        
+    </div>
+    
+</div>
+
+<p-dialog header="ADD NEW ADDRESS" [(visible)]="displayAddAddressModal" [modal]="true" [style]="{width: '30vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <app-create-address [UserId]="customer?.Id" (newAddressEvent)="reloadCustomerData($event)"></app-create-address>
+    <!-- <p class="p-m-0"></p> -->
+    <!-- <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check"  label="Yes" class="p-button-text"></p-button>
+        <p-button icon="pi pi-times"  label="No"></p-button>
+    </ng-template> -->
+</p-dialog>
