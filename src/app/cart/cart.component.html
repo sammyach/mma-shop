@@ -25,13 +25,17 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
                     <tr>
-                        <td><img [src]="product.image" [alt]="product.name" width="100"  /></td>
+                        <td><img [src]="product.ImageUrl" [alt]="product.ProductName" width="100"  /></td>
         
-                        <td>{{product.name}}</td>
-                        <td>{{product.price | currency:'GHS '}}</td>
+                        <td>{{product.ProductName}}</td>
+                        <td>{{product.UnitPrice | currency:'GHS '}}</td>
                         <!-- <td>{{product.category}}</td> -->
-                        <td>{{product.quantity}}</td>
-                        <td>GHS {{product.price * product.quantity}}</td>
+                        <td>
+                            <span class="qty-changer" (click)="modifyQty(product, -1)">-</span>
+                            <span style="padding: 5px">{{product.Quantity}}</span> 
+                            <span class="qty-changer" (click)="modifyQty(product, 1)">+</span>
+                        </td>
+                        <td>GHS {{product.UnitPrice * product.Quantity}}</td>
                         <!-- <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td> -->
                         <!-- <td><span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span></td> -->
                     </tr>
@@ -40,6 +44,10 @@
                     <div class="p-d-flex p-ai-center p-jc-between">
                         <!-- In total there are {{products ? products.length : 0 }} products. -->
                     </div>
+                </ng-template>
+
+                <ng-template>
+                    Cart is empty. Continue shopping
                 </ng-template>
             </p-table>
 
@@ -70,8 +78,12 @@
                         <td>Total</td>
                         <td class="cts-price right-value">GHS {{total}}</td>
                     </tr>
+
+                    
                     
                 </table>
+                <small style="font-size: .7rem; font-style: italic;">* Total price not including shipping & handling</small>
+
                 <button style="width: 100%; border-radius: 30px;" styleClass="p-button-sm" pButton type="button" (click)="checkout()" label="PROCEED TO CHECKOUT" icon="pi pi-check-square"></button>
             </div>
 

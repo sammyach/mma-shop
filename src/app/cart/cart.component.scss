@@ -126,3 +126,23 @@ table {
   :host ::ng-deep .p-datatable-scrollable-wrapper{
     border-top: 5px solid #FFC107;
   }
+
+  .qty-changer{
+      background: #FFC107;
+    //   border-radius: 50%;
+      padding: 5px;
+      line-height: 3;
+      font-size: .7rem;
+      font-weight: 500;
+      cursor: pointer;
+  }
+
+  .qty-changer .rt{
+      border-bottom-right-radius: 50px;
+      border-top-right-radius: 50px;
+  }
+
+  .qty-changer .lt{
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Flutterwave, InlinePaymentOptions, PaymentSuccessResponse } from 'flutterwave-angular-v3';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataService } from 'src/app/data.service';
+import { ProductService } from 'src/app/_services/product.service';
 
 @Component({
   selector: 'app-make-payment',
@@ -9,43 +11,68 @@ import { Flutterwave, InlinePaymentOptions, PaymentSuccessResponse } from 'flutt
 export class MakePaymentComponent implements OnInit {
   
 
-  publicKey = "FLWPUBK_TEST-9f4920ee7e00503eec7401a810431bf5-X";
+  reference = '';
+  title;
+  order;
+  amountInPesewas;
+  customerEmail;
+  constructor(private route: ActivatedRoute, private ps: ProductService, private ds: DataService, private router: Router) {}  
 
-  customerDetails = { name: 'Demo Customer  Name', email: 'sammyachman@gmail.com', phone_number: '0544073772'};
+  ngOnInit() {
+    
 
-  customizations = {title: 'Customization Title', description: 'Customization Description', logo: 'https://flutterwave.com/images/logo-colored.svg'};
+    this.route.paramMap.subscribe(params => {
+      console.log('params', params);
+      
+      let id:number = +params.get('id');
+      console.log('id', id);
+      this.getOrderData(id);
+    })
 
-  meta = {'consumer_id': '7898', 'consumer_mac': 'kjs9s8ss7dd'};
-
- paymentData: InlinePaymentOptions = {
-    public_key: this.publicKey,
-    tx_ref: this.generateReference(),
-    amount: 1,
-    currency: 'GHS',
-    payment_options: 'card,mobilemoneyghana',
-    redirect_url: '',
-    meta: this.meta,
-    customer: this.customerDetails,
-    customizations: this.customizations,
-    callback: this.makePaymentCallback,
-    onclose: this.closedPaymentModal,
-    callbackContext: this
-  }
-  //Inject the flutterwave service 
-  constructor(private flutterwave: Flutterwave) {
+    this.reference = `ref-${Math.ceil(Math.random() * 10e13)}`;
+    //this.reference = `ref-${new Date().getTime.toString()}`;
   }
 
-  ngOnInit(): void {
+  paymentInit() {
+    console.log('Payment initialized');
   }
 
-  makePayment(){
-    this.flutterwave.inlinePay(this.paymentData)
+  paymentDone(ref: any) {
+    this.title = 'Payment successfull';
+    console.log(this.title, ref);
+
+    //fulfill payment
+    const data: any = {};
+    data.OrderId = this.order.Id;
+    data.Reference = ref.reference;
+    data.Response = `status:${ref.status}-message:${ref.message}`;
+    this.ps.fulfillPayment(data)
+      .subscribe(res => {
+        
+        // empty cart
+        this.ds.emptyCart();
+        //nav to customer order view
+        this.router.navigate(['customer/account'])
+      }, err=>{
+        console.log('error fulfilling payment', err);
+        
+      })
   }
-  makePaymentCallback(response: PaymentSuccessResponse): void {
-    console.log("Payment callback", response);
+
+  paymentCancel() {
+    console.log('payment failed');
   }
-  closedPaymentModal(): void {
-    console.log('payment is closed');
+
+  getOrderData(id){
+    this.ps.getOrderById(id)
+      .subscribe(res => {
+        this.order = res.Order;
+        this.amountInPesewas = this.order.TotalAmount * 100;
+        this.customerEmail = res.UserEmail;
+        console.log(res);
+        console.log(this.customerEmail);
+        
+      })
   }
 
   generateReference(): string {

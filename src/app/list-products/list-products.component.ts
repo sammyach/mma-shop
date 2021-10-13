@@ -59,7 +59,7 @@ export class ListProductsComponent implements OnInit {
       this.ps.getAllProducts()
         .subscribe(res => {
           this.products = res;
-          this.ds.productsStoredFromIndex = this.products;
+          //this.ds.productsStoredFromIndex = this.products;
         })
     }
     
@@ -85,8 +85,21 @@ export class ListProductsComponent implements OnInit {
     }
 
     onAddToCart(product){
-      this.ds.addToCart(product);
-      this.messageService.add({severity:'success', summary: 'Success', detail: 'Item added to cart successfully'});
+      const data: any = {};
+      data.ProductId = product.Id;
+      data.Quantity = 1;
+      data.ProductName = product.Name;
+      data.UnitPrice = product.Price;
+      data.ImageUrl = product.ProductImages[0]?.ImageUrl;
+      console.log('adding to cart', data);
+      
+      this.ds.addToCart(data);
+      //this.messageService.add({severity:'success', summary: 'Success', detail: 'Item added to cart successfully'});
     }
+
+    // onAddToCart(product){
+    //   this.ds.addToCart(product);
+    //   //this.messageService.add({severity:'success', summary: 'Success', detail: 'Item added to cart successfully'});
+    // }
 
 }

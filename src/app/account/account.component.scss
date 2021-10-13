@@ -9,5 +9,24 @@
 }
 
 .panel {
-    width: 450px;
+    width: 350px;
+}
+
+.orders-tbl{
+    font-size: .8rem;
+    width: 100%;
+    // padding: 2px;
+}
+
+// table{
+//     width: 100%;
+//     padding: 10px;
+// }
+
+tr{
+    height: 30px;
+}
+
+:host ::ng-deep .p-tag{
+    font-size: .5rem;
 }

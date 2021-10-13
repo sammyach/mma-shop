@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +26,7 @@ import {SidebarModule} from 'primeng/sidebar';
 import {CheckboxModule} from 'primeng/checkbox';
 import {TooltipModule} from 'primeng/tooltip';
 import {PasswordModule} from 'primeng/password';
-import { FlutterwaveModule } from "flutterwave-angular-v3"
+import { TagModule } from 'primeng/tag';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { ClickOutsideModule } from 'ng-click-outside';
 
@@ -47,6 +47,8 @@ import { RegisterComponent } from './account/register/register.component';
 import { AccountComponent } from './account/account.component';
 import { AddressBookComponent } from './account/address-book/address-book.component';
 import { CreateAddressComponent } from './account/address-book/create-address/create-address.component';
+import { JwtInterceptor } from './_helpers/jwt.interceptor';
+import { CustomerOrdersComponent } from './account/customer-orders/customer-orders.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import { CreateAddressComponent } from './account/address-book/create-address/cr
     RegisterComponent,
     AccountComponent,
     AddressBookComponent,
-    CreateAddressComponent
+    CreateAddressComponent,
+    CustomerOrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -94,11 +97,13 @@ import { CreateAddressComponent } from './account/address-book/create-address/cr
     CheckboxModule,
     TooltipModule,
     PasswordModule,
-    FlutterwaveModule,
+    TagModule,
     Angular4PaystackModule.forRoot('pk_test_22c6de9f298f39b950cd2e627328fcce2af2b13a'),
     ClickOutsideModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

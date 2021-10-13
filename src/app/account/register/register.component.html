@@ -1,34 +1,56 @@
 <div class="container">
+    <div class="page-title">
+        <h1>Create account to continue shopping</h1>
+    </div>
     <div class="content">
-        <div class="page-title">
-            <h1>Create account to continue shopping</h1>
-        </div>
+        
 
-        <div class="login-form">
+        <div class="reg-form">
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                <div class="p-field">
-                    <label class="c-label" for="FirstName">First Name</label>
-                    <input class="c-input" type="text" formControlName="firstname" pInputText />
-                </div> 
-                <div class="p-field">
-                    <label class="c-label" for="FirstName">Last Name</label>
-                    <input class="c-input" type="text" formControlName="lastname" pInputText />
+                <div class="input-row">
+                    <div class="p-field">
+                        <label class="c-label" for="FirstName">First Name </label>
+                        <input class="c-input" type="text" formControlName="firstname" pInputText />
+                        <span *ngIf="submitted && form.controls.firstname.errors?.required" style="color: red; font-size: .7rem;">First Name is required</span>
+                    </div> 
+                    <div class="p-field">
+                        <label class="c-label" for="LastName">Last Name</label>
+                        <input class="c-input" type="text" formControlName="lastname" pInputText />
+                        <span *ngIf="submitted && form.controls.lastname.errors?.required" style="color: red; font-size: .7rem;">Last Name is required</span>
+                    </div>
                 </div>
-                <div class="p-field">
-                    <label class="c-label" for="Email">Email</label>
-                    <input class="c-input" type="text" formControlName="email" pInputText />
-                </div> 
-                <div class="p-field">
-                    <label class="c-label" for="Password">Password</label>
-                    <input class="c-input" type="password" formControlName="password" pPassword />
+                
+                <div class="input-row">
+                    <div class="p-field">
+                        <label class="c-label" for="Email">Email</label>
+                        <input class="c-input" type="text" formControlName="email" pInputText />
+                        <span *ngIf="submitted && form.controls.email.errors?.required" style="color: red; font-size: .7rem;">Email is required</span>
+                    </div> 
+                    <div class="p-field">
+                        <label class="c-label" for="Phone">Phone</label>
+                        <input class="c-input" type="tel" formControlName="phone" pInputText />
+                        <span *ngIf="submitted && form.controls.phone.errors?.required" style="color: red; font-size: .7rem;">Phone Number is required</span>
+                    </div>
                 </div>
-                <div class="p-field">
-                    <label class="c-label" for="Phone">Phone</label>
-                    <input class="c-input" type="tel" formControlName="phone" pInputText />
-                </div> 
+
+                <div class="input-row">
+                    <div class="p-field">
+                        <label class="c-label" for="Password">Password</label>
+                        <input class="c-input" type="password" formControlName="password" pPassword />
+                        <span *ngIf="submitted && form.controls.password.errors?.required" style="color: red; font-size: .7rem;">Password is required</span>
+                    </div>
+                    <div class="p-field">
+                        <label class="c-label" for="cPassword">Confirm Password</label>
+                        <input class="c-input" type="password" formControlName="cpassword" pPassword />
+                        <span *ngIf="submitted && !passwordsMatch" style="color: red; font-size: .7rem;">Passwords do not match</span>
+                    </div>
+                </div>
+                
+                
+                 
                 <button style="margin: 10px 0;border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="CREATE ACCOUNT" icon="pi pi-sign-in"></button>
                 <div>
-                    Already have an account? Click <a routerLink="/account/new">here</a> to login and continue shopping
+                    <small>Already have an account? Click <a routerLink="/login">here</a> to login and continue shopping</small> 
                 </div>
         
             </form>

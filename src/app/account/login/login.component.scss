@@ -1,9 +1,19 @@
 .container{
     height: 100vh;
-    margin: 0 200px;
+    margin: 30px 200px;
 }
 
-:host ::ng-deep .p-inputtext{
+.content{
+    display: flex;
+    padding-top: 20px;
+    color: #85929E;
+}
+
+:host ::ng-deep .p-inputtext, :host ::ng-deep .p-password{
     width: 100%;
     border-radius: 30px;
+}
+
+h1{
+    color: #FFC107;
 }

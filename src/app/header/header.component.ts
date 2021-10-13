@@ -4,8 +4,9 @@ import { MegaMenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { CartProduct, Product } from '../product';
-import { ProductService } from '../product.service';
+// import { ProductService } from '../product.service';
 import { AuthService } from '../_services/auth.service';
+import { ProductService } from '../_services/product.service';
 
 @Component({
   selector: 'app-header',
@@ -35,10 +36,13 @@ export class HeaderComponent implements OnInit {
 
   loggedIn = false;
   currentUser: any;
-  constructor(private productService: ProductService, private router: Router, private ds : DataService,
-              private eRef: ElementRef, private auth: AuthService, private route: ActivatedRoute) { 
+  constructor(private router: Router, private ds : DataService,
+              private eRef: ElementRef, private auth: AuthService, private route: ActivatedRoute, private ps: ProductService) { 
                 //this.loggedIn = this.auth.loggedIn();
-                this.auth.currentUser.subscribe(x => {this.currentUser = x; console.log('headeruser', this.currentUser); if(this.currentUser) this.loggedIn = true;});
+                this.auth.isLoggedIn$.subscribe(x=> this.loggedIn = x);
+                
+                  this.auth.currentUser.subscribe(x => {this.currentUser = x; console.log('headeruser', this.currentUser);});
+                
               }
 
   ngOnInit(): void {
@@ -96,17 +100,37 @@ export class HeaderComponent implements OnInit {
           }
       ]}
   ];
-    this._subscription = this.ds.getItems().subscribe((data)=>{
-      this.products = data;
 
-      // + operator for casting to Number
-      // items.reduce((a, b) => +a + +b.price, 0);
+    // this.products = this.ds.shoppingCartItems;
+    // if(this.products.length > 0){
+    //   this.totalItemsInCart = this.products.reduce((a, b) => +a + +b.quantity, 0);
+    // }
+    // this._subscription = this.ds.getItems().subscribe((data)=>{
+    //   console.log('in header: cart items', data);
+      
+    //   this.products = data;
+
+    //   // + operator for casting to Number
+    //   // items.reduce((a, b) => +a + +b.price, 0);
 
       
-      this.totalItemsInCart = this.products.reduce((a, b) => +a + +b.quantity, 0);
-    })
+    //   this.totalItemsInCart = this.products?.reduce((a, b) => +a + +b.Quantity, 0);
+    // })
     // this.productService.getProducts().then(data => this.products = data.slice(0,3));
     // this.totalItemsInCart = this.ds.shoppingCart.length;
+
+    // this.ps.getItemsInCart()
+    //   .subscribe(res => {
+    //     this.products = res;
+    //     this.totalItemsInCart = this.products?.reduce((a, b) => +a + +b.Quantity, 0);
+    //   })
+
+      this.ds.getCartItems();
+      this.ds.getItems()
+        .subscribe(res => {
+          this.products = res;
+          this.totalItemsInCart = this.products?.reduce((a, b) => +a + +b.Quantity, 0);
+        })
   }
 
   onShowCart(){
@@ -183,11 +207,14 @@ export class HeaderComponent implements OnInit {
   }
 
   goToPage(page: string){
+    console.log('going to ', page);
+    
     this.router.navigate([page], {queryParams: {redirectUrl: this.route.snapshot.url}});
   }
 
   public ngOnDestroy(): void {
     this._subscription.unsubscribe();
+    
   }
 
 }

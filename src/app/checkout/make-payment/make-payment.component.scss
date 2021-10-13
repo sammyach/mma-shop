@@ -1,6 +1,41 @@
-.container {
+.container{
     margin: 30px 200px;
     height: 100vh;
-    display: flex;
     
+}
+
+h1{
+    padding: 10px; 
+    color: #FFC107; 
+}
+
+.content{
+    background: #FCFBF8;
+    border-radius: 10px;
+    color: #85929E;
+}
+
+table{
+    width: 100%;
+    padding: 10px;
+}
+
+tr{
+    height: 50px;
+}
+
+.btn-pay{
+    background: #FFC107;
+}
+
+button{
+    background: #FFC107;
+    border-radius: 30px;
+    margin-right: 5px;
+}
+
+.btns-group{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
 }

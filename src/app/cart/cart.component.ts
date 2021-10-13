@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { Product } from '../product';
 import { AuthService } from '../_services/auth.service';
+import { ProductService } from '../_services/product.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, AfterViewChecked {
   //_subscription: Subscription;
-  products: Product[];
+  products: any[];
 
   subTotal=0;
   total=0;
@@ -23,12 +24,13 @@ export class CartComponent implements OnInit {
   loggedIn = false;
   currentUser: any;
 
-    constructor(private ds: DataService, private router: Router, private auth: AuthService, private route: ActivatedRoute) {
+    constructor(private ds: DataService, private router: Router, private auth: AuthService, private route: ActivatedRoute, private ps: ProductService) {
       this.auth.currentUser.subscribe(x => {this.currentUser = x; console.log('headeruser', this.currentUser); if(this.currentUser) this.loggedIn = true;});
 
      }
 
     ngOnInit() {
+      
       
       // this._subscription = this.ds.getItems().subscribe((data)=>{
       //   console.log('data', data);
@@ -36,17 +38,39 @@ export class CartComponent implements OnInit {
       //   this.products = data;
       // })
 
-      console.log('cart', this.ds.shoppingCartItems);
-      this.products = this.ds.shoppingCartItems;    
+      //console.log('cart', this.ds.shoppingCartItems);
+      //this.products = this.ds.shoppingCartItems;    
+      // this.ps.getItemsInCart()
+      //   .subscribe(res => {
+      //     this.products = res;
+      //     this.total = this.subTotal = this.products?.reduce((a,b)=> a + (b.UnitPrice * b.Quantity), 0);
+      //   })
+      this.ds.getCartItems();
+      this.ds.getItems()
+      .subscribe(res => {
+        
+        
+        this.products = res;
+        this.total = this.subTotal = this.products?.reduce((a,b)=> a + (b.UnitPrice * b.Quantity), 0);   
+      })
       
       //this.calculateTotals();
-      this.total = this.subTotal = this.ds.calculateSubTotal();
+      // this.total = this.subTotal = this.ds.calculateSubTotal();
+
+      
         
         
     }
 
+    ngAfterViewChecked(){
+      
+    }
+
     calculateTotals(){
+      
       this.total = this.subTotal = 0;
+
+      
 
       this.subTotal = this.products.reduce((a,b)=> a + (b.price * b.quantity), 0);
       if(this.products){
@@ -57,11 +81,28 @@ export class CartComponent implements OnInit {
 
     checkout(){
 
-      if(!this.loggedIn){
+      if(!this.auth.loggedIn){
         this.router.navigate(['login'], {queryParams: {redirectUrl: this.route.snapshot.url}});
         return;
       }
       this.router.navigate(['checkout']);
+    }
+
+    modifyQty(product, qty){
+      if(qty == -1 && product.Quantity == 0){ // dont decrease below zero
+        console.log('hit min quantity');
+        
+        return;
+      }
+      const data: any = {};
+      data.ProductId = product.ProductId;
+      data.Quantity = qty;
+      data.ProductName = product.ProductName;
+      data.UnitPrice = product.UnitPrice;
+      data.ImageUrl = product.ImageUrl;
+      console.log('adding to cart', data);
+      
+      this.ds.addToCart(data);
     }
 
     // public ngOnDestroy(): void {

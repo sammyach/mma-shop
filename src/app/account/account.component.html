@@ -2,6 +2,7 @@
     <div class="page-title">
         Account Overview
     </div>
+    
     <div class="content">
         <div class="panel">
             <p-panel header="ACCOUNT DETAILS">
@@ -29,10 +30,42 @@
                     <p>Your default shipping address:</p>
 
                     <small>{{customer?.UserAddresses[0]?.Description}}</small><br/>
+                    <small>{{customer?.UserAddresses[0]?.StreetAddress}}</small><br/>
                     <small>{{customer?.UserAddresses[0]?.City}}, {{customer?.UserAddresses[0]?.Region}}</small>
                 </div>
                 <div *ngIf="customer?.UserAddresses?.length == 0">
                     <p>No default shipping address set. Click on the plus sign to add address</p>
+                </div>
+            </p-panel>
+        </div>
+
+        <div class="panel">
+            <p-panel header="MY ORDERS">
+                <ng-template pTemplate="icons">
+                        <!-- <button icon="pi pi-pencil" pButton class="p-panel-header-icon p-link" (click)="menu.toggle($event)"></button>
+                        <button icon="pi pi-plus" pButton class="p-panel-header-icon p-link" (click)="toggleAddAddressModal()"></button> -->
+
+                </ng-template>
+                <div>
+                    <table class="orders-tbl" *ngIf="orders">
+                        <tr>
+                            <!-- <td>DATE</td> -->
+                            <td style="text-align: center;">ORDER #</td>                            
+                            <td style="text-align: center;">STATUS</td>
+                        </tr>
+                        <tr *ngFor="let order of orders">
+                            <!-- <td>{{order.DateCreated | date}}</td> -->
+                            <td style="text-align: center;">{{order.Id}}</td>
+                            <td style="text-align: center;">
+                                <!-- <p-tag styleClass="p-mr-2" value="Primary" [rounded]="true"></p-tag> -->
+                                <!-- <button *ngIf="order.Status == 5" pButton pRipple type="button" label="Primary" class="p-button-outlined p-button-rounded p-button-success"></button> -->
+                                <p-tag *ngIf="order.Status == 5" severity="success" value="Fulfilled" [rounded]="true"></p-tag>
+                                <p-tag *ngIf="order.Status == 2" severity="info" value="Awaiting Shipment" [rounded]="true"></p-tag>
+                                <p-tag *ngIf="order.Status == 3" severity="warning" value="Shipped" [rounded]="true"></p-tag>
+                                <p-tag *ngIf="order.Status == 6" severity="danger" value="Cancelled" [rounded]="true"></p-tag>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </p-panel>
         </div>

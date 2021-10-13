@@ -3,7 +3,7 @@
     <div class="content">
         
         <div class="shipping-form">
-            <div class="p-field-checkbox">
+            <div *ngIf="customer?.UserAddresses?.length > 0" class="p-field-checkbox">
                 <p-checkbox [(ngModel)]="UseMyShippingAddress" binary="true" inputId="binary" (onChange)="OnCheckboxChange($event)"></p-checkbox>
                 <label for="binary">Use my default shipping address</label>
             </div>
@@ -19,10 +19,10 @@
                         <label class="c-label" for="phone">Phone Number</label>
                         <input class="c-input" type="tel" formControlName="phone" pInputText />
                     </div>    
-                    <div class="p-field">
+                    <!-- <div class="p-field">
                         <label class="c-label" for="email">Email</label>
                         <input class="c-input" type="email" formControlName="email" pInputText />
-                    </div>  
+                    </div>   -->
                     <div class="p-field">
                         <label class="c-label" for="country">Country</label>
                         <input class="c-input" type="text" formControlName="country" pInputText />
@@ -44,7 +44,7 @@
                         <input class="c-input" type="text" formControlName="digitalAddress" pInputText />
                     </div> 
 
-                    <button *ngIf="!UseMyShippingAddress" style="margin: 10px 0;border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="SUBMIT" icon="pi pi-check-square"></button>
+                    <button *ngIf="showSubmitBtn" style="margin: 10px 0;border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="SUBMIT" icon="pi pi-check-square"></button>
 
                         
                 </div>
@@ -64,8 +64,8 @@
 
 
                 <tr *ngFor="let item of items">
-                    <td><span class="qty-span"> {{item.quantity}} x </span> {{item.name}}</td>
-                    <td class="pull-right">GHS {{item.quantity * item.price}}</td>
+                    <td><span class="qty-span"> {{item.Quantity}} x </span> {{item.ProductName}}</td>
+                    <td class="pull-right">GHS {{item.Quantity * item.UnitPrice}}</td>
                 </tr>
                 <!-- <tr>
                     <td><span class="qty-span">1 x </span> Coconut Oil</td>
@@ -88,7 +88,7 @@
                     <td class="pull-right">GHS {{total}}</td>
                 </tr>
             </table>
-            <button style="width: 100%; border-radius: 30px;" styleClass="p-button-sm" pButton type="button" (click)="proceedToPay()" label="PLACE ORDER" icon="pi pi-check-square"></button>
+            <button *ngIf="showPlaceOrderBtn" style="width: 100%; border-radius: 30px;" styleClass="p-button-sm" pButton type="button" (click)="placeOrder()" label="PLACE ORDER" icon="pi pi-check-square"></button>
     
         </div>
     </div>

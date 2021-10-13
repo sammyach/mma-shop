@@ -20,15 +20,43 @@ export class ProductService {
   }
 
   addShippingInfo(data: any){
-    // return this.http.post<any>(`${this.baseUrl}/api`)
+    return this.http.post<any>(`${this.baseUrl}/api/shopping/add/shippingaddress`, data);
   }
 
-  getCustomerById(id){
-    return this.http.get<any>(`${this.baseUrl}/api/users/${id}`);
+  // getCustomerById(id){
+  //   return this.http.get<any>(`${this.baseUrl}/api/users/${id}`);
+  // }
+
+  getCustomerWithAddressesById(id){
+    return this.http.get<any>(`${this.baseUrl}/api/users/withaddresses/${id}`);
+  }
+
+  getAllCustomerOrders(){
+    return this.http.get<any>(`${this.baseUrl}/api/users/orders/all`);
   }
 
   addNewAddress(data){
     return this.http.post<any>(`${this.baseUrl}/api/users/address/new`, data);
+  }
+
+  placeOrder(data){
+    return this.http.post<any>(`${this.baseUrl}/api/shopping/place/order`, data);
+  }
+
+  getOrderById(id){
+    return this.http.get<any>(`${this.baseUrl}/api/shopping/order/${id}`);
+  }
+
+  fulfillPayment(data){
+    return this.http.put<any>(`${this.baseUrl}/api/shopping/order/fulfillpayment`, data);
+  }
+
+  addItemToCart(data){
+    return this.http.post<any>(`${this.baseUrl}/api/shopping/cart/additems`, data);
+  }
+
+  getItemsInCart(){
+    return this.http.get<any[]>(`${this.baseUrl}/api/shopping/cart/items`);
   }
 
   

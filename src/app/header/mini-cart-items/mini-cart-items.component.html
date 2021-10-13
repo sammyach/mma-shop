@@ -1,9 +1,9 @@
 <div class="cart-items">
-    <img class="cart-item-image" [src]="product.image"/>
+    <img class="cart-item-image" [src]="product.ImageUrl"/>
     <div class="cart-item-details">
-        <div class="cart-item-name">{{product.name}}</div>
-        <div class="cart-item-price">GHS {{product.price}}</div>
-        <div class="cart-item-name">Qty: {{product.quantity}}</div>
+        <div class="cart-item-name">{{product.ProductName}}</div>
+        <div class="cart-item-price">GHS {{product.UnitPrice}}</div>
+        <div class="cart-item-name">Qty: {{product.Quantity}}</div>
         <!-- <div class="cart-item-qty">
             <p-inputNumber [(ngModel)]="item_qty" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1" size="1" min="1"
                 decrementButtonClass="p-button-outlined" incrementButtonClass="p-button-outlined" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal">

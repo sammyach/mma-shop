@@ -11,6 +11,7 @@ export class AccountComponent implements OnInit {
 
   customer;
   currentUser;
+  orders;
 
   displayAddAddressModal = false;
   constructor(private ps: ProductService, private auth: AuthService) {
@@ -19,11 +20,13 @@ export class AccountComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.customer = this.ps.getCustomerById(this.currentUser?.Id)
+    this.customer = this.ps.getCustomerWithAddressesById(this.currentUser?.id)
       .subscribe(res=>{
         this.customer = res;        
         
       })
+
+      this.getCustomerOrders();  
   }
 
   editAccountDetails(){
@@ -39,6 +42,13 @@ export class AccountComponent implements OnInit {
     console.log('reload...', customer);
     this.displayAddAddressModal = false;
     this.customer = customer;
+  }
+
+  getCustomerOrders(){
+    this.ps.getAllCustomerOrders()
+    .subscribe(res => {
+      this.orders = res.Orders;
+    })
   }
   
 

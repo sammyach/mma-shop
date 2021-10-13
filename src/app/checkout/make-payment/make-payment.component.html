@@ -1,7 +1,52 @@
 <div class="container">
 
-    xxx
-    <button (click)="makePayment()">Pay 100 GHS</button>
+    <div class="content">
+        <h1>Checkout</h1>
+        <table *ngIf="order">
+            <tr>
+                <td>ORDER #</td>
+                <td>DATE CREATED</td>
+                <td>TOTAL</td>
+            </tr>
+            <tr>
+                <td>{{order.Id}}</td>
+                <td>{{order.DateCreated | date: 'longDate' }}</td>
+                <td>GHS {{order.TotalAmount}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="btns-group">
+        <button class="p-button-danger" pButton label="CANCEL ORDER" icon="pi pi-times"></button>
+
+        <button *ngIf="order" pButton label="PROCEED TO PAY" icon="pi pi-money-bill"
+        angular4-paystack
+        [email]="customerEmail"
+        [amount]="amountInPesewas"
+        [ref]="reference"
+        [currency]="'GHS'"
+        [channels]="['mobile_money','card']"
+        [class]="'btn-pay'"
+        (onClose)="paymentCancel()"
+        (callback)="paymentDone($event)"
+      >    
+      </button>
+    </div>
+
+    <!-- <angular4-paystack
+    [email]="'mailexample@mail.com'"
+    [amount]="200"
+    [ref]="reference"
+    [currency]="['GHS']"
+    [channels]="['mobile_money','card']"
+    [class]="'btn-pay'"
+    (onClose)="paymentCancel()"
+    (callback)="paymentDone($event)"
+  >
+    Pay with Paystack
+  </angular4-paystack> -->
+
+  
 </div>
 
 

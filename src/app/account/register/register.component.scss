@@ -1,13 +1,34 @@
 .container{
     height: 100vh;
-    margin: 0 200px;
+    margin: 30px 200px;
 }
 
 .content{
-    padding: 0 200px
+    display: flex;
+    color: #85929E;
+    padding-top: 20px;
+}
+
+.reg-form{
+    width: 100%;
+}
+
+.input-row{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.p-field{
+    width: 50%;
+    padding-right: 20px;
 }
 
 :host ::ng-deep .p-inputtext{
     width: 100%;
     border-radius: 30px;
+}
+
+
+h1{
+    color: #FFC107;
 }
