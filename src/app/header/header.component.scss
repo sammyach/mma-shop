@@ -32,17 +32,41 @@ header {
     padding: 0 200px;
     padding-top: 10px;
     background: #FCFBF8;
+    font-size: .8rem;
     // border-bottom: 1px solid #afa401;
     align-items: center;
     // box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.filter-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 200px;
+  width: 100%;
+
+}
+
+// .search-category{
+//   width: 70%;
+// }
+.browse-category{
+  width: 20%;
+  font-size: .8rem;
+  line-height: 3;
+}
+
+.browse-category-toggle-icon{
+  font-size: .7rem;
+}
+
 .toggle {
     display: none;
 }
-
+.head-logo{
+  width: 20%;
+}
 .logo {
-    max-width: 70px;
+    max-width: 60px;
     background: #FFC107;
     padding: 5px;
     border-radius: 50%;
@@ -85,6 +109,10 @@ header {
 /*menu header item*/
 .mn-item {
     padding: 5px 20px;
+}
+
+.mn-item:last-child{
+  padding-right: 0;
 }
 
 .mn-item:hover{
@@ -211,6 +239,20 @@ header {
 
 :host ::ng-deep .p-menu {
     width: fit-content;
+}
+
+:host ::ng-deep .p-menu .p-menuitem-text{
+  padding-right: 40px;
+  font-size: .8rem;
+}
+
+:host ::ng-deep .p-menu .p-submenu-header{
+  padding: 0;
+}
+
+:host ::ng-deep .p-menu.p-menu-overlay {
+  border: 1px solid #ced4da;
+  box-shadow: none;
 }
 
 

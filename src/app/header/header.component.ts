@@ -28,7 +28,10 @@ export class HeaderComponent implements OnInit {
 
   items;
   accountMenuItems;
+  categoryMenuItems;
   clickedIn = false;
+
+  showCatMenu = false;
 
   beautyOverlay;
   foodOverlay;
@@ -37,26 +40,26 @@ export class HeaderComponent implements OnInit {
   loggedIn = false;
   currentUser: any;
   constructor(private router: Router, private ds : DataService,
-              private eRef: ElementRef, private auth: AuthService, private route: ActivatedRoute, private ps: ProductService) { 
+              private eRef: ElementRef, private auth: AuthService, private route: ActivatedRoute, private ps: ProductService) {
                 //this.loggedIn = this.auth.loggedIn();
                 this.auth.isLoggedIn$.subscribe(x=> this.loggedIn = x);
-                
+
                   this.auth.currentUser.subscribe(x => {this.currentUser = x; console.log('headeruser', this.currentUser);});
-                
+
               }
 
   ngOnInit(): void {
 
     this.accountMenuItems = [{
-      
+
       items: [{
         label: 'My Account',
         icon: 'pi pi-user-edit',
           command: () => {
               this.router.navigate(['customer/account'])
           }
-      
-      }]      
+
+      }]
     },
     {
       label: '',
@@ -101,19 +104,47 @@ export class HeaderComponent implements OnInit {
       ]}
   ];
 
+  this.categoryMenuItems = [
+    {
+
+      items: [
+        {
+          label: 'Beauty & Personal Care',
+          // icon: 'pi pi-user-edit',
+          command: () => {
+              this.router.navigate(['products'], {queryParams: {cat: 1}})
+          }
+        },
+        {
+          label: 'Food & Groceries',
+          // icon: 'pi pi-user-edit',
+          command: () => {
+            this.router.navigate(['products'], {queryParams: {cat: 2}})
+          }
+        },
+        {
+          label: 'Clothing & Fashion',
+          // icon: 'pi pi-user-edit',
+          command: () => {
+            this.router.navigate(['products'], {queryParams: {cat: 3}})
+          }
+        }
+      ]
+    }
+  ]
     // this.products = this.ds.shoppingCartItems;
     // if(this.products.length > 0){
     //   this.totalItemsInCart = this.products.reduce((a, b) => +a + +b.quantity, 0);
     // }
     // this._subscription = this.ds.getItems().subscribe((data)=>{
     //   console.log('in header: cart items', data);
-      
+
     //   this.products = data;
 
     //   // + operator for casting to Number
     //   // items.reduce((a, b) => +a + +b.price, 0);
 
-      
+
     //   this.totalItemsInCart = this.products?.reduce((a, b) => +a + +b.Quantity, 0);
     // })
     // this.productService.getProducts().then(data => this.products = data.slice(0,3));
@@ -137,10 +168,10 @@ export class HeaderComponent implements OnInit {
     if(this.totalItemsInCart > 0){
       this.displayDialog = true;
     }
-    
+
     console.log('show cart items',this.products);
-    
-    
+
+
   }
 
   onToggle(){
@@ -178,7 +209,7 @@ export class HeaderComponent implements OnInit {
     // if($event){
     //   $event.stopPropagation();
     // }
-    
+
   }
 
   // @HostListener('click')
@@ -190,14 +221,14 @@ export class HeaderComponent implements OnInit {
   // @HostListener('document:click')
   // clickout(){
   //   console.log('element in action ', this.eRef.nativeElement);
-    
+
   //   if(!this.clickedIn){
   //     console.log('in click out');
-    
+
   //     this.onToggleAccountNav(null);
   //   }
   //   this.clickedIn = false;
-    
+
   // }
 
   onClickedOutside(e: Event) {
@@ -208,13 +239,19 @@ export class HeaderComponent implements OnInit {
 
   goToPage(page: string){
     console.log('going to ', page);
-    
+
     this.router.navigate([page], {queryParams: {redirectUrl: this.route.snapshot.url}});
+  }
+
+  onToggleCategoryMenu(){
+    console.log('toggling cat menu');
+
+    this.showCatMenu = ! this.showCatMenu;
   }
 
   public ngOnDestroy(): void {
     this._subscription.unsubscribe();
-    
+
   }
 
 }
