@@ -42,9 +42,9 @@ header {
 }
 
 .logo {
-    max-width: 80px;
+    max-width: 70px;
     background: #FFC107;
-    padding: 10px;
+    padding: 5px;
     border-radius: 50%;
 }
 
@@ -73,7 +73,7 @@ header {
     margin-right: 10px;
 }
 .menu-header{
-    padding: 10px;
+    padding: 0;
 }
 
 .menu-header li {
@@ -89,7 +89,7 @@ header {
 
 .mn-item:hover{
     color: #7F2613;
-    
+
 }
 
  .navigation li.active{
@@ -104,14 +104,14 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
 }
 
 .main-header-cart-info {
     color: #7F2613;
     font-size: .7em;
     // display: flex;
-    // flex-direction: column; 
+    // flex-direction: column;
     // font-size: 80%;
 }
 
@@ -139,7 +139,7 @@ header {
     color: #7F2613;
     font-weight: 500;
 }
-.account-nav-toggler *{    
+.account-nav-toggler *{
     padding: 5px;
 }
 
@@ -158,7 +158,7 @@ header {
     font-size: 80%;
     text-transform: uppercase;
     transition: all 1s ease;
-    
+
 }
 
 .account-nav li {
@@ -180,7 +180,7 @@ header {
 // }
 
 .account-nav.active {
-    display: block;    
+    display: block;
     // color: red;
 }
 
@@ -228,7 +228,7 @@ header {
     }
 
     .main-header{
-       padding: 20px; 
+       padding: 20px;
     }
 
     .toggle {
@@ -236,7 +236,7 @@ header {
         color: #7F2613;
     }
 
-    .menu-header .navigation.active 
+    .menu-header .navigation.active
     {
         position: fixed;
         top: 0;
