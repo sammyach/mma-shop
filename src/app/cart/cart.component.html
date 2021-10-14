@@ -1,5 +1,5 @@
 <div class="container">
-    
+
 
     <div class="cart-info">
         <div class="cart-items">
@@ -14,25 +14,25 @@
                     </div>
                 </ng-template> -->
                 <ng-template pTemplate="header">
-                    <tr>
-                        
-                        <th>Product</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
+                  <tr>
+
+                      <th>Product</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th>Subtotal</th>
+                  </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
                     <tr>
                         <td><img [src]="product.ImageUrl" [alt]="product.ProductName" width="100"  /></td>
-        
+
                         <td>{{product.ProductName}}</td>
                         <td>{{product.UnitPrice | currency:'GHS '}}</td>
                         <!-- <td>{{product.category}}</td> -->
                         <td>
                             <span class="qty-changer" (click)="modifyQty(product, -1)">-</span>
-                            <span style="padding: 5px">{{product.Quantity}}</span> 
+                            <span style="padding: 5px">{{product.Quantity}}</span>
                             <span class="qty-changer" (click)="modifyQty(product, 1)">+</span>
                         </td>
                         <td>GHS {{product.UnitPrice * product.Quantity}}</td>
@@ -49,22 +49,27 @@
                 <ng-template>
                     Cart is empty. Continue shopping
                 </ng-template>
+
+
             </p-table>
+            <div class="spinner" *ngIf="loadingCartItems">
+              <p-progressSpinner [style]="{width: '50px', height: '50px'}"></p-progressSpinner>
+            </div>
 
             <!-- <div class="coupon-box">
-                
+
                     <span class="p-input-icon-right" style="width: 100%;">
                         <input type="text" pInputText class="p-inputtext-sm"  placeholder="Enter coupon code"/>
-                    </span>                                
-                
+                    </span>
+
                 <button style="border-radius: 30px; height: 30px;width: 50%;" pButton styleClass="p-button-sm" label="Apply Coupon" icon="pi pi-check-circle"></button>
             </div> -->
         </div>
 
         <div class="side-cart-info">
             <div class="cart-total-summary">
-                <div class="title"><i class="pi pi-money-bill"></i>CART TOTALS</div> 
-                <table>
+                <div class="title"><i class="pi pi-money-bill"></i>CART TOTALS</div>
+                <table *ngIf="!loadingCartSummary">
                     <tr>
                         <td>Sub Total</td>
                         <td class="cts-price">GHS {{subTotal}}</td>
@@ -73,16 +78,19 @@
                         <td>Shipping</td>
                         <td class="cts-price">{{shipping}}</td>
                     </tr> -->
-                    
+
                     <tr class="total">
                         <td>Total</td>
                         <td class="cts-price right-value">GHS {{total}}</td>
                     </tr>
 
-                    
-                    
+
+
                 </table>
-                <small style="font-size: .7rem; font-style: italic;">* Total price not including shipping & handling</small>
+                <div class="spinner" *ngIf="loadingCartSummary">
+                  <p-progressSpinner [style]="{width: '50px', height: '50px'}"></p-progressSpinner>
+                </div>
+                <small style="font-size: .6rem; font-style: italic;">* Total price not including shipping & handling</small>
 
                 <button style="width: 100%; border-radius: 30px;" styleClass="p-button-sm" pButton type="button" (click)="checkout()" label="PROCEED TO CHECKOUT" icon="pi pi-check-square"></button>
             </div>
@@ -94,18 +102,18 @@
                 </div>
 
                 <div>
-                    <input id="coupon" type="text" pInputText placeholder="Coupon code"> 
+                    <input id="coupon" type="text" pInputText placeholder="Coupon code">
                 </div>
-                <!-- 
+                <!--
                 <button pButton pRipple type="button" label="Apply Coupon"></button> -->
-                
-            
+
+
 
             <!-- <button style="width: 100%;" pButton type="button" label="PROCEED TO CHECKOUT" icon="pi pi-check"></button> -->
         </div>
 
-        
-        
+
+
 
         <!-- <div class="cart-total-summary">
             CART TOTALS
@@ -125,5 +133,5 @@
 
         </div> -->
     </div>
-    
+
 </div>

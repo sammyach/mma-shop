@@ -20,10 +20,11 @@
 .side-cart-info{
     display: flex;
     flex-direction: column;
+    width: 28%;
 }
 
 .cart-total-summary {
-    width: 300px;
+    // width: 300px;
     background: #fff;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 10px;
@@ -34,6 +35,14 @@
     border-top: 5px solid #FFC107;
     margin-top: 80px;
     margin-bottom: 50px;
+}
+
+.spinner{
+  height: 300px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .cart-total-summary .title {
@@ -99,13 +108,13 @@ table {
     border-collapse: collapse;
     width: 100%;
   }
-  
+
   td, th {
     //border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
   }
-  
+
 //   tr:nth-child(even) {
 //     background-color: #dddddd;
 //   }

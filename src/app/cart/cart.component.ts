@@ -24,53 +24,56 @@ export class CartComponent implements OnInit, AfterViewChecked {
   loggedIn = false;
   currentUser: any;
 
+  loadingCartItems;
+  loadingCartSummary;
     constructor(private ds: DataService, private router: Router, private auth: AuthService, private route: ActivatedRoute, private ps: ProductService) {
       this.auth.currentUser.subscribe(x => {this.currentUser = x; console.log('headeruser', this.currentUser); if(this.currentUser) this.loggedIn = true;});
 
      }
 
     ngOnInit() {
-      
-      
+
+
       // this._subscription = this.ds.getItems().subscribe((data)=>{
       //   console.log('data', data);
-        
+
       //   this.products = data;
       // })
 
       //console.log('cart', this.ds.shoppingCartItems);
-      //this.products = this.ds.shoppingCartItems;    
+      //this.products = this.ds.shoppingCartItems;
       // this.ps.getItemsInCart()
       //   .subscribe(res => {
       //     this.products = res;
       //     this.total = this.subTotal = this.products?.reduce((a,b)=> a + (b.UnitPrice * b.Quantity), 0);
       //   })
+      this.loadingCartItems = this.loadingCartSummary = true;
       this.ds.getCartItems();
       this.ds.getItems()
       .subscribe(res => {
-        
-        
+        this.loadingCartItems = this.loadingCartSummary = false;
+
         this.products = res;
-        this.total = this.subTotal = this.products?.reduce((a,b)=> a + (b.UnitPrice * b.Quantity), 0);   
+        this.total = this.subTotal = this.products?.reduce((a,b)=> a + (b.UnitPrice * b.Quantity), 0);
       })
-      
+
       //this.calculateTotals();
       // this.total = this.subTotal = this.ds.calculateSubTotal();
 
-      
-        
-        
+
+
+
     }
 
     ngAfterViewChecked(){
-      
+
     }
 
     calculateTotals(){
-      
+
       this.total = this.subTotal = 0;
 
-      
+
 
       this.subTotal = this.products.reduce((a,b)=> a + (b.price * b.quantity), 0);
       if(this.products){
@@ -91,7 +94,7 @@ export class CartComponent implements OnInit, AfterViewChecked {
     modifyQty(product, qty){
       if(qty == -1 && product.Quantity == 0){ // dont decrease below zero
         console.log('hit min quantity');
-        
+
         return;
       }
       const data: any = {};
@@ -101,7 +104,7 @@ export class CartComponent implements OnInit, AfterViewChecked {
       data.UnitPrice = product.UnitPrice;
       data.ImageUrl = product.ImageUrl;
       console.log('adding to cart', data);
-      
+
       this.ds.addToCart(data);
     }
 

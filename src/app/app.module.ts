@@ -28,7 +28,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import {PasswordModule} from 'primeng/password';
 import { TagModule } from 'primeng/tag';
 import { Angular4PaystackModule } from 'angular4-paystack';
-import { ClickOutsideModule } from 'ng-click-outside';
+import { ProgressSpinnerModule } from 'primeng/progressspinner'
 
 
 import { ListProductsComponent } from './list-products/list-products.component';
@@ -99,7 +99,7 @@ import { CustomerOrdersComponent } from './account/customer-orders/customer-orde
     PasswordModule,
     TagModule,
     Angular4PaystackModule.forRoot('pk_test_22c6de9f298f39b950cd2e627328fcce2af2b13a'),
-    ClickOutsideModule
+    ProgressSpinnerModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
