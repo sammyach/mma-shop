@@ -16,12 +16,14 @@
                         decrementButtonClass="p-button-outlined" incrementButtonClass="p-button-outlined" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal">
                         </p-inputNumber>
                     </div>
-        
-                    
+
+
                 </div> -->
-                <button style="border-radius: 30px;" (click)="onAddToCart(product)" pButton type="button" label="Add to cart" icon="pi pi-shopping-cart"></button>
+                <p-button (click)="onAddToCart(product)" type="button" label="Add to cart" icon="pi pi-shopping-cart"></p-button>
+                <p-progressSpinner *ngIf="loading" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
+
             </div>
-            
+
 
             <!-- <div class="product-extra-data">
                 <p-tabView>
@@ -31,10 +33,10 @@
                     <p-tabPanel header="Reviews(0)">
                         Reviews here
                     </p-tabPanel>
-                    
+
                 </p-tabView>
             </div> -->
-            
+
         </div>
     </div>
 </div>

@@ -16,22 +16,23 @@ export class ProductDetailsComponent implements OnInit {
   product: any;
   products: Product[]=[];
   sub;
+  loading = false;
 
   constructor(private route: ActivatedRoute, private ps: ProductService, private ds: DataService) { }
-  
+
 
   ngOnInit(): void {
 
     //console.log('data from ds ',this.ds.productsStoredFromIndex);
-    
+
     this.route.paramMap.subscribe(params => {
       console.log('params', params);
-      
+
       let id:number = +params.get('id');
       console.log('id', id);
       this.getProductData(id);
     })
-    
+
     //this.ps.getProductById(1);
 
 
@@ -45,14 +46,14 @@ export class ProductDetailsComponent implements OnInit {
     //   this.productService.getProducts(this.selectedCategory).then(data => this.products = data);
     // });
 
-  //   this.route.paramMap.subscribe(params => { 
+  //   this.route.paramMap.subscribe(params => {
   //     console.log(params);
-  //      let id = params.get('id'); 
+  //      let id = params.get('id');
   //      //let products: Product[]=[];
   //      this.ps.getProducts('BF').then(data => this.products = data);
   //      console.log('products', this.products);
-       
-  //      //this.product=products.find(p => p.id == id);    
+
+  //      //this.product=products.find(p => p.id == id);
   //  });
   }
 
@@ -60,12 +61,13 @@ export class ProductDetailsComponent implements OnInit {
     this.ps.getProductById(id)
       .subscribe(res => {
         console.log('res', res);
-        
+
         this.product = res;
       })
   }
 
   onAddToCart(product){
+    this.loading = true;
     const data: any = {};
     data.ProductId = product.Id;
     data.Quantity = 1;
@@ -73,7 +75,7 @@ export class ProductDetailsComponent implements OnInit {
     data.UnitPrice = product.Price;
     data.ImageUrl = product.ProductImages[0]?.ImageUrl;
     console.log('adding to cart', data);
-    
+
     this.ds.addToCart(data);
     //this.messageService.add({severity:'success', summary: 'Success', detail: 'Item added to cart successfully'});
   }

@@ -4,7 +4,7 @@
 }
 
 .product-info {
-    display: flex;    
+    display: flex;
 }
 
 .product-image {
@@ -43,4 +43,8 @@
 
 .product-extra-data {
     margin-top: 25px;
+}
+
+:host ::ng-deep .p-button {
+  border-radius: 30px;
 }
