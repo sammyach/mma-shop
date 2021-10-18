@@ -1,15 +1,73 @@
 .container{
     margin: 0 200px;
-    height: 100vh;
+    min-height: 90vh;
 }
 
-.content{
-    display: flex;
-    justify-content: space-between;
+.wrapper{
+  display: flex;
+  padding: 10px 0;
 }
+
+.side{
+  width: 25%;
+  background: #fff;
+  // padding: 10px;
+  border-radius: 3px;
+  margin-right: 20px;
+  height: fit-content;
+}
+
+.side ul{
+  list-style: none;
+}
+
+.side ul li{
+  padding: 10px;
+}
+
+.side ul li:hover{
+  background: #EDEDED;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.side ul li .pi{
+  padding-right: 10px;
+}
+
+
+
+.main{
+  background: #fff;
+  width: 75%;
+  border-radius: 3px;
+}
+
+.main .title{
+  padding: 10px;
+  font-weight: 600;
+  border-bottom: 1px solid #EDEDED;
+  font-size: 1.1rem;
+}
+
+.page-title{
+  padding-top: 20px;
+}
+
+// .content{
+//     display: flex;
+//     justify-content: space-between;
+//     margin-top: 50px;
+// }
 
 .panel {
-    width: 350px;
+    // width: 350px;
+}
+
+.pwd {
+  margin-top: 20px;
+  color: #FFC107;
+  cursor: pointer;
 }
 
 .orders-tbl{
@@ -27,6 +85,106 @@ tr{
     height: 30px;
 }
 
-:host ::ng-deep .p-tag{
+:host ::ng-deep {
+  .p-tag{
     font-size: .5rem;
+  }
+
+  .p-panel .p-panel-header{
+    background: #FFC107;
+    border: none;
+    color: #ac8205;
+    padding: .5rem;
+  }
+
+  .p-panel .p-panel-header .p-panel-header-icon {
+    color: #ac8205;
+    padding: 0;
+    height: 1.2rem;
+  }
+
+  .p-button {
+    vertical-align: unset;
+  }
+}
+
+.overview-slate{
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  padding: .5rem;
+  height: fit-content;
+  border-radius: 3px;
+}
+
+.overview-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.overview-header .title{
+  font-weight: 600;
+}
+
+.overview-header .extra{
+  font-size: .7rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.overview-body{
+  text-align: center;
+  font-size: 4rem;
+  cursor: pointer;
+}
+
+.overview-footer{
+  text-align: right;
+  font-size: .8rem;
+  font-style: italic;
+}
+
+.yellow-slate{
+  background: #FFC107;
+  color: #ac8205;
+}
+
+h1{
+  color: #FFC107;
+}
+
+.more-info-section{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.info{
+  border-radius: 3px;
+  border: 1px solid #EDEDED;
+  width: 48%;
+}
+
+.info .title{
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  border-bottom: 1px solid #EDEDED;
+  padding: 10px;
+  font-size: .875rem;
+}
+
+.info .content{
+  padding: 10px;
+}
+
+.summary{
+  color: #75757A;//85929E;
+  padding-top: 10px;
+  font-size: .875rem;
+}
+
+.edit-btn{
+  color: #FFC107;
+  cursor: pointer;
 }

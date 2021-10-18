@@ -17,7 +17,7 @@
     </div>
 
     <div class="btns-group">
-        <button class="p-button-danger" pButton label="CANCEL ORDER" icon="pi pi-times"></button>
+        <button (click)="cancelOrder()" class="p-button-danger" pButton label="CANCEL ORDER" icon="pi pi-times"></button>
 
         <button *ngIf="order" pButton label="PROCEED TO PAY" icon="pi pi-money-bill"
         angular4-paystack
@@ -29,7 +29,7 @@
         [class]="'btn-pay'"
         (onClose)="paymentCancel()"
         (callback)="paymentDone($event)"
-      >    
+      >
       </button>
     </div>
 
@@ -46,7 +46,7 @@
     Pay with Paystack
   </angular4-paystack> -->
 
-  
+
 </div>
 
 

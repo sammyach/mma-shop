@@ -9,21 +9,21 @@ import { ProductService } from 'src/app/_services/product.service';
   styleUrls: ['./make-payment.component.scss']
 })
 export class MakePaymentComponent implements OnInit {
-  
+
 
   reference = '';
   title;
   order;
   amountInPesewas;
   customerEmail;
-  constructor(private route: ActivatedRoute, private ps: ProductService, private ds: DataService, private router: Router) {}  
+  constructor(private route: ActivatedRoute, private ps: ProductService, private ds: DataService, private router: Router) {}
 
   ngOnInit() {
-    
+
 
     this.route.paramMap.subscribe(params => {
       console.log('params', params);
-      
+
       let id:number = +params.get('id');
       console.log('id', id);
       this.getOrderData(id);
@@ -48,14 +48,14 @@ export class MakePaymentComponent implements OnInit {
     data.Response = `status:${ref.status}-message:${ref.message}`;
     this.ps.fulfillPayment(data)
       .subscribe(res => {
-        
+
         // empty cart
         this.ds.emptyCart();
         //nav to customer order view
-        this.router.navigate(['customer/account'])
+        this.router.navigate(['customer/account'], {queryParams: {q: 'My Orders'}})
       }, err=>{
         console.log('error fulfilling payment', err);
-        
+
       })
   }
 
@@ -71,8 +71,13 @@ export class MakePaymentComponent implements OnInit {
         this.customerEmail = res.UserEmail;
         console.log(res);
         console.log(this.customerEmail);
-        
+
       })
+  }
+
+  cancelOrder(){
+    this.ps.cancelOrder(this.order.Id);
+    this.router.navigate(['customer/account'], {queryParams: {q: 'My Orders'}})
   }
 
   generateReference(): string {

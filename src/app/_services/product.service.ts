@@ -59,5 +59,9 @@ export class ProductService {
     return this.http.get<any[]>(`${this.baseUrl}/api/shopping/cart/items`);
   }
 
-  
+  cancelOrder(id){
+    return this.http.patch<any>(`${this.baseUrl}/api/shopping/order/cancel`, {id});
+  }
+
+
 }

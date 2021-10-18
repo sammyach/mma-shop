@@ -1,0 +1,56 @@
+<div class="container">
+  <p>Order #{{OrderId}}</p>
+  <p>Items: {{order?.OrderItems?.length}} </p>
+  <p>Placed On: {{order?.DateCreated | date}}</p>
+  <p>Total: GHS {{order?.TotalAmount}}</p>
+
+  <div class="section">
+    <p class="section-title">ITEMS IN YOUR ORDER</p>
+
+    <div *ngFor="let item of orderItems" class="order-item">
+      <img [src]="item.ImageUrl" [alt]="item.ProductName"/>
+      <div class="order-item-details">
+        <p style="font-weight: 500;">{{item.ProductName}}</p>
+        <p>QTY: {{item.Quantity}}</p>
+        <p style="font-weight: 500; font-size: .9rem;">GHS {{item.UnitPrice}}</p>
+      </div>
+    </div>
+
+    <div class="more-info-section">
+      <div class="info">
+        <div class="title">
+          PAYMENT INFORMATION
+        </div>
+        <div class="content">
+          Payment Details
+
+          <div class="summary">
+
+            <p>Items Total: GHS {{order?.OrderPaymentDetails[0]?.AmountPayable}}</p>
+            <p>{{order?.OrderPaymentDetails[0]?.Status == 1 ? 'AWAITING PAYMENT' : ''}} </p>
+            <p (click)="makePayment()" *ngIf="order?.OrderPaymentDetails[0]?.Status == 1" style="color: #FFC107; cursor: pointer; font-weight: 600;">Pay Now</p>
+          </div>
+
+        </div>
+      </div>
+      <div class="info">
+        <div class="title">
+          DELIVERY INFORMATION
+        </div>
+        <div class="content">
+          <div>
+            <p>Receipient Details</p>
+
+            <div class="summary">
+              <p>{{order?.ShippingDetails[0]?.ReceipientDetails.split(';')[0]}}</p>
+              <p>{{order?.ShippingDetails[0]?.ReceipientDetails.split(';')[1]}}</p>
+              <p>{{shippingAddress?.Description}}</p>
+              <p>{{shippingAddress?.StreetAddress}}</p>
+              <p>{{shippingAddress?.City}}, {{shippingAddress?.Region}}, {{shippingAddress?.Country}}</p>
+            </div>
+
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

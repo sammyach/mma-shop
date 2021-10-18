@@ -1,7 +1,7 @@
 header {
     display: flex;
     flex-direction: column;
-    background: #FCFBF8;//fff;//#bff;//#daa520;
+    background: #fff;//FCFBF8;//#bff;//#daa520;
     position: sticky;
     top: 0;
     border: 1px solid #ced4da;
@@ -31,7 +31,7 @@ header {
     justify-content: space-between;
     padding: 0 200px;
     padding-top: 10px;
-    background: #FCFBF8;
+    // background: #FCFBF8;
     font-size: .8rem;
     // border-bottom: 1px solid #afa401;
     align-items: center;
@@ -40,9 +40,9 @@ header {
 
 .filter-header{
   display: flex;
-  justify-content: space-between;
-  padding: 0 200px;
-  width: 100%;
+  // justify-content: space-between;
+  // padding: 0 200px;
+  width: 60%;
 
 }
 
@@ -50,9 +50,13 @@ header {
 //   width: 70%;
 // }
 .browse-category{
-  width: 20%;
+  width: 25%;
   font-size: .8rem;
-  line-height: 3;
+  line-height: 2;
+}
+
+.search-category{
+  width: 70%;
 }
 
 .browse-category-toggle-icon{
@@ -63,7 +67,7 @@ header {
     display: none;
 }
 .head-logo{
-  width: 20%;
+  width: 10%;
 }
 .logo {
     max-width: 60px;

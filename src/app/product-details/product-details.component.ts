@@ -14,7 +14,7 @@ export class ProductDetailsComponent implements OnInit {
 
   qty: number = 1;
   product: any;
-  products: Product[]=[];
+  //products: Product[]=[];
   sub;
   loading = false;
 
@@ -32,6 +32,16 @@ export class ProductDetailsComponent implements OnInit {
       console.log('id', id);
       this.getProductData(id);
     })
+
+    this.ds.getItems()
+        .subscribe(res => {
+          if(res) this.loading = false;
+          //this.products = res;
+        }, error =>{
+          this.loading = false;
+          console.log(error);
+
+        })
 
     //this.ps.getProductById(1);
 

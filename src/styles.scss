@@ -6,7 +6,7 @@
 
 *{
     margin: 0;
-    padding: 0;    
+    padding: 0;
     font-family: 'Poppins', sans-serif;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -17,18 +17,25 @@
     scrollbar-width: thin;
     scrollbar-color: #FFC107 #959491 ;
   }
-  
+
   /* Works on Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
     width: 10px;
   }
-  
+
   *::-webkit-scrollbar-track {
     background: #959491;//#ffc800;
   }
-  
+
   *::-webkit-scrollbar-thumb {
     background-color: #FFC107;
     border-radius: 20px;
     border: 3px solid #FFC107;
+  }
+
+  body{
+    font-size: .875rem;
+    min-height: 100%;
+    min-width: 950px;
+    background-color: #f5f5f5;
   }

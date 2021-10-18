@@ -47,15 +47,8 @@ export class CartComponent implements OnInit, AfterViewChecked {
       //     this.products = res;
       //     this.total = this.subTotal = this.products?.reduce((a,b)=> a + (b.UnitPrice * b.Quantity), 0);
       //   })
-      this.loadingCartItems = this.loadingCartSummary = true;
-      this.ds.getCartItems();
-      this.ds.getItems()
-      .subscribe(res => {
-        this.loadingCartItems = this.loadingCartSummary = false;
 
-        this.products = res;
-        this.total = this.subTotal = this.products?.reduce((a,b)=> a + (b.UnitPrice * b.Quantity), 0);
-      })
+      this.loadItems();
 
       //this.calculateTotals();
       // this.total = this.subTotal = this.ds.calculateSubTotal();
@@ -97,6 +90,12 @@ export class CartComponent implements OnInit, AfterViewChecked {
 
         return;
       }
+      if(qty == -1 && product.Quantity == 1){
+        //remove item from cart
+        console.log('removing item', product.ProductId);
+
+        this.ds.removeItem(product.ProductId);
+      }
       const data: any = {};
       data.ProductId = product.ProductId;
       data.Quantity = qty;
@@ -106,6 +105,27 @@ export class CartComponent implements OnInit, AfterViewChecked {
       console.log('adding to cart', data);
 
       this.ds.addToCart(data);
+    }
+
+    emptyCart(){
+      this.ds.emptyCart();
+      this.router.navigate(['/']);
+    }
+
+    loadItems(){
+      this.loadingCartItems = this.loadingCartSummary = true;
+      this.ds.getCartItems();
+      this.ds.getItems()
+      .subscribe(res => {
+        this.loadingCartItems = this.loadingCartSummary = false;
+
+        this.products = res;
+        this.total = this.subTotal = this.products?.reduce((a,b)=> a + (b.UnitPrice * b.Quantity), 0);
+      }, error =>{
+        this.loadingCartItems = this.loadingCartSummary = false;
+        console.log(error);
+
+      })
     }
 
     // public ngOnDestroy(): void {

@@ -26,7 +26,7 @@ const routes: Routes = [
 
   {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
   {path: 'checkout/make-payment/:id', component: MakePaymentComponent, canActivate: [AuthGuard]},
-  {path: 'checkout/make-payment-paystack', component: MakePaymentPaystackComponent, canActivate: [AuthGuard]},  
+  {path: 'checkout/make-payment-paystack', component: MakePaymentPaystackComponent, canActivate: [AuthGuard]},
   {path: 'customer/account', component: AccountComponent, canActivate: [AuthGuard]},
   {path: 'customer/account/address/create', component: CreateAddressComponent, canActivate: [AuthGuard]},
   {path: 'customer/account/orders', component: CustomerOrdersComponent, canActivate: [AuthGuard]},

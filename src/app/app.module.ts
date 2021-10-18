@@ -49,6 +49,7 @@ import { AddressBookComponent } from './account/address-book/address-book.compon
 import { CreateAddressComponent } from './account/address-book/create-address/create-address.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { CustomerOrdersComponent } from './account/customer-orders/customer-orders.component';
+import { CustomerOrderDetailsComponent } from './account/customer-orders/customer-order-details/customer-order-details.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { CustomerOrdersComponent } from './account/customer-orders/customer-orde
     AccountComponent,
     AddressBookComponent,
     CreateAddressComponent,
-    CustomerOrdersComponent
+    CustomerOrdersComponent,
+    CustomerOrderDetailsComponent
   ],
   imports: [
     BrowserModule,

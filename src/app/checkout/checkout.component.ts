@@ -32,6 +32,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.createShippingForm();
 
+    this.ds.getCartItems();
     this.ds.getItems()
         .subscribe(res => {
           this.items = res;
@@ -40,25 +41,25 @@ export class CheckoutComponent implements OnInit {
           this.subTotal = this.ds.calculateSubTotal();
           this.total = this.shippingCost + this.subTotal;
         })
-    // this.items = this.ds.shoppingCartItems;  
-    
-    
-    
+    // this.items = this.ds.shoppingCartItems;
+
+
+
 
     this.customer = this.ps.getCustomerWithAddressesById(this.currentUser?.id)
       .subscribe(res=>{
         console.log('cus in  checkout', res);
-        
-        this.customer = res;  
+
+        this.customer = res;
         this.setFormWithDefaultAddress();
       });
-    
-      
+
+
 
     // this.ds.getItems()
     //   .subscribe(res=>{
     //     console.log('items: frm checkout ', res);
-        
+
     //     this.items = res;
     //   })
   }
@@ -72,20 +73,20 @@ export class CheckoutComponent implements OnInit {
       return;
     }
     console.log(defaultAddress);
-    
+
     this.UseMyShippingAddress = true;
     this.shippingAddressId = defaultAddress?.Id;
     if(this.shippingAddressId > 0) this.showPlaceOrderBtn = true;
-    this.shippingForm.get('fullname').setValue(defaultAddress?.FullName); 
+    this.shippingForm.get('fullname').setValue(defaultAddress?.FullName);
     this.shippingForm.get('phone').setValue(defaultAddress?.Phone);
     //this.shippingForm.get('email').setValue(this.customer.Email);
-    this.shippingForm.get('city').setValue(defaultAddress?.City); 
+    this.shippingForm.get('city').setValue(defaultAddress?.City);
     this.shippingForm.get('region').setValue(defaultAddress?.Region);
     this.shippingForm.get('country').setValue(defaultAddress?.Country);
     this.shippingForm.get('streetAddress').setValue(defaultAddress?.StreetAddress);
   }
 
-  createShippingForm(){    
+  createShippingForm(){
     this.shippingForm = this.fb.group({
       fullname: [null, Validators.required],
       phone: [],
@@ -131,7 +132,7 @@ export class CheckoutComponent implements OnInit {
     }else{
       data.IsDefault = false;
     }
-    
+
 
     this.ps.addShippingInfo(data)
       .subscribe(res => {
@@ -143,16 +144,16 @@ export class CheckoutComponent implements OnInit {
     if(!this.auth.loggedIn){
       this.router.navigate(['login'], {queryParams: {redirectUrl: this.route.snapshot.url}});
       return;
-    }  
-    
+    }
+
     const orders: any[] = [];
 
     if(this.items.length <=0) return;
 
     for(let item of this.items){
       const orderItem: any = {};
-      orderItem.ProductId = item.productId;
-      orderItem.Quantity = item.quantity;
+      orderItem.ProductId = item.ProductId;
+      orderItem.Quantity = item.Quantity;
       orders.push(orderItem);
     }
 
@@ -160,14 +161,14 @@ export class CheckoutComponent implements OnInit {
     data.Orders = orders;
     data.ShippingAddressId = this.shippingAddressId;
     console.log('placing', data);
-    
+
     this.ps.placeOrder(data)
       .subscribe(res => {
 
         //this.router.navigate(['checkout/make-payment-paystack', res.Id])
         this.router.navigate(['checkout/make-payment', res.Id])
       })
-    
+
       //this.router.navigate(['checkout/make-payment', 1])
   }
 }

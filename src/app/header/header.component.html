@@ -14,18 +14,30 @@
         <a href=""><img src="assets/img/mma_logo-r.png" alt="mma logo" class="logo"></a>
       </div>
 
+      <div class="filter-header">
+        <div class="browse-category">
+          <span style="cursor: pointer;" (click)="catmenu.toggle($event)">Browse by category <i *ngIf="!showCatMenu" class="pi pi-angle-down browse-category-toggle-icon"></i> <i *ngIf="showCatMenu" class="pi pi-angle-right browse-category-toggle-icon"></i></span>
+          <p-menu #catmenu [styleClass]="'cat-menu'" [popup]="true" [model]="categoryMenuItems" (onShow)="onToggleCategoryMenu()" (onHide)="onToggleCategoryMenu()"></p-menu>
+        </div>
+        <div class="search-category">
+          <app-search-bar></app-search-bar>
+        </div>
+
+      </div>
+
       <div class="accounts">
         <div class="account-header">
           <ul class="navigation">
-            <li><i class="pi pi-phone"></i> +233 244123457</li>
+            <!-- <li><app-search-bar></app-search-bar></li> -->
+            <!-- <li><i class="pi pi-phone"></i> +233 244123457</li> -->
             <li *ngIf="loggedIn" class="mn-item" (click)="accmenu.toggle($event)"><i class="pi pi-user"></i> Hi {{currentUser?.first_name}} </li>
             <p-menu #accmenu [popup]="true" [model]="accountMenuItems"></p-menu>
             <!-- <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menu.toggle($event)"></button>
             <p-menu #menu [popup]="true" [model]="items"></p-menu> -->
             <li *ngIf="!loggedIn" class="mn-item"><a (click)="goToPage('login')"> <i class="pi pi-sign-in"></i> Login</a> </li>
             <li *ngIf="!loggedIn" class="mn-item"><a (click)="goToPage('customer/account/new')"><i class="pi pi-user-plus"></i> Register</a></li>
-            <li class="mn-item"><a (click)="goToPage('customer/account/orders')"><i class="pi pi-inbox"></i> My Orders</a></li>
-            <li class="mn-item"><i class="pi pi-heart"></i> My Wishlist</li>
+            <!-- <li class="mn-item"><a (click)="goToPage('customer/account/orders')"><i class="pi pi-inbox"></i> My Orders</a></li> -->
+            <!-- <li class="mn-item"><i class="pi pi-heart"></i> My Wishlist</li> -->
 
             <li class="mn-item"><i (click)="onShowCart()" class="pi pi-shopping-cart"  pBadge style="font-size: 1.5rem" value="{{totalItemsInCart}}"></i></li>
           </ul>
@@ -62,16 +74,7 @@
     </div>
 
 
-    <div class="filter-header">
-      <div class="browse-category">
-        <span style="cursor: pointer;" (click)="catmenu.toggle($event)">Browse by category <i *ngIf="!showCatMenu" class="pi pi-angle-right browse-category-toggle-icon"></i> <i *ngIf="showCatMenu" class="pi pi-angle-down browse-category-toggle-icon"></i></span>
-        <p-menu #catmenu [styleClass]="'cat-menu'" [popup]="true" [model]="categoryMenuItems" (onShow)="onToggleCategoryMenu()" (onHide)="onToggleCategoryMenu()"></p-menu>
-      </div>
-      <div class="search-category">
-        <app-search-bar></app-search-bar>
-      </div>
 
-    </div>
 
 
     <!-- <div class="menu-header">

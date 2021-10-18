@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../_services/auth.service';
 import { ProductService } from '../_services/product.service';
 
@@ -13,25 +14,46 @@ export class AccountComponent implements OnInit {
   currentUser;
   orders;
 
+  title;
+  showOrdersView = false;
+  showOrderDetailView = false;
+  showAccountView = false;
+
+  orderIdToView;
+
   displayAddAddressModal = false;
-  constructor(private ps: ProductService, private auth: AuthService) {
+  constructor(private ps: ProductService, private auth: AuthService, private route: ActivatedRoute) {
     this.auth.currentUser.subscribe(x => {this.currentUser = x;});
 
    }
 
   ngOnInit(): void {
+    console.log('in acc');
+    this.title = 'Account Overview';
+
+    this.route.queryParams.subscribe(params => {
+      const param: string = params['q'];
+      if(param){
+        this.title = param;
+        if(this.title === 'My Account') this.title = 'Account Overview';
+      }
+      this.view(this.title);
+
+
+    });
+
     this.customer = this.ps.getCustomerWithAddressesById(this.currentUser?.id)
       .subscribe(res=>{
-        this.customer = res;        
-        
+        this.customer = res;
+
       })
 
-      this.getCustomerOrders();  
+      this.getCustomerOrders();
   }
 
   editAccountDetails(){
     console.log('edit acc det');
-    
+
   }
 
   toggleAddAddressModal(){
@@ -50,7 +72,30 @@ export class AccountComponent implements OnInit {
       this.orders = res.Orders;
     })
   }
-  
+
+  view(title){
+    console.log('in view, wat i title', title);
+
+    this.showOrdersView  = this.showOrderDetailView = this.showAccountView = false;
+    this.title = title;
+
+    if(title === 'My Orders') this.showOrdersView = true;
+    if(title === 'Order Details') this.showOrderDetailView = true;
+    if(title === 'Account Overview') this.showAccountView = true;
+
+
+  }
+
+  viewOrderById(){
+    this.view
+  }
+
+  onViewOrderDetail(id){
+    this.orderIdToView = id;
+    this.view('Order Details');
+
+  }
+
 
 
 }

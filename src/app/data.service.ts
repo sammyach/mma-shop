@@ -37,13 +37,13 @@ export class DataService {
   //   console.log('ds => item to be added', itemToBeAddedToCart );
   //   // this.shoppingCartItems.push(itemToBeAddedToCart);
   //   // this.shoppingCart.push(item);
-    
+
   //   let index = this.shoppingCartItems.findIndex(x=>x.productId == itemToBeAddedToCart.productId);
   //   console.log('indx', index);
-    
+
   //   if(index === -1){
   //     console.log('indx not found. pushing to cart', index);
-  //     this.shoppingCartItems.push(itemToBeAddedToCart) 
+  //     this.shoppingCartItems.push(itemToBeAddedToCart)
   //   }else{
   //     console.log('indx found. calculating qty', index);
   //     this.shoppingCartItems[index].quantity = this.shoppingCartItems[index].quantity + 1;
@@ -52,7 +52,7 @@ export class DataService {
   //   //this.shoppingCart.push(item);
   //   //onsole.log('from ds shpCart', this.shoppingCart);
   //   console.log('from ds shpCart items', this.shoppingCartItems);
-    
+
   //   //save cart in localstorage
   //   localStorage.setItem('cart', JSON.stringify(this.shoppingCartItems));
 
@@ -88,10 +88,21 @@ export class DataService {
     return this._subject.asObservable();
   }
 
+  removeItem(id){
+    this.http.delete<any>(`${this.baseUrl}/api/shopping/cart/removeitem/${id}`)
+      .subscribe(res => {
+        this.getCartItems();
+      })
+  }
+
   emptyCart(){
-    this.shoppingCartItems = [];
-    localStorage.removeItem('cart');
-    this._subject.next(this.shoppingCartItems);
+    this.http.delete<any>(`${this.baseUrl}/api/shopping/cart/items/empty`)
+      .subscribe(res => {
+        this.shoppingCartItems = [];
+        //localStorage.removeItem('cart');
+        this._subject.next(this.shoppingCartItems);
+      })
+
   }
 
   calculateTotals(){
@@ -106,7 +117,7 @@ export class DataService {
 
   calculateSubTotal(){
     console.log('calculating subtotal', this.shoppingCartItems);
-    
+
     this.subTotal = 0;
 
     this.subTotal = this.shoppingCartItems.reduce((a,b)=> a + (b.UnitPrice * b.Quantity), 0);
@@ -130,5 +141,5 @@ export class DataService {
 
 
 
-  
+
 }

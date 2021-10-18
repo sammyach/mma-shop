@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   passwordsMatch;
+  loading = false;
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -35,15 +36,15 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    this.submitted = true;
-    
-    
+    this.submitted = this.loading = true;
+
+
     if(this.form.valid){
       const password: string = this.form.get('password').value.trim();
       const cpassword: string = this.form.get('cpassword').value.trim();
       console.log('p', password);
       console.log('c', cpassword);
-      
+
       if(password === cpassword){
         console.log('match');
         this.passwordsMatch = true;
@@ -62,10 +63,11 @@ export class RegisterComponent implements OnInit {
 
       this.auth.register(user)
         .subscribe((res: any) => {
+          this.loading = false;
           console.log('register', res);
-          
+
           let url = this.route.snapshot.queryParams['redirectUrl'];
-          
+
           if(url && url.length > 0){
             this.router.navigate([url[0]]);
           }else{
@@ -74,14 +76,15 @@ export class RegisterComponent implements OnInit {
           // window.location.reload();
         },
         error => {
+          this.loading = false;
           console.log('error logging in', error);
           //this.alertify.error(error);
         });
     }
 
-    
 
-    
+
+
   }
 
 }

@@ -124,9 +124,12 @@ table {
   }
 
   :host ::ng-deep .p-datatable .p-datatable-header{
-      background: #fff;
+      background: none;
       border: none;
+      padding-left: 0;
   }
+
+
 
 //   :host ::ng-deep .p-datatable-scrollable-header, :host ::ng-deep.p-datatable-scrollable-header-box{
 //       background: #fff;

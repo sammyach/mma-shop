@@ -52,14 +52,23 @@ export class HeaderComponent implements OnInit {
 
     this.accountMenuItems = [{
 
-      items: [{
+      items: [
+        {
         label: 'My Account',
         icon: 'pi pi-user-edit',
           command: () => {
-              this.router.navigate(['customer/account'])
+            this.router.navigate(['customer/account'], {queryParams: {q: 'My Account'}})
           }
 
-      }]
+        },
+        {
+          label: 'My Orders',
+          icon: 'pi pi-inbox',
+          command: () => {
+            this.router.navigate(['customer/account'], {queryParams: {q: 'My Orders'}})
+          }
+        }
+      ]
     },
     {
       label: '',

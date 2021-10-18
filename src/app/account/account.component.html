@@ -1,14 +1,84 @@
 <div class="container">
-    <div class="page-title">
-        Account Overview
+  <div class="wrapper">
+    <div class="side">
+      <ul>
+        <li (click)="view('Account Overview')"><i class="pi pi-user"></i>  My Account</li>
+        <li (click)="view('My Orders')"><i class="pi pi-inbox"></i> My Orders</li>
+        <li (click)="view('My Wishlist')"><i class="pi pi-heart"></i> My Wishlist</li>
+      </ul>
     </div>
-    
+
+    <div class="main">
+      <div class="title">{{title}}</div>
+      <div class="body">
+        <div *ngIf="showAccountView" class="account-info">
+          <div class="more-info-section">
+            <div class="info">
+              <div class="title">
+                ACCOUNT DETAILS
+                <span class="edit-btn" (click)="editAccountDetails()"><i class="pi pi-pencil"></i></span>
+                <!-- <button icon="pi pi-pencil" pButton pRipple type="button" class="p-button-rounded p-button-text" (click)="editAccountDetails()"></button> -->
+              </div>
+              <div class="content">
+                {{customer.FirstName}} {{customer.LastName}}
+
+                <div class="summary">
+
+                  <p>{{customer.Email}}</p>
+                  <p>{{customer.Phone}}</p>
+                </div>
+
+                <div class="pwd">
+                  <p>Change Password</p>
+                </div>
+
+              </div>
+            </div>
+            <div class="info">
+              <div class="title">
+                ADDRESS BOOK
+                <div>
+                  <span *ngIf="customer?.UserAddresses?.length > 0" style="padding-right: 5px;" class="edit-btn" (click)="menu.toggle($event)"><i class="pi pi-pencil"></i></span>
+                  <span class="edit-btn" (click)="toggleAddAddressModal()"><i class="pi pi-plus"></i></span>
+                </div>
+              </div>
+              <div class="content">
+                <div>
+                  <!-- <p>Default shipping address:</p> -->
+
+                  <div class="summary">
+                    <div *ngIf="customer?.UserAddresses?.length > 0">
+                      <p>Your default shipping address:</p>
+
+                      <small>{{customer?.UserAddresses[0]?.Description}}</small><br/>
+                      <small>{{customer?.UserAddresses[0]?.StreetAddress}}</small><br/>
+                      <small>{{customer?.UserAddresses[0]?.City}}, {{customer?.UserAddresses[0]?.Region}}</small>
+                    </div>
+                    <div *ngIf="customer?.UserAddresses?.length == 0">
+                        <p>No default shipping address set. Click on the plus sign to add address</p>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <app-customer-orders *ngIf="showOrdersView" (viewOrderDetail)="onViewOrderDetail($event)"></app-customer-orders>
+        <app-customer-order-details *ngIf="showOrderDetailView" [OrderId]="orderIdToView"></app-customer-order-details>
+      </div>
+    </div>
+  </div>
+    <!-- <div class="page-title">
+        <h1>Account Overview</h1>
+    </div>
+
     <div class="content">
         <div class="panel">
             <p-panel header="ACCOUNT DETAILS">
                 <ng-template pTemplate="icons">
                         <button icon="pi pi-pencil" pButton class="p-panel-header-icon p-link" (click)="editAccountDetails()">
-                            <!-- <span class="pi pi-pencil"></span> -->
+
                         </button>
                 </ng-template>
                 <div>
@@ -16,9 +86,13 @@
                     <p>{{customer.Email}}</p>
                     <p>{{customer.Phone}}</p>
                 </div>
+
+                <div class="pwd">
+                  <p>Change Password</p>
+                </div>
             </p-panel>
         </div>
-        
+
         <div class="panel">
             <p-panel header="ADDRESS BOOK">
                 <ng-template pTemplate="icons">
@@ -39,26 +113,35 @@
             </p-panel>
         </div>
 
+        <div class="overview-slate yellow-slate">
+          <div class="overview-header">
+            <div class="title">ORDERS</div>
+            <div class="extra">View All</div>
+          </div>
+          <div class="overview-body">2</div>
+          <div class="overview-footer">Awaiting Shipment</div>
+        </div>
+
         <div class="panel">
             <p-panel header="MY ORDERS">
                 <ng-template pTemplate="icons">
-                        <!-- <button icon="pi pi-pencil" pButton class="p-panel-header-icon p-link" (click)="menu.toggle($event)"></button>
-                        <button icon="pi pi-plus" pButton class="p-panel-header-icon p-link" (click)="toggleAddAddressModal()"></button> -->
+                        <button icon="pi pi-pencil" pButton class="p-panel-header-icon p-link" (click)="menu.toggle($event)"></button>
+                        <button icon="pi pi-plus" pButton class="p-panel-header-icon p-link" (click)="toggleAddAddressModal()"></button>
 
                 </ng-template>
                 <div>
                     <table class="orders-tbl" *ngIf="orders">
                         <tr>
-                            <!-- <td>DATE</td> -->
-                            <td style="text-align: center;">ORDER #</td>                            
+                            <td>DATE</td>
+                            <td style="text-align: center;">ORDER #</td>
                             <td style="text-align: center;">STATUS</td>
                         </tr>
                         <tr *ngFor="let order of orders">
-                            <!-- <td>{{order.DateCreated | date}}</td> -->
+                            <td>{{order.DateCreated | date}}</td>
                             <td style="text-align: center;">{{order.Id}}</td>
                             <td style="text-align: center;">
-                                <!-- <p-tag styleClass="p-mr-2" value="Primary" [rounded]="true"></p-tag> -->
-                                <!-- <button *ngIf="order.Status == 5" pButton pRipple type="button" label="Primary" class="p-button-outlined p-button-rounded p-button-success"></button> -->
+                                <p-tag styleClass="p-mr-2" value="Primary" [rounded]="true"></p-tag>
+                                <button *ngIf="order.Status == 5" pButton pRipple type="button" label="Primary" class="p-button-outlined p-button-rounded p-button-success"></button>
                                 <p-tag *ngIf="order.Status == 5" severity="success" value="Fulfilled" [rounded]="true"></p-tag>
                                 <p-tag *ngIf="order.Status == 2" severity="info" value="Awaiting Shipment" [rounded]="true"></p-tag>
                                 <p-tag *ngIf="order.Status == 3" severity="warning" value="Shipped" [rounded]="true"></p-tag>
@@ -70,9 +153,9 @@
             </p-panel>
         </div>
 
-        
-    </div>
-    
+
+    </div> -->
+
 </div>
 
 <p-dialog header="ADD NEW ADDRESS" [(visible)]="displayAddAddressModal" [modal]="true" [style]="{width: '30vw'}" [baseZIndex]="10000"

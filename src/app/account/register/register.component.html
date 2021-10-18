@@ -3,7 +3,7 @@
         <h1>Create account to continue shopping</h1>
     </div>
     <div class="content">
-        
+
 
         <div class="reg-form">
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -12,20 +12,20 @@
                         <label class="c-label" for="FirstName">First Name </label>
                         <input class="c-input" type="text" formControlName="firstname" pInputText />
                         <span *ngIf="submitted && form.controls.firstname.errors?.required" style="color: red; font-size: .7rem;">First Name is required</span>
-                    </div> 
+                    </div>
                     <div class="p-field">
                         <label class="c-label" for="LastName">Last Name</label>
                         <input class="c-input" type="text" formControlName="lastname" pInputText />
                         <span *ngIf="submitted && form.controls.lastname.errors?.required" style="color: red; font-size: .7rem;">Last Name is required</span>
                     </div>
                 </div>
-                
+
                 <div class="input-row">
                     <div class="p-field">
                         <label class="c-label" for="Email">Email</label>
                         <input class="c-input" type="text" formControlName="email" pInputText />
                         <span *ngIf="submitted && form.controls.email.errors?.required" style="color: red; font-size: .7rem;">Email is required</span>
-                    </div> 
+                    </div>
                     <div class="p-field">
                         <label class="c-label" for="Phone">Phone</label>
                         <input class="c-input" type="tel" formControlName="phone" pInputText />
@@ -45,14 +45,16 @@
                         <span *ngIf="submitted && !passwordsMatch" style="color: red; font-size: .7rem;">Passwords do not match</span>
                     </div>
                 </div>
-                
-                
-                 
-                <button style="margin: 10px 0;border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="CREATE ACCOUNT" icon="pi pi-sign-in"></button>
-                <div>
-                    <small>Already have an account? Click <a routerLink="/login">here</a> to login and continue shopping</small> 
+
+
+
+                <button [disabled]="loading" style="border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="CREATE ACCOUNT" icon="pi pi-sign-in"></button>
+                <p-progressSpinner *ngIf="loading" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
+
+                <div style="padding-top: 10px;">
+                    <small>Already have an account? Click <a routerLink="/login">here</a> to login and continue shopping</small>
                 </div>
-        
+
             </form>
         </div>
     </div>
