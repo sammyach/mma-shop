@@ -11,3 +11,7 @@
     width: 100%;
     border-radius: 30px;
 }
+
+@media (max-width: 991px) {
+  .btn{width: 100%;}
+}

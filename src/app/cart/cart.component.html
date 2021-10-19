@@ -3,7 +3,20 @@
 
     <div class="cart-info">
         <div class="cart-items">
-            <p-table [value]="products" [scrollable]="true" scrollHeight="400px">
+          <div *ngFor="let item of products" class="order-item">
+            <img [src]="item.ImageUrl" [alt]="item.ProductName"/>
+            <div class="order-item-details">
+              <p style="font-weight: 500;">{{item.ProductName}}</p>
+              <p style="font-weight: 500; color: #FFC107; font-size: .9rem;">GHS {{item.UnitPrice}}</p>
+              <div>
+                <span class="qty-changer" (click)="modifyQty(item, -1)">-</span>
+                <span style="padding: 5px">{{item.Quantity}}</span>
+                <span class="qty-changer" (click)="modifyQty(item, 1)">+</span>
+              </div>
+            </div>
+
+          </div>
+            <p-table class="tbl" [value]="products" [scrollable]="true" scrollHeight="400px">
                 <ng-template pTemplate="caption">
                     <h1 class="page-label"><i class="pi pi-shopping-cart" style="font-size: 2rem"></i> My Shopping Cart</h1>
                 </ng-template>
@@ -36,8 +49,7 @@
                             <span class="qty-changer" (click)="modifyQty(product, 1)">+</span>
                         </td>
                         <td>GHS {{product.UnitPrice * product.Quantity}}</td>
-                        <!-- <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td> -->
-                        <!-- <td><span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span></td> -->
+
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">

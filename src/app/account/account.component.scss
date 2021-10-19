@@ -188,3 +188,33 @@ h1{
   color: #FFC107;
   cursor: pointer;
 }
+
+@media (max-width: 991px){
+  .container{
+    margin: 0;
+    padding: 20px;
+  }
+
+  .wrapper {
+    flex-direction: column;
+    padding: 0;
+  }
+  .side, .main{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .side ul{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .more-info-section{
+    flex-direction: column;
+  }
+
+  .info {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

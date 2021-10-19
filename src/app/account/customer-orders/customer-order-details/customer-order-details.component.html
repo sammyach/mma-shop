@@ -1,4 +1,7 @@
 <div class="container">
+  <p *ngIf="order?.Status == 1" class="x-pill warning-pill"> PENDING PAYMENT </p>
+  <p *ngIf="order?.Status == 2" class="x-pill info-pill"> AWAITING SHIPMENT </p>
+  <p *ngIf="order?.Status == 5" class="x-pill success-pill"> DELIVERED </p>
   <p>Order #{{OrderId}}</p>
   <p>Items: {{order?.OrderItems?.length}} </p>
   <p>Placed On: {{order?.DateCreated | date}}</p>
@@ -27,6 +30,7 @@
           <div class="summary">
 
             <p>Items Total: GHS {{order?.OrderPaymentDetails[0]?.AmountPayable}}</p>
+            <p class="x-pill success-pill">{{order?.OrderPaymentDetails[0]?.Status == 3 ? 'PAID' : ''}} </p>
             <p>{{order?.OrderPaymentDetails[0]?.Status == 1 ? 'AWAITING PAYMENT' : ''}} </p>
             <p (click)="makePayment()" *ngIf="order?.OrderPaymentDetails[0]?.Status == 1" style="color: #FFC107; cursor: pointer; font-weight: 600;">Pay Now</p>
           </div>

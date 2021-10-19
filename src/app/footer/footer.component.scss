@@ -1,14 +1,14 @@
 .footer{
     background: #FFC107;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     font-size: 14px;
-    z-index: 20000; 
+    z-index: 20000;
 }
 
 .footer-items{
     display: flex;
-    // flex-direction: column; 
+    // flex-direction: column;
     margin: 0 200px;
     padding-top: 20px;
     justify-content: space-between;
@@ -28,7 +28,7 @@
     margin: 0 200px;
     // align-items: center;
     // margin-top: 25px;
-    
+
     // width: 100%;
 }
 
@@ -55,4 +55,21 @@ h3{
     margin-bottom: 30px;
     text-transform: uppercase;
     color: #7F2613;
+}
+
+@media (max-width: 991px) {
+  .footer-items{
+    margin: 0;
+  }
+
+  .top, .payment-options, .about{
+    display: none;
+  }
+
+  .mid{
+    margin: 0;
+    padding: 20px;
+  }
+
+
 }

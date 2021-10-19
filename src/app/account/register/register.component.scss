@@ -5,7 +5,7 @@
 
 .content{
     display: flex;
-    color: #85929E;
+    color: #75757A;//85929E;
     padding-top: 20px;
 }
 
@@ -31,4 +31,26 @@
 
 h1{
     color: #FFC107;
+}
+
+@media (max-width: 911px){
+  .container{
+    margin: 0;
+    padding: 20px;
+  }
+
+  .input-row{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .p-field{
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .p-button{
+    width: 100%;
+  }
 }

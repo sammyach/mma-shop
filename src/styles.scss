@@ -36,6 +36,29 @@
   body{
     font-size: .875rem;
     min-height: 100%;
-    min-width: 950px;
+    // min-width: 950px;
     background-color: #f5f5f5;
+  }
+
+  .x-pill{
+    width: fit-content;
+    border-radius: 10rem;
+    font-weight: 600;
+    padding: 5px;
+    font-size: .675rem;
+  }
+
+  .success-pill{
+    color: #FFF;
+    background: lightgreen;
+  }
+
+  .warning-pill{
+    background: lightsalmon;
+    color: #7F2613;
+  }
+
+  .info-pill{
+    background: lightskyblue;
+    color: #FFF;
   }

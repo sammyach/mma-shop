@@ -59,6 +59,10 @@ header {
   width: 70%;
 }
 
+.search-ss{
+  display: none;
+}
+
 .browse-category-toggle-icon{
   font-size: .7rem;
 }
@@ -261,8 +265,27 @@ header {
 
 
 
-@media (max-width: 991px) {
-    .pre-header {
+@media (max-width: 991px) { //for smaller screens
+
+  .head-logo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+  }
+
+  .filter-header{
+    display: none;
+  }
+
+  .search-ss{
+    display: block;
+    padding: 0 20px;
+    padding-bottom: 10px;
+    width: 100%;
+  }
+
+  .pre-header {
         display: none;
     }
     .menu-header {
@@ -274,12 +297,14 @@ header {
     }
 
     .main-header{
-       padding: 20px;
+       padding: 10px 20px;
     }
 
     .toggle {
         display: inline-block;
-        color: #7F2613;
+        // color: #7F2613;
+        padding: 5px;
+        line-height: 5;
     }
 
     .menu-header .navigation.active

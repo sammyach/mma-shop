@@ -13,8 +13,27 @@ export class HomeComponent implements OnInit {
 
   selectedCategory: string;
   products: any[];
+  responsiveOptions;
 
-  constructor(private route: ActivatedRoute, private ps: ProductService, private router: Router, private ds: DataService) { }
+  constructor(private route: ActivatedRoute, private ps: ProductService, private router: Router, private ds: DataService) {
+    this.responsiveOptions = [
+      {
+          breakpoint: '1024px',
+          numVisible: 3,
+          numScroll: 3
+      },
+      {
+          breakpoint: '768px',
+          numVisible: 2,
+          numScroll: 2
+      },
+      {
+          breakpoint: '560px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -23,14 +42,14 @@ export class HomeComponent implements OnInit {
       this.getAllProductItems(this.selectedCategory);
     });
 
-    
+
   }
 
   getAllProductItems(cat){
     this.ps.getAllProducts()
       .subscribe(res => {
         console.log(res);
-        
+
         this.products = res;
         //this.ds.productsStoredFromIndex = this.products;
       })
@@ -49,7 +68,7 @@ export class HomeComponent implements OnInit {
     data.UnitPrice = product.Price;
     data.ImageUrl = product.ProductImages[0]?.ImageUrl;
     console.log('adding to cart', data);
-    
+
     this.ds.addToCart(data);
     //this.messageService.add({severity:'success', summary: 'Success', detail: 'Item added to cart successfully'});
   }

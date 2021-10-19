@@ -28,11 +28,15 @@
                             <p>{{order.ProductName}}</p>
                             <p>Order# {{order.OrderId}}</p>
                             <p>On {{order.DateCreated | date}}</p>
-                            <p-tag *ngIf="order.Status === 'AWAITING SHIPMENT'" severity="info" value="AWAITING SHIPMENT" [rounded]="true"></p-tag>
+                            <p *ngIf="order?.Status === 'PENDING'" class="x-pill warning-pill"> PENDING PAYMENT </p>
+                            <p *ngIf="order?.Status === 'AWAITING SHIPMENT'" class="x-pill info-pill"> AWAITING SHIPMENT </p>
+                            <p *ngIf="order?.Status === 'COMPLETED'" class="x-pill success-pill"> DELIVERED </p>
+
+                            <!-- <p-tag *ngIf="order.Status === 'AWAITING SHIPMENT'" severity="info" value="AWAITING SHIPMENT" [rounded]="true"></p-tag>
                             <p-tag *ngIf="order.Status === 'SHIPPED'" severity="warning" value="SHIPPED" [rounded]="true"></p-tag>
                             <p-tag *ngIf="order.Status === 'CANCELLED'" severity="danger" value="CANCELLED" [rounded]="true"></p-tag>
                             <p-tag *ngIf="order.Status === 'COMPLETED'" severity="success" value="DELIVERED" [rounded]="true"></p-tag>
-                            <p-tag *ngIf="order.Status === 'PENDING'" severity="danger" value="PENDING" [rounded]="true"></p-tag>
+                            <p-tag *ngIf="order.Status === 'PENDING'" severity="danger" value="PENDING" [rounded]="true"></p-tag> -->
 
                           </div>
                         </div>

@@ -158,7 +158,7 @@
 
 </div>
 
-<p-dialog header="ADD NEW ADDRESS" [(visible)]="displayAddAddressModal" [modal]="true" [style]="{width: '30vw'}" [baseZIndex]="10000"
+<p-dialog header="ADD NEW ADDRESS" [(visible)]="displayAddAddressModal" [modal]="true" [breakpoints]="{'991px': '75vw'}" [style]="{width: '30vw'}" [baseZIndex]="10000"
     [draggable]="false" [resizable]="false">
     <app-create-address [UserId]="customer?.Id" (newAddressEvent)="reloadCustomerData($event)"></app-create-address>
     <!-- <p class="p-m-0"></p> -->

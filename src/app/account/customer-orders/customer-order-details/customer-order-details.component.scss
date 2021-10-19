@@ -56,3 +56,15 @@
   padding-top: 10px;
   font-size: .875rem;
 }
+
+
+@media (max-width: 991px) {
+  .more-info-section{
+    flex-direction: column;
+  }
+
+  .info{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

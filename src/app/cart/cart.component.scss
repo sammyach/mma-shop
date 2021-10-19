@@ -1,6 +1,6 @@
 .container {
     margin: 30px 200px;
-    height: 100vh;
+    min-height: 90vh;
 }
 
 .page-label {
@@ -157,4 +157,57 @@ table {
   .qty-changer .lt{
     border-bottom-left-radius: 50px;
     border-top-left-radius: 50px;
+}
+
+.order-item{
+  display: none;
+}
+
+@media (max-width: 991px){
+  .container{
+    margin: 0;
+    padding: 20px;
+  }
+
+  .cart-info {
+    flex-direction: column;
+  }
+
+  .cart-items, .side-cart-info {
+    width: 100%;
+  }
+
+  :host ::ng-deep.p-component{
+    font-size: .875rem;
+  }
+
+  .tbl{
+    display: none;
+  }
+  .order-item{
+    display: flex;
+    border: 1px solid #EDEDED;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    padding: 5px;
+    background: #FFF;
+  }
+
+  .order-item img{
+    width: 100px;
+    // height: 100px;
+  }
+
+  .order-item-details{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: space-between;
+  }
+
+  .order-item-footer{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #EDEDED;
+  }
 }
