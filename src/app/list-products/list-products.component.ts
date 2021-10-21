@@ -13,7 +13,7 @@ import { ProductService } from '../_services/product.service';
 })
 export class ListProductsComponent implements OnInit {
 
-  
+
   currency = 'GHS';
   products: any[];
 
@@ -38,14 +38,14 @@ export class ListProductsComponent implements OnInit {
           //this.productService.getProducts(this.selectedCategory).then(data => this.products = data);
           this.getAllProductItems(this.selectedCategory);
           //console.log('products from list-pro', this.products);
-          
+
           //this.ds.productsStoredFromIndex = this.products;
         });
 
-        
-        
-      
-        
+
+
+
+
 
         this.sortOptions = [
             {label: 'Price High to Low', value: '!Price'},
@@ -56,19 +56,19 @@ export class ListProductsComponent implements OnInit {
     }
 
     getAllProductItems(cat){
-      this.ps.getAllProducts()
+      this.ps.getProductsByCategory(cat)
         .subscribe(res => {
           this.products = res;
           //this.ds.productsStoredFromIndex = this.products;
         })
     }
-    
+
     onSortChange(event) {
         console.log('sorting...', event);
-        
+
         let value = event.value;
         console.log('sort value', value);
-        
+
         if (value.indexOf('!') === 0) {
             this.sortOrder = -1;
             this.sortField = value.substring(1, value.length);
@@ -92,7 +92,7 @@ export class ListProductsComponent implements OnInit {
       data.UnitPrice = product.Price;
       data.ImageUrl = product.ProductImages[0]?.ImageUrl;
       console.log('adding to cart', data);
-      
+
       this.ds.addToCart(data);
       //this.messageService.add({severity:'success', summary: 'Success', detail: 'Item added to cart successfully'});
     }
