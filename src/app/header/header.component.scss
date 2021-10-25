@@ -30,7 +30,7 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 0 200px;
-    padding-top: 10px;
+    // padding-top: 10px;
     // background: #FCFBF8;
     font-size: .8rem;
     // border-bottom: 1px solid #afa401;
@@ -72,6 +72,7 @@ header {
 }
 .head-logo{
   width: 10%;
+  padding-top: 5px;
 }
 .logo {
     max-width: 60px;
@@ -112,6 +113,14 @@ header {
     text-transform: uppercase;
     font-size: 16px;
 
+}
+
+.acc-menu{
+  display: inline;
+}
+
+ .auth-menu{
+  display: none;
 }
 
 /*menu header item*/
@@ -263,6 +272,24 @@ header {
   box-shadow: none;
 }
 
+.cat-overlay-menu{
+  padding: 30px 20px;
+}
+
+.cat-overlay-menu a{
+  text-decoration: none;
+  color: #000;
+}
+
+.cat-overlay-menu p{
+  padding: 10px
+}
+
+.cat-overlay-menu a:hover{
+  cursor: pointer;
+  color: #FFC107;
+}
+
 
 
 @media (max-width: 991px) { //for smaller screens
@@ -271,7 +298,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 30%;
+    width: 60%;
   }
 
   .filter-header{
@@ -320,6 +347,14 @@ header {
         justify-content: center;
         align-items: center;
         z-index: 10;
+    }
+
+    .x-menu{
+      display: none;
+    }
+
+     .auth-menu{
+      display: block;
     }
 }
 

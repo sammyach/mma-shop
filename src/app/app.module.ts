@@ -28,7 +28,8 @@ import {TooltipModule} from 'primeng/tooltip';
 import {PasswordModule} from 'primeng/password';
 import { TagModule } from 'primeng/tag';
 import { Angular4PaystackModule } from 'angular4-paystack';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 
 import { ListProductsComponent } from './list-products/list-products.component';
@@ -101,7 +102,8 @@ import { CustomerOrderDetailsComponent } from './account/customer-orders/custome
     PasswordModule,
     TagModule,
     Angular4PaystackModule.forRoot('pk_test_22c6de9f298f39b950cd2e627328fcce2af2b13a'),
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    AutoCompleteModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

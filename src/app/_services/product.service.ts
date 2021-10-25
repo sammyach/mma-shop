@@ -11,6 +11,10 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
+  searchItem(query){
+    return this.http.get<any[]>(`${this.baseUrl}/api/product/item/search?q=${query}`);
+  }
+
   getAllProducts(){
     return this.http.get<any[]>(`${this.baseUrl}/api/product`);
   }

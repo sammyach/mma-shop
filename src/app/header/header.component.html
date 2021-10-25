@@ -10,7 +10,7 @@
     </div> -->
     <div class="main-header">
       <div class="head-logo">
-        <div class="toggle" (click)="catmenu.toggle($event)"><i class="pi pi-bars" style="font-size: 2rem"></i></div>
+        <div class="toggle" (click)="toggleCatOverlay()"><i class="pi pi-bars" style="font-size: 2rem"></i></div>
         <a href=""><img src="assets/img/mma_logo-r.png" alt="mma logo" class="logo"></a>
       </div>
 
@@ -35,11 +35,12 @@
             <p-menu #accmenu [popup]="true" [model]="accountMenuItems"></p-menu>
             <!-- <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menu.toggle($event)"></button>
             <p-menu #menu [popup]="true" [model]="items"></p-menu> -->
-            <li *ngIf="!loggedIn" class="mn-item"><a (click)="goToPage('login')"> <i class="pi pi-sign-in"></i> Login</a> </li>
-            <li *ngIf="!loggedIn" class="mn-item"><a (click)="goToPage('customer/account/new')"><i class="pi pi-user-plus"></i> Register</a></li>
+            <li *ngIf="!loggedIn" class="mn-item x-menu"><a (click)="goToPage('login')"> <i class="pi pi-sign-in"></i> Login</a> </li>
+            <li *ngIf="!loggedIn" class="mn-item x-menu"><a (click)="goToPage('customer/account/new')"><i class="pi pi-user-plus"></i> Register</a></li>
             <!-- <li class="mn-item"><a (click)="goToPage('customer/account/orders')"><i class="pi pi-inbox"></i> My Orders</a></li> -->
             <!-- <li class="mn-item"><i class="pi pi-heart"></i> My Wishlist</li> -->
-
+            <li *ngIf="!loggedIn" class="mn-item auth-menu" (click)="authmenu.toggle($event)"><i class="pi pi-user"></i></li>
+            <p-menu #authmenu [popup]="true" [model]="authMenuItems"></p-menu>
             <li class="mn-item"><i (click)="onViewCart()" class="pi pi-shopping-cart"  pBadge style="font-size: 1.5rem" value="{{totalItemsInCart}}"></i></li>
           </ul>
         </div>
@@ -104,6 +105,17 @@
             <!-- <p-button icon="pi pi-check" (click)="displayPosition=false" label="Ok" styleClass="p-button-text"></p-button> -->
         </ng-template>
 </p-dialog>
+
+<p-sidebar [(visible)]="showCatOverlay" position="left" [baseZIndex]="10000">
+  <div class="cat-overlay-menu">
+    <p><a (click)="onFilterCategory('1')">Beauty & Personal Care</a></p>
+    <p><a (click)="onFilterCategory('2')">Food & Groceries</a></p>
+    <p><a (click)="onFilterCategory('3')">Clothing & Fashion</a></p>
+    <!-- <p><a [routerLink]="['products']" [queryParams]="{ cat: 3 }">Clothing & Fashion</a></p> -->
+  </div>
+
+</p-sidebar>
+
 
 <p-sidebar [(visible)]="beautyOverlay" position="top" [baseZIndex]="10000" [style]="{height:'20em'}">
     <div class="overlay-content">

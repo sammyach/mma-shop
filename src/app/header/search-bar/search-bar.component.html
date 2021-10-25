@@ -1,8 +1,9 @@
 <div class="header-searchbar">
     <div class="p-fluid">
-        <span class="p-input-icon-right">
+      <p-autoComplete [(ngModel)]="selectedItem" [suggestions]="filteredItems" (completeMethod)="search($event)" field="ProductName" [showEmptyMessage]="true" [minLength]="2" (onSelect)="viewItem($event)" placeholder="Search for item"></p-autoComplete>
+        <!-- <span class="p-input-icon-right">
             <i class="pi pi-search"></i>
             <input style="height: 30px; font-size: .8rem;" type="text" pInputText class="p-inputtext"  placeholder="Search"/>
-        </span>
+        </span> -->
     </div>
 </div>

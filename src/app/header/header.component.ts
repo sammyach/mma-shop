@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
   AccountNavClass;
 
   items;
+  authMenuItems
   accountMenuItems;
   categoryMenuItems;
   clickedIn = false;
@@ -36,6 +37,8 @@ export class HeaderComponent implements OnInit {
   beautyOverlay;
   foodOverlay;
   fashionOverlay;
+
+  showCatOverlay;
 
   loggedIn = false;
   currentUser: any;
@@ -49,6 +52,28 @@ export class HeaderComponent implements OnInit {
               }
 
   ngOnInit(): void {
+
+    this.authMenuItems = [{
+
+      items: [
+        {
+        label: 'Login',
+        icon: 'pi pi-sign-in',
+          command: () => {
+            this.router.navigate(['login'])
+          }
+
+        },
+        {
+          label: 'Register',
+          icon: 'pi pi-user-plus',
+          command: () => {
+            this.router.navigate(['customer/account/new'])
+          }
+        }
+      ]
+
+    }];
 
     this.accountMenuItems = [{
 
@@ -193,11 +218,12 @@ export class HeaderComponent implements OnInit {
   }
 
   onFilterCategory(cat){
-    this.activeLabelBP = this.activeLabelCF = this.activeLabelFG = '';
+    this.showCatOverlay = !this.showCatOverlay;
+    //this.activeLabelBP = this.activeLabelCF = this.activeLabelFG = '';
     if(cat){
-      cat == '1' ? this.beautyOverlay = false : '';
-      cat == '2' ? this.activeLabelCF = 'active' : '';
-      cat == '3' ? this.activeLabelFG = 'active' : '';
+      // cat == '1' ? this.beautyOverlay = false : '';
+      // cat == '2' ? this.activeLabelCF = 'active' : '';
+      // cat == '3' ? this.activeLabelFG = 'active' : '';
       // cat == '1' ? this.activeLabelBP = 'active' : '';
       // cat == '2' ? this.activeLabelCF = 'active' : '';
       // cat == '3' ? this.activeLabelFG = 'active' : '';
@@ -256,6 +282,10 @@ export class HeaderComponent implements OnInit {
     console.log('toggling cat menu');
 
     this.showCatMenu = ! this.showCatMenu;
+  }
+
+  toggleCatOverlay(){
+    this.showCatOverlay = !this.showCatOverlay;
   }
 
   public ngOnDestroy(): void {
