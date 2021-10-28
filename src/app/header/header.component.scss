@@ -68,10 +68,14 @@ header {
 }
 
 .toggle {
-    display: none;
+  cursor: pointer;
+  padding-top: 10px;
+  margin-right: 30px;
+    // display: none;
 }
 .head-logo{
-  width: 10%;
+  display: flex;
+  width: 35%;
   padding-top: 5px;
 }
 .logo {
@@ -254,6 +258,11 @@ header {
     text-align: center;
 }
 
+:host ::ng-deep .p-sidebar {
+  padding: 0;
+  padding-left: 30px;
+}
+
 :host ::ng-deep .p-menu {
     width: fit-content;
 }
@@ -273,7 +282,7 @@ header {
 }
 
 .cat-overlay-menu{
-  padding: 30px 20px;
+  padding: 30px 0;
 }
 
 .cat-overlay-menu a{
@@ -282,7 +291,8 @@ header {
 }
 
 .cat-overlay-menu p{
-  padding: 10px
+  padding: 10px 10px 10px 0;
+  text-transform: uppercase;
 }
 
 .cat-overlay-menu a:hover{

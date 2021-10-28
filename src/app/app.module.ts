@@ -51,6 +51,7 @@ import { CreateAddressComponent } from './account/address-book/create-address/cr
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { CustomerOrdersComponent } from './account/customer-orders/customer-orders.component';
 import { CustomerOrderDetailsComponent } from './account/customer-orders/customer-order-details/customer-order-details.component';
+import { CustomerWishlistComponent } from './account/customer-wishlist/customer-wishlist.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { CustomerOrderDetailsComponent } from './account/customer-orders/custome
     AddressBookComponent,
     CreateAddressComponent,
     CustomerOrdersComponent,
-    CustomerOrderDetailsComponent
+    CustomerOrderDetailsComponent,
+    CustomerWishlistComponent
   ],
   imports: [
     BrowserModule,

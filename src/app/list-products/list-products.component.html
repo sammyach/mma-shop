@@ -53,7 +53,7 @@
                             <span class="product-price">{{currency}} {{product.Price}}</span>
                             <div>
                                 <p-button (click)="onViewDetails(product.Id)" styleClass="p-button p-button-rounded p-mr-2"  icon="pi pi-search"></p-button>
-                                <p-button type="button" styleClass="p-button-help p-button-rounded p-mr-2" icon="pi pi-heart"></p-button>
+                                <p-button (click)="onAddToFavorites(product.Id)" type="button" styleClass="p-button-help p-button-rounded p-mr-2" icon="pi pi-heart"></p-button>
                                 <p-button (click)="onAddToCart(product)" styleClass="p-button p-button-rounded p-button-success"  icon="pi pi-shopping-cart"></p-button>
 
                             </div>

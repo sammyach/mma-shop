@@ -92,6 +92,13 @@ export class HeaderComponent implements OnInit {
           command: () => {
             this.router.navigate(['customer/account'], {queryParams: {q: 'My Orders'}})
           }
+        },
+        {
+          label: 'My Wishlist',
+          icon: 'pi pi-heart',
+          command: () => {
+            this.router.navigate(['customer/account'], {queryParams: {q: 'My Wishlist'}})
+          }
         }
       ]
     },

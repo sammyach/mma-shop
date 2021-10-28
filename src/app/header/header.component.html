@@ -10,16 +10,16 @@
     </div> -->
     <div class="main-header">
       <div class="head-logo">
-        <div class="toggle" (click)="toggleCatOverlay()"><i class="pi pi-bars" style="font-size: 2rem"></i></div>
+        <div class="toggle"  (click)="toggleCatOverlay()"><i class="pi pi-bars" style="font-size: 2rem"></i></div>
         <a href=""><img src="assets/img/mma_logo-r.png" alt="mma logo" class="logo"></a>
       </div>
 
       <p-menu #catmenu [styleClass]="'cat-menu'" [popup]="true" [model]="categoryMenuItems" (onShow)="onToggleCategoryMenu()" (onHide)="onToggleCategoryMenu()"></p-menu>
 
       <div class="filter-header">
-        <div class="browse-category">
+        <!-- <div class="browse-category">
           <span style="cursor: pointer;" (click)="catmenu.toggle($event)">Browse by category <i *ngIf="!showCatMenu" class="pi pi-angle-down browse-category-toggle-icon"></i> <i *ngIf="showCatMenu" class="pi pi-angle-right browse-category-toggle-icon"></i></span>
-        </div>
+        </div> -->
         <div class="search-category">
           <app-search-bar></app-search-bar>
         </div>
@@ -106,7 +106,12 @@
         </ng-template>
 </p-dialog>
 
-<p-sidebar [(visible)]="showCatOverlay" position="left" [baseZIndex]="10000">
+<p-sidebar [(visible)]="showCatOverlay" position="left" [baseZIndex]="10000" [showCloseIcon]="false" styleClass="p-sidebar-sm">
+  <div class="head-logo">
+    <div class="toggle"  (click)="toggleCatOverlay()"><i class="pi pi-bars" style="font-size: 2rem"></i></div>
+    <a href=""><img src="assets/img/mma_logo-r.png" alt="mma logo" class="logo"></a>
+  </div>
+
   <div class="cat-overlay-menu">
     <p><a (click)="onFilterCategory('1')">Beauty & Personal Care</a></p>
     <p><a (click)="onFilterCategory('2')">Food & Groceries</a></p>

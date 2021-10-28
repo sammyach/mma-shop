@@ -1,0 +1,141 @@
+.container{
+  // min-height: 100vh;
+  // margin: 30px 200px;
+}
+
+.content{
+  display: flex;
+
+  // color: #85929E;
+}
+
+.order-item-wrapper{
+display: flex;
+justify-content: space-between;
+width: 100%;
+}
+
+.order-item{
+display: flex;
+}
+
+.order-item img{
+width: 80px;
+// height: 80px;
+}
+
+.order-item-details{
+display: flex;
+justify-content: space-between;
+flex-direction: column;
+}
+
+.el-view{
+font-weight: 500;
+cursor: pointer;
+color: #FFC107;
+}
+
+:host ::ng-deep .p-inputtext, :host ::ng-deep .p-password{
+  width: 100%;
+  border-radius: 30px;
+}
+
+h1{
+  color: #FFC107;
+}
+
+:host ::ng-deep {
+  .p-dropdown {
+      width: 14rem;
+      font-weight: normal;
+  }
+
+  .product-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #7F2613;
+  }
+
+  .product-description {
+      margin: 0 0 1rem 0;
+  }
+
+  .product-category-icon {
+      vertical-align: middle;
+      margin-right: .5rem;
+      color: #7F2613;
+  }
+
+  .product-category {
+      font-weight: 600;
+      vertical-align: middle;
+      color: #7F2613;
+  }
+
+
+
+  .product-list-item {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      width: 100%;
+
+      img {
+          width: 150px;
+          // box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+          margin-right: 2rem;
+      }
+
+      // img:hover {
+      //     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      //     cursor: pointer;
+      // }
+
+      .product-list-detail {
+          flex: 1 1 0;
+      }
+
+      .p-rating {
+          margin: 0 0 .5rem 0;
+      }
+
+      .product-price {
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin-bottom: .5rem;
+          align-self: flex-end;
+          color: #7F2613;
+      }
+
+      .product-list-action {
+          display: flex;
+          flex-direction: column;
+      }
+
+      .p-button {
+          margin-bottom: .5rem;
+          border-radius: 30px;
+      }
+  }
+
+  .p-dataview .p-dataview-header{
+    background: #fff;
+    border: none;
+    padding: 10px;
+    padding-bottom: 0;
+  }
+
+  .p-component{
+    font-size: .875rem;
+    // color: #000;
+  }
+
+  .p-dataview .p-dataview-content{
+    color: #000;
+  }
+
+  // .product-list-item:hover {
+  //     border: 5px solid #FFC107;
+  // }
+}

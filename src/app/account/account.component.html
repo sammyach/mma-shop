@@ -66,6 +66,8 @@
         </div>
         <app-customer-orders *ngIf="showOrdersView" (viewOrderDetail)="onViewOrderDetail($event)"></app-customer-orders>
         <app-customer-order-details *ngIf="showOrderDetailView" [OrderId]="orderIdToView"></app-customer-order-details>
+        <app-customer-wishlist *ngIf="showWishlistView"></app-customer-wishlist>
+
       </div>
     </div>
   </div>

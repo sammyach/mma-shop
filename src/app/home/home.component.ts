@@ -55,6 +55,19 @@ export class HomeComponent implements OnInit {
       })
   }
 
+  onAddToFavorites(id){
+    console.log(id);
+    const data = {} as any;
+    data.ProductId = id;
+    this.ps.addItemToWishlist(data)
+      .subscribe(res =>{
+        console.log(res);
+      }, error => {
+        console.log(error);
+
+      })
+  }
+
   onViewDetails(id){
     console.log('details...', id);
     this.router.navigate(['/product', id, 'details']);

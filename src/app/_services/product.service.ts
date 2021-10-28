@@ -71,5 +71,18 @@ export class ProductService {
     return this.http.patch<any>(`${this.baseUrl}/api/shopping/order/cancel`, {id});
   }
 
+  addItemToWishlist(data){
+    return this.http.post<any>(`${this.baseUrl}/api/shopping/wishlist/additem`, data);
+  }
+
+  getItemsInWishlist(){
+    return this.http.get<any[]>(`${this.baseUrl}/api/shopping/wishlist/items`);
+  }
+
+  removeItemFromWishlist(id){
+    return this.http.delete<any>(`${this.baseUrl}/api/shopping/wishlist/removeitem/${id}`)
+
+  }
+
 
 }

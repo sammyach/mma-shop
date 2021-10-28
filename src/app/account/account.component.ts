@@ -18,6 +18,7 @@ export class AccountComponent implements OnInit {
   showOrdersView = false;
   showOrderDetailView = false;
   showAccountView = false;
+  showWishlistView = false;
 
   orderIdToView;
 
@@ -76,13 +77,13 @@ export class AccountComponent implements OnInit {
   view(title){
     console.log('in view, wat i title', title);
 
-    this.showOrdersView  = this.showOrderDetailView = this.showAccountView = false;
+    this.showOrdersView  = this.showOrderDetailView = this.showAccountView = this.showWishlistView = false;
     this.title = title;
 
     if(title === 'My Orders') this.showOrdersView = true;
     if(title === 'Order Details') this.showOrderDetailView = true;
     if(title === 'Account Overview') this.showAccountView = true;
-
+    if(title === 'My Wishlist') this.showWishlistView = true;
 
   }
 
