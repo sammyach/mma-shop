@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="page-title">
+    <h1>PRODUCT MANAGER</h1>
+  </div>
+  <div class="content">
+    <div class="list">
+      <p-dataView #dv [value]="items" [paginator]="true" [rows]="9" filterBy="name"
+          [sortField]="sortField" [sortOrder]="sortOrder">
+
+          <!-- <ng-template pTemplate="header">
+              <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+                  <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Status" (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
+                  <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+                      <i class="pi pi-search"></i>
+                      <input type="search" pInputText placeholder="Search by Name" (input)="dv.filter($event.target.value)">
+                  </span>
+                  <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+              </div>
+          </ng-template> -->
+
+          <ng-template let-item pTemplate="listItem">
+              <div class="p-col-12">
+                  <div  class="product-list-item">
+                    <div class="order-item-wrapper">
+                      <div class="order-item">
+                        <img [src]="ps.baseImgUrl + item?.ProductImages[0]?.ImageUrl" [alt]="item.Name"/>
+                        <div class="order-item-details">
+                          <p>{{item.Name}}</p>
+                          <div>
+                            <p># {{item.Id}}</p>
+                            <p>Unit Price: GHS {{item.Price}}</p>
+                            <p>Quantity Left: {{item.Quantity}}</p>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <button (click)="onEdit(item.Id)"  pButton pRipple type="button" label="Edit" class="p-button-text"></button>
+
+                        <!-- <p (click)="onViewOrderDetail(order.OrderId)" class="el-view">VIEW DETAILS</p> -->
+                      </div>
+
+                    </div>
+
+                  </div>
+              </div>
+          </ng-template>
+
+      </p-dataView>
+    </div>
+    <div class="detail">
+      <div style="padding-bottom: 5px;" class="item-form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="p-field">
+              <label class="c-label" for="name">Name</label>
+              <input class="c-input" type="text" formControlName="productName" pInputText />
+              <!-- <span *ngIf="submitted && form.controls.username.errors?.required" style="color: red; font-size: .7rem;">Email/Phone is required</span> -->
+          </div>
+          <div class="p-field">
+              <label class="c-label" for="desc">Description</label>
+              <input class="c-input" id="desc" type="text" formControlName="desc" pInputText />
+              <!-- <span *ngIf="submitted && form.controls.password.errors?.required" style="color: red; font-size: .7rem;">Password is required</span> -->
+              <!-- <input class="c-input" type="password" formControlName="password" pPassword [feedback]="false" [toggleMask]="true" /> -->
+          </div>
+          <div style="display: flex; width: 100%;">
+            <div class="p-field" style="width: 50%;">
+              <label class="c-label" for="name">Price (GHS)</label>
+              <input class="c-input" type="text" formControlName="price" pInputText />
+              <!-- <span *ngIf="submitted && form.controls.username.errors?.required" style="color: red; font-size: .7rem;">Email/Phone is required</span> -->
+            </div>
+            <div class="p-field" style="width: 50%;">
+              <label class="c-label" for="name">Quantity</label>
+              <input class="c-input" type="text" formControlName="quantity" pInputText />
+              <!-- <span *ngIf="submitted && form.controls.username.errors?.required" style="color: red; font-size: .7rem;">Email/Phone is required</span> -->
+            </div>
+          </div>
+
+          <button [disabled]="loading" style="border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="SAVE" icon="pi pi-save"></button>
+          <p-progressSpinner *ngIf="loading" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
+
+          <!-- <div style="padding-top: 10px;">
+              <small>Don't have an account? Click <a routerLink="/customer/account/new">here</a> to create one and continue shopping</small>
+          </div> -->
+
+        </form>
+      </div>
+
+      <div *ngIf="selectedItem" class="product-imgs">
+        <div class="product-img" *ngFor="let image of selectedItem?.ProductImages">
+          <img [src]="ps.baseImgUrl + image.ImageUrl" [alt]="image.ImageUrl"  />
+          <button (click)="onRemove(image)"  pButton pRipple type="button" label="Remove" class="p-button-text"></button>
+        </div>
+      </div>
+
+      <p-fileUpload customUpload="true" (uploadHandler)="onUpload($event)"
+            multiple="multiple" accept="image/*" maxFileSize="1000000">
+            <ng-template pTemplate="content">
+              <div *ngIf="successfulUpload">
+                File(s) uploaded successfully.
+              </div>
+                <!-- <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                </ul> -->
+            </ng-template>
+    </p-fileUpload>
+
+    </div>
+  </div>
+</div>
