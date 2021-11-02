@@ -5,6 +5,8 @@ import { CreateAddressComponent } from './account/address-book/create-address/cr
 import { CustomerOrdersComponent } from './account/customer-orders/customer-orders.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
+import { IndexComponent } from './admin/index/index.component';
+import { ProductManagerComponent } from './admin/product-manager/product-manager.component';
 //import { MakePaymentComponent } from 'flutterwave-angular-v3';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
@@ -30,6 +32,10 @@ const routes: Routes = [
   {path: 'customer/account', component: AccountComponent, canActivate: [AuthGuard]},
   {path: 'customer/account/address/create', component: CreateAddressComponent, canActivate: [AuthGuard]},
   {path: 'customer/account/orders', component: CustomerOrdersComponent, canActivate: [AuthGuard]},
+
+  {path: 'admin', component: IndexComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] }},
+  {path: 'admin/product-manager', component: ProductManagerComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] }},
+
   {path: '**', redirectTo: ''}
 ];
 

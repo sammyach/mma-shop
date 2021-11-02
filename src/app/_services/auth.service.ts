@@ -11,8 +11,8 @@ export class LoginUser {
   Password?: string;
 }
 
-// export class User {   
-//   Id?: number; 
+// export class User {
+//   Id?: number;
 //   Username?: string;
 //   Email?: string;
 //   FirstName?: string;
@@ -33,7 +33,7 @@ export class AuthService {
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   public isLoggedIn$: Observable<boolean>;
-  
+
 
   constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<any>(this.getDecodedToken());
@@ -44,11 +44,11 @@ export class AuthService {
     console.log('current user in auth service', this.currentUser);
   }
 
-  register(newuser: any){    
-    
+  register(newuser: any){
+
     return this.http.post(`${this.baseUrl}/api/users/auth/register`, newuser)
         .pipe(map((res: any) => {
-          const tkn = res.Token;                   
+          const tkn = res.Token;
           const user = this.setSession(tkn);
           this.currentUserSubject.next(user);
           this.isLoggedInSubject.next(true);
@@ -57,12 +57,12 @@ export class AuthService {
   }
 
   login(user: string, password: string){
-    console.log('in auth: loggin in');    
+    console.log('in auth: loggin in');
     let data: LoginUser = {};
     //let data: any = {};
     data.User = user;
     data.Password = password;
-    
+
     //return this.http.get<any[]>(`${this.baseUrl}/api/product`);
     //return this.http.post<any>(`${this.baseUrl}/api/users/auth/login`, data);
     return this.http.post(`${this.baseUrl}/api/users/auth/login`, data)
@@ -77,11 +77,11 @@ export class AuthService {
 
   logout(){
     // remove user from local storage to log user out
-    
+
     localStorage.removeItem('access_token');
     this.currentUserSubject.next(null);
     this.isLoggedInSubject.next(false);
-    
+
     // localStorage.removeItem('token');
     // this.currentUserTokenSubject.next(null);
     this.router.navigate(['']);
@@ -94,14 +94,14 @@ export class AuthService {
     const token = localStorage.getItem('access_token');
     if(!token) return false;
     //const expirationDate = helper.getTokenExpirationDate(myRawToken);
-    const isExpired = helper.isTokenExpired(token);  
+    const isExpired = helper.isTokenExpired(token);
     console.log('check if expired', isExpired);
-     
-    if(isExpired){ 
+
+    if(isExpired){
       this.logout();
       return false;
     }
-    
+
     return true;
      //return token; // for now;later we will decode token and check for expiration
   }
@@ -109,7 +109,7 @@ export class AuthService {
   setSession(token: string){
     //localStorage.setItem('access_token', JSON.stringify(token));
     localStorage.setItem('access_token', token);
-    const decodedToken = this.getDecodedToken();   
+    const decodedToken = this.getDecodedToken();
     return decodedToken;
   }
 
@@ -121,5 +121,14 @@ export class AuthService {
     // const expirationDate = helper.getTokenExpirationDate(myRawToken);
     // const isExpired = helper.isTokenExpired(myRawToken);
   }
-  
+
+  getLoggedInRole(){
+    return this.getDecodedToken()?.role;
+  }
+
+  isAdmin(){
+    if(this.getLoggedInRole() === 'ADMIN') return true;
+    return false;
+  }
+
 }
