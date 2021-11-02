@@ -17,7 +17,7 @@
             <ng-template let-product pTemplate="listItem">
                 <div class="p-col-12">
                     <div class="product-list-item">
-                        <img [src]="product.ProductImages[0].ImageUrl" [alt]="product.Name" (click)="onViewDetails(product.Id)"/>
+                        <img [src]="ps.baseImgUrl + product.ProductImages[0].ImageUrl" [alt]="product.Name" (click)="onViewDetails(product.Id)"/>
                         <div class="product-list-detail">
                             <div class="product-name">{{product.Name}}</div>
                             <!-- <div class="product-description">{{product.description}}</div> -->
@@ -44,7 +44,7 @@
                             <!-- <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span> -->
                         </div>
                         <div  class="product-grid-item-content">
-                            <img (click)="onViewDetails(product.Id)" [src]="product.ProductImages[0].ImageUrl" [alt]="product.Name"/>
+                            <img (click)="onViewDetails(product.Id)" [src]="ps.baseImgUrl + product.ProductImages[0].ImageUrl" [alt]="product.Name"/>
                             <div class="product-name">{{product.Name}}</div>
                             <!-- <div class="product-description">{{product.description}}</div>
                             <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating> -->

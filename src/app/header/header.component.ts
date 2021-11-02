@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
   authMenuItems
   accountMenuItems;
   categoryMenuItems;
+  adminMenuItems;
   clickedIn = false;
 
   showCatMenu = false;
@@ -43,7 +44,7 @@ export class HeaderComponent implements OnInit {
   loggedIn = false;
   currentUser: any;
   constructor(private router: Router, private ds : DataService,
-              private eRef: ElementRef, private auth: AuthService, private route: ActivatedRoute, private ps: ProductService) {
+              private eRef: ElementRef, public auth: AuthService, private route: ActivatedRoute, private ps: ProductService) {
                 //this.loggedIn = this.auth.loggedIn();
                 this.auth.isLoggedIn$.subscribe(x=> this.loggedIn = x);
 
@@ -172,7 +173,9 @@ export class HeaderComponent implements OnInit {
         }
       ]
     }
-  ]
+  ];
+
+
     // this.products = this.ds.shoppingCartItems;
     // if(this.products.length > 0){
     //   this.totalItemsInCart = this.products.reduce((a, b) => +a + +b.quantity, 0);

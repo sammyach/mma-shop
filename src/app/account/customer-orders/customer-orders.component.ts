@@ -24,7 +24,7 @@ export class CustomerOrdersComponent implements OnInit {
   sortOrder: number;
   sortField: string;
 
-  constructor(private ps: ProductService) { }
+  constructor(public ps: ProductService) { }
 
   ngOnInit(): void {
     this.getCustomerOrders();

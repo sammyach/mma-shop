@@ -15,7 +15,7 @@ export class CustomerWishlistComponent implements OnInit {
   sortOrder: number;
   sortField: string;
 
-  constructor(private ps: ProductService, private ds: DataService) { }
+  constructor(public ps: ProductService, private ds: DataService) { }
 
   ngOnInit(): void {
     this.getItems();

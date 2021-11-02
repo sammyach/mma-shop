@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { env } from 'process';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class ProductService {
 
   private baseUrl = environment.apiUrl;
-
+  public baseImgUrl = environment.baseImgUrl;
   constructor(private http: HttpClient) { }
 
   searchItem(query){
@@ -82,6 +83,18 @@ export class ProductService {
   removeItemFromWishlist(id){
     return this.http.delete<any>(`${this.baseUrl}/api/shopping/wishlist/removeitem/${id}`)
 
+  }
+
+  updateProductItem(data){
+    return this.http.patch<any>(`${this.baseUrl}/api/product/update`, data);
+  }
+
+  uploadFiles(id, data){
+    return this.http.post<any>(`${this.baseUrl}/api/product/images/upload/${id}/files`, data);
+  }
+
+  removeImage(id){
+    return this.http.delete<any>(`${this.baseUrl}/api/product/images/remove/${id}`);
   }
 
 

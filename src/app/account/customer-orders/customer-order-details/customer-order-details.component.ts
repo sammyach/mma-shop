@@ -13,7 +13,7 @@ export class CustomerOrderDetailsComponent implements OnInit {
   order;
   orderItems;
   shippingAddress;
-  constructor(private ps: ProductService, private router: Router) { }
+  constructor(public ps: ProductService, private router: Router) { }
 
   ngOnInit(): void {
 

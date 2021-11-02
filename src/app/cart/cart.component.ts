@@ -26,7 +26,7 @@ export class CartComponent implements OnInit, AfterViewChecked {
 
   loadingCartItems;
   loadingCartSummary;
-    constructor(private ds: DataService, private router: Router, private auth: AuthService, private route: ActivatedRoute, private ps: ProductService) {
+    constructor(private ds: DataService, private router: Router, private auth: AuthService, private route: ActivatedRoute, public ps: ProductService) {
       this.auth.currentUser.subscribe(x => {this.currentUser = x; console.log('headeruser', this.currentUser); if(this.currentUser) this.loggedIn = true;});
 
      }

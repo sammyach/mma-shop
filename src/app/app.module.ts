@@ -30,6 +30,7 @@ import { TagModule } from 'primeng/tag';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import {AutoCompleteModule} from 'primeng/autocomplete';
+import {FileUploadModule} from 'primeng/fileupload';
 
 
 import { ListProductsComponent } from './list-products/list-products.component';
@@ -52,6 +53,8 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { CustomerOrdersComponent } from './account/customer-orders/customer-orders.component';
 import { CustomerOrderDetailsComponent } from './account/customer-orders/customer-order-details/customer-order-details.component';
 import { CustomerWishlistComponent } from './account/customer-wishlist/customer-wishlist.component';
+import { IndexComponent } from './admin/index/index.component';
+import { ProductManagerComponent } from './admin/product-manager/product-manager.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +77,9 @@ import { CustomerWishlistComponent } from './account/customer-wishlist/customer-
     CreateAddressComponent,
     CustomerOrdersComponent,
     CustomerOrderDetailsComponent,
-    CustomerWishlistComponent
+    CustomerWishlistComponent,
+    IndexComponent,
+    ProductManagerComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +110,8 @@ import { CustomerWishlistComponent } from './account/customer-wishlist/customer-
     TagModule,
     Angular4PaystackModule.forRoot('pk_test_22c6de9f298f39b950cd2e627328fcce2af2b13a'),
     ProgressSpinnerModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    FileUploadModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

@@ -23,7 +23,7 @@
                   <div  class="product-list-item">
                     <div class="order-item-wrapper">
                       <div class="order-item">
-                        <img [src]="item?.ProductImages[0]?.ImageUrl" [alt]="item.ProductName"/>
+                        <img [src]="ps.baseImgUrl + item?.ProductImages[0]?.ImageUrl" [alt]="item.ProductName"/>
                         <div class="order-item-details">
                           <p>{{item.Name}}</p>
                           <div>

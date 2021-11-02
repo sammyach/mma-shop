@@ -116,6 +116,8 @@
     <p><a (click)="onFilterCategory('1')">Beauty & Personal Care</a></p>
     <p><a (click)="onFilterCategory('2')">Food & Groceries</a></p>
     <p><a (click)="onFilterCategory('3')">Clothing & Fashion</a></p>
+    <hr *ngIf="auth.isAdmin()" />
+    <p *ngIf="auth.isAdmin()"><a routerLink="admin/product-manager">Product Manager</a></p>
     <!-- <p><a [routerLink]="['products']" [queryParams]="{ cat: 3 }">Clothing & Fashion</a></p> -->
   </div>
 

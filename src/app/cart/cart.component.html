@@ -4,7 +4,7 @@
     <div class="cart-info">
         <div class="cart-items">
           <div *ngFor="let item of products" class="order-item">
-            <img [src]="item.ImageUrl" [alt]="item.ProductName"/>
+            <img [src]="ps.baseImgUrl + item.ImageUrl" [alt]="item.ProductName"/>
             <div class="order-item-details">
               <p style="font-weight: 500;">{{item.ProductName}}</p>
               <p style="font-weight: 500; color: #FFC107; font-size: .9rem;">GHS {{item.UnitPrice}}</p>
@@ -38,7 +38,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-product>
                     <tr>
-                        <td><img [src]="product.ImageUrl" [alt]="product.ProductName" width="100"  /></td>
+                        <td><img [src]="ps.baseImgUrl + product.ImageUrl" [alt]="product.ProductName" width="100"  /></td>
 
                         <td>{{product.ProductName}}</td>
                         <td>{{product.UnitPrice | currency:'GHS '}}</td>

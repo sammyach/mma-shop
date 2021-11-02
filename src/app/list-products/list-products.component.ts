@@ -25,7 +25,7 @@ export class ListProductsComponent implements OnInit {
 
     selectedCategory: string;
 
-    constructor(private ps: ProductService, private primengConfig: PrimeNGConfig,
+    constructor(public ps: ProductService, private primengConfig: PrimeNGConfig,
                  private router: Router, private ds: DataService, private messageService: MessageService,
                  private route: ActivatedRoute) { }
 

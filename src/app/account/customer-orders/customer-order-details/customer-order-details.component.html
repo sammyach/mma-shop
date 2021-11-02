@@ -11,7 +11,7 @@
     <p class="section-title">ITEMS IN YOUR ORDER</p>
 
     <div *ngFor="let item of orderItems" class="order-item">
-      <img [src]="item.ImageUrl" [alt]="item.ProductName"/>
+      <img [src]="ps.baseImgUrl + item.ImageUrl" [alt]="item.ProductName"/>
       <div class="order-item-details">
         <p style="font-weight: 500;">{{item.ProductName}}</p>
         <p>QTY: {{item.Quantity}}</p>

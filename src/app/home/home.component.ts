@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   products: any[];
   responsiveOptions;
 
-  constructor(private route: ActivatedRoute, private ps: ProductService, private router: Router, private ds: DataService) {
+  constructor(private route: ActivatedRoute, public ps: ProductService, private router: Router, private ds: DataService) {
     this.responsiveOptions = [
       {
           breakpoint: '1024px',
