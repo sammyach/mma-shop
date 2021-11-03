@@ -17,7 +17,7 @@ export class ProductDetailsComponent implements OnInit {
   //products: Product[]=[];
   sub;
   loading = false;
-
+  productImgs = [];
   constructor(private route: ActivatedRoute, public ps: ProductService, private ds: DataService) { }
 
 
@@ -73,6 +73,7 @@ export class ProductDetailsComponent implements OnInit {
         console.log('res', res);
 
         this.product = res;
+        this.productImgs = this.product?.ProductImages;
       })
   }
 
