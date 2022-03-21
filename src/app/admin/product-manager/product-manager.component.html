@@ -1,6 +1,8 @@
 <div class="container">
   <div class="page-title">
     <h1>PRODUCT MANAGER</h1>
+    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" (click)="toggleNewProduct()"></button>
+
   </div>
   <div class="content">
     <div class="list">
@@ -75,9 +77,22 @@
               <!-- <span *ngIf="submitted && form.controls.username.errors?.required" style="color: red; font-size: .7rem;">Email/Phone is required</span> -->
             </div>
           </div>
+          <div style="display: flex; width: 100%;">
+            <div class="p-field" style="width: 50%;">
+              <label class="c-label" for="name">Category</label>
+              <p-dropdown [options]="categories" [optionValue]="'Id'" formControlName="catId" placeholder="Select category" optionLabel="Description" [showClear]="true"></p-dropdown>
 
-          <button [disabled]="loading" style="border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="SAVE" icon="pi pi-save"></button>
+              <!-- <span *ngIf="submitted && form.controls.username.errors?.required" style="color: red; font-size: .7rem;">Email/Phone is required</span> -->
+            </div>
+          </div>
+
+
+
+          <button *ngIf="newProduct" [disabled]="loading" style="border-radius: 30px;" styleClass="p-button-sm" pButton type="button" label="ADD PRODUCT" (click)="addProduct()" icon="pi pi-save"></button>
+
+          <button *ngIf="selectedItem" [disabled]="loading" style="border-radius: 30px;" styleClass="p-button-sm" pButton type="submit" label="SAVE" icon="pi pi-save"></button>
           <p-progressSpinner *ngIf="loading" [style]="{width: '30px', height: '30px'}"></p-progressSpinner>
+          <button *ngIf="selectedItem" (click)="toggleImageBox()"  pButton pRipple type="button" label="Add Image" class="p-button-text" icon="pi pi-plus"></button>
 
           <!-- <div style="padding-top: 10px;">
               <small>Don't have an account? Click <a routerLink="/customer/account/new">here</a> to create one and continue shopping</small>
@@ -93,7 +108,7 @@
         </div>
       </div>
 
-      <p-fileUpload customUpload="true" (uploadHandler)="onUpload($event)"
+      <p-fileUpload *ngIf="showImgBox" customUpload="true" (uploadHandler)="onUpload($event)"
             multiple="multiple" accept="image/*" maxFileSize="1000000">
             <ng-template pTemplate="content">
               <div *ngIf="successfulUpload">

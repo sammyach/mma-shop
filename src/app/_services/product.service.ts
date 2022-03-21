@@ -85,6 +85,10 @@ export class ProductService {
 
   }
 
+  addProductItem(data){
+    return this.http.post<any>(`${this.baseUrl}/api/product/new`, data);
+  }
+
   updateProductItem(data){
     return this.http.patch<any>(`${this.baseUrl}/api/product/update`, data);
   }
@@ -95,6 +99,10 @@ export class ProductService {
 
   removeImage(id){
     return this.http.delete<any>(`${this.baseUrl}/api/product/images/remove/${id}`);
+  }
+
+  getAllCategories(){
+    return this.http.get<any[]>(`${this.baseUrl}/api/lovs/categories`);
   }
 
 

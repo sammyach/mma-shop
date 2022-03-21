@@ -22,12 +22,25 @@ export class ProductManagerComponent implements OnInit {
   selectedItem;
   uploadedFiles: any[] = [];
   successfulUpload = false;
+  showImgBox = false;
+  newProduct = false;
+
+  categories: any;
+  selectedCategory: any;
 
   constructor(public ps: ProductService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.createForm();
+    this.getCategories();
     this.getItems();
+  }
+
+  getCategories(){
+    this.ps.getAllCategories()
+      .subscribe(res => {
+        this.categories = res;
+      })
   }
 
   getItems(){
@@ -43,8 +56,27 @@ export class ProductManagerComponent implements OnInit {
       productName: [null, Validators.required],
       price: [null, Validators.required],
       quantity: [null, Validators.required],
-      desc: [null]
+      desc: [null],
+      catId: [null]
     });
+  }
+
+  addProduct(){
+    const data: any = {};
+    data.Name = this.form.get('productName').value;
+    data.Description = this.form.get('desc').value;
+    data.Price = this.form.get('price').value;
+    data.Quantity = this.form.get('quantity').value;
+    data.CategoryId = this.form.get('catId').value;
+
+    this.ps.addProductItem(data)
+      .subscribe(res => {
+        if(res.Id){
+          this.form.reset();
+          this.getItems();
+          this.selectedItem = null;
+        }
+      })
   }
 
   onSubmit(){
@@ -56,20 +88,25 @@ export class ProductManagerComponent implements OnInit {
     data.Quantity = this.form.get('quantity').value;
     this.ps.updateProductItem(data)
       .subscribe(res => {
-
+        if(res.Id){
+          this.form.reset();
+          this.getItems();
+          this.selectedItem = null;
+        }
       })
   }
 
   onEdit(id){
     const item = this.selectedItem = this.items.find(e=>e.Id === id);
-    console.log(item);
+    console.log('editing',item);
 
     this.form.patchValue({
       id: item.Id,
       productName : item.Name,
       desc: item.Description,
       price: item.Price,
-      quantity: item.Quantity
+      quantity: item.Quantity,
+      catId: item.Category.Id
     })
 
     console.log(this.form.get('productName').value);
@@ -101,6 +138,14 @@ export class ProductManagerComponent implements OnInit {
           this.successfulUpload = true;
           this.selectedItem = res;
         })
+  }
+
+  toggleImageBox(){
+    this.showImgBox = !this.showImgBox;
+  }
+
+  toggleNewProduct(){
+    this.newProduct = !this.newProduct;
   }
 
 }

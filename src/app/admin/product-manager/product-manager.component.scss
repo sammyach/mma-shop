@@ -3,6 +3,11 @@
   min-height: 90vh;
 }
 
+.page-title{
+  display: flex;
+  justify-content: space-between;
+}
+
 .content{
   display: flex;
   justify-content: space-between;
@@ -55,8 +60,10 @@
 
   :host ::ng-deep {
     .p-dropdown {
-        width: 14rem;
+
         font-weight: normal;
+        width: 100%;
+        border-radius: 30px;
     }
 
     .product-name {

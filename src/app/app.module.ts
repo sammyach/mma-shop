@@ -31,6 +31,7 @@ import { Angular4PaystackModule } from 'angular4-paystack';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {FileUploadModule} from 'primeng/fileupload';
+import {PlatformModule} from '@angular/cdk/platform';
 
 
 import { ListProductsComponent } from './list-products/list-products.component';
@@ -111,7 +112,8 @@ import { ProductManagerComponent } from './admin/product-manager/product-manager
     Angular4PaystackModule.forRoot('pk_test_22c6de9f298f39b950cd2e627328fcce2af2b13a'),
     ProgressSpinnerModule,
     AutoCompleteModule,
-    FileUploadModule
+    FileUploadModule,
+    PlatformModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
