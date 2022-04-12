@@ -48,11 +48,25 @@
 
                   <div class="summary">
                     <div *ngIf="customer?.UserAddresses?.length > 0">
-                      <p>Your default shipping address:</p>
+                      <div>
+                        <p>Your default shipping address:</p>
 
-                      <small>{{customer?.UserAddresses[0]?.Description}}</small><br/>
-                      <small>{{customer?.UserAddresses[0]?.StreetAddress}}</small><br/>
-                      <small>{{customer?.UserAddresses[0]?.City}}, {{customer?.UserAddresses[0]?.Region}}</small>
+                        <small>{{customer?.UserAddresses[0]?.Description}}</small><br/>
+                        <small>{{customer?.UserAddresses[0]?.StreetAddress}}</small><br/>
+                        <small>{{customer?.UserAddresses[0]?.City}}, {{customer?.UserAddresses[0]?.Region}}</small>
+                      </div>
+
+                      <div class="alt-address" *ngFor="let address of customer?.UserAddresses">
+                        <div *ngIf="!address.IsDefault">
+                          <p>Your alternative shipping address:</p>
+
+                          <small>{{address.Description}}</small><br/>
+                          <small>{{address.StreetAddress}}</small><br/>
+                          <small>{{address.City}}, {{address.Region}}</small><span>Set as default </span>
+                        </div>
+
+                      </div>
+
                     </div>
                     <div *ngIf="customer?.UserAddresses?.length == 0">
                         <p>No default shipping address set. Click on the plus sign to add address</p>

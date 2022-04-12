@@ -46,7 +46,7 @@ export class AccountComponent implements OnInit {
     this.customer = this.ps.getCustomerWithAddressesById(this.currentUser?.id)
       .subscribe(res=>{
         this.customer = res;
-
+        console.log('cux', this.customer);
       })
 
       this.getCustomerOrders();

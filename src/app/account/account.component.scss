@@ -189,6 +189,11 @@ h1{
   cursor: pointer;
 }
 
+.alt-address{
+  border-top: 1px solid #EDEDED;
+  // margin-top: 5px;
+}
+
 @media (max-width: 991px){
   .container{
     margin: 0;
