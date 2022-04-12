@@ -120,7 +120,7 @@ header {
 }
 
 .acc-menu{
-  display: inline;
+  width: 150px;
 }
 
  .auth-menu{
@@ -369,6 +369,10 @@ header {
 
      .auth-menu{
       display: block;
+    }
+
+    .acc-menu{
+      width: inherit;
     }
 }
 

@@ -31,7 +31,7 @@
           <ul class="navigation">
             <!-- <li><app-search-bar></app-search-bar></li> -->
             <!-- <li><i class="pi pi-phone"></i> +233 244123457</li> -->
-            <li *ngIf="loggedIn" class="mn-item" (click)="accmenu.toggle($event)"><i class="pi pi-user"></i> Hi {{currentUser?.first_name}} </li>
+            <li *ngIf="loggedIn" class="mn-item acc-menu" (click)="accmenu.toggle($event)"><i class="pi pi-user"></i> Hi {{currentUser?.first_name}} </li>
             <p-menu #accmenu [popup]="true" [model]="accountMenuItems"></p-menu>
             <!-- <button type="button" pButton icon="pi pi-bars" label="Show" (click)="menu.toggle($event)"></button>
             <p-menu #menu [popup]="true" [model]="items"></p-menu> -->
