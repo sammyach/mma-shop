@@ -25,7 +25,7 @@
                   <div  class="product-list-item">
                     <div class="order-item-wrapper">
                       <div class="order-item">
-                        <img [src]="ps.baseImgUrl + item?.ProductImages[0]?.ImageUrl" [alt]="item.Name"/>
+                        <img *ngIf="item?.ProductImages.length > 0" [src]="ps.baseImgUrl + item?.ProductImages[0].ImageUrl" [alt]="item.Name"/>
                         <div class="order-item-details">
                           <p>{{item.Name}}</p>
                           <div>
