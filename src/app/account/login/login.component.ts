@@ -30,16 +30,13 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.submitted = true;
     if(this.form.valid){
-      console.log('logging in', this.form.value);
       const user = this.form.get('username').value;
       const password = this.form.get('password').value;
 
       this.auth.login(user, password)
         .subscribe((res: any) => {
           this.loading = false;
-          console.log('login', res);
           let url = this.route.snapshot.queryParams['redirectUrl'];
-          console.log('redirect...', url);
           if(url && url.length > 0){
             this.router.navigate([url[0]]);
           }else{

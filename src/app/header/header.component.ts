@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
                 //this.loggedIn = this.auth.loggedIn();
                 this.auth.isLoggedIn$.subscribe(x=> this.loggedIn = x);
 
-                  this.auth.currentUser.subscribe(x => {this.currentUser = x; console.log('headeruser', this.currentUser);});
+                  this.auth.currentUser.subscribe(x => {this.currentUser = x; /*console.log('headeruser', this.currentUser);*/});
 
               }
 

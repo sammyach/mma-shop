@@ -41,7 +41,7 @@ export class AuthService {
 
     if(this.getDecodedToken()) this.isLoggedInSubject = new BehaviorSubject<boolean>(true);
     this.isLoggedIn$ = this.isLoggedInSubject.asObservable();
-    console.log('current user in auth service', this.currentUser);
+    // console.log('current user in auth service', this.currentUser);
   }
 
   register(newuser: any){
@@ -57,7 +57,7 @@ export class AuthService {
   }
 
   login(user: string, password: string){
-    console.log('in auth: loggin in');
+    // console.log('in auth: loggin in');
     let data: LoginUser = {};
     //let data: any = {};
     data.User = user;
@@ -95,7 +95,7 @@ export class AuthService {
     if(!token) return false;
     //const expirationDate = helper.getTokenExpirationDate(myRawToken);
     const isExpired = helper.isTokenExpired(token);
-    console.log('check if expired', isExpired);
+    // console.log('check if expired', isExpired);
 
     if(isExpired){
       this.logout();

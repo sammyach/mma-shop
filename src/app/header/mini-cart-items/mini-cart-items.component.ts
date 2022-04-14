@@ -12,8 +12,7 @@ export class MiniCartItemsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('in mini comp: product=>',this.product );
-    
+
   }
 
 }

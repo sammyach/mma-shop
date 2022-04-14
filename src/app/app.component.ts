@@ -11,13 +11,13 @@ export class AppComponent {
   title = 'shop';
 
   constructor(public auth: AuthService, public platform: Platform){
-    console.log('browser', window.navigator.userAgent);
-    console.log('Firefox??: ', platform.FIREFOX);
-    console.log('Edge??: ', platform.EDGE);
-    console.log('Chrome | New Edge??: ', platform.BLINK);
-    console.log('Opera??: ', platform.WEBKIT);
-    console.log('IE??: ', platform.TRIDENT);
-    console.log('Safari??: ', platform.SAFARI);
+    // console.log('browser', window.navigator.userAgent);
+    // console.log('Firefox??: ', platform.FIREFOX);
+    // console.log('Edge??: ', platform.EDGE);
+    // console.log('Chrome | New Edge??: ', platform.BLINK);
+    // console.log('Opera??: ', platform.WEBKIT);
+    // console.log('IE??: ', platform.TRIDENT);
+    // console.log('Safari??: ', platform.SAFARI);
 
   }
 }

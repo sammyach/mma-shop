@@ -98,7 +98,6 @@ export class ProductManagerComponent implements OnInit {
 
   onEdit(id){
     const item = this.selectedItem = this.items.find(e=>e.Id === id);
-    console.log('editing',item);
 
     this.form.patchValue({
       id: item.Id,
@@ -109,7 +108,6 @@ export class ProductManagerComponent implements OnInit {
       catId: item.Category.Id
     })
 
-    console.log(this.form.get('productName').value);
 
   }
 
@@ -125,16 +123,13 @@ export class ProductManagerComponent implements OnInit {
 
   onUpload(event){
     for(let file of event.files) {
-      console.log(file);
       this.uploadedFiles.push(file);
     }
-    console.log(this.uploadedFiles);
     const formData = new FormData();
     this.uploadedFiles.forEach((f) => formData.append('files', f));
 
     this.ps.uploadFiles(this.selectedItem.Id, formData)
         .subscribe(res => {
-          console.log(res);
           this.successfulUpload = true;
           this.selectedItem = res;
         })

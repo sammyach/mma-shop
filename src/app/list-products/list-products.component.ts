@@ -34,7 +34,7 @@ export class ListProductsComponent implements OnInit {
 
         this.route.queryParams.subscribe(params => {
           this.selectedCategory = params['cat'];
-          console.log('selected cat: ', this.selectedCategory);
+          // console.log('selected cat: ', this.selectedCategory);
           //this.productService.getProducts(this.selectedCategory).then(data => this.products = data);
           this.getAllProductItems(this.selectedCategory);
           //console.log('products from list-pro', this.products);
@@ -64,10 +64,10 @@ export class ListProductsComponent implements OnInit {
     }
 
     onSortChange(event) {
-        console.log('sorting...', event);
+        // console.log('sorting...', event);
 
         let value = event.value;
-        console.log('sort value', value);
+        // console.log('sort value', value);
 
         if (value.indexOf('!') === 0) {
             this.sortOrder = -1;
@@ -80,7 +80,7 @@ export class ListProductsComponent implements OnInit {
     }
 
     onAddToFavorites(id){
-      console.log(id);
+      // console.log(id);
       const data = {} as any;
       data.ProductId = id;
       this.ps.addItemToWishlist(data)
@@ -93,7 +93,7 @@ export class ListProductsComponent implements OnInit {
     }
 
     onViewDetails(id){
-      console.log('details...', id);
+      // console.log('details...', id);
       this.router.navigate(['/product', id, 'details']);
     }
 

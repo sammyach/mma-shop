@@ -69,8 +69,6 @@ export class MakePaymentComponent implements OnInit {
         this.order = res.Order;
         this.amountInPesewas = this.order.TotalAmount * 100;
         this.customerEmail = res.UserEmail;
-        console.log(res);
-        console.log(this.customerEmail);
 
       })
   }

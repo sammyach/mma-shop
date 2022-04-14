@@ -26,10 +26,10 @@ export class ProductDetailsComponent implements OnInit {
     //console.log('data from ds ',this.ds.productsStoredFromIndex);
 
     this.route.paramMap.subscribe(params => {
-      console.log('params', params);
+      // console.log('params', params);
 
       let id:number = +params.get('id');
-      console.log('id', id);
+      // console.log('id', id);
       this.getProductData(id);
     })
 
@@ -70,7 +70,7 @@ export class ProductDetailsComponent implements OnInit {
   getProductData(id: number){
     this.ps.getProductById(id)
       .subscribe(res => {
-        console.log('res', res);
+        // console.log('res', res);
 
         this.product = res;
         this.productImgs = this.product?.ProductImages;

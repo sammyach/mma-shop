@@ -46,7 +46,6 @@ export class RegisterComponent implements OnInit {
       console.log('c', cpassword);
 
       if(password === cpassword){
-        console.log('match');
         this.passwordsMatch = true;
       }else{
         this.passwordsMatch = false;
@@ -64,7 +63,6 @@ export class RegisterComponent implements OnInit {
       this.auth.register(user)
         .subscribe((res: any) => {
           this.loading = false;
-          console.log('register', res);
 
           let url = this.route.snapshot.queryParams['redirectUrl'];
 

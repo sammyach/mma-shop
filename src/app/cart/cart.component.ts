@@ -27,7 +27,7 @@ export class CartComponent implements OnInit, AfterViewChecked {
   loadingCartItems;
   loadingCartSummary;
     constructor(private ds: DataService, private router: Router, private auth: AuthService, private route: ActivatedRoute, public ps: ProductService) {
-      this.auth.currentUser.subscribe(x => {this.currentUser = x; console.log('headeruser', this.currentUser); if(this.currentUser) this.loggedIn = true;});
+      this.auth.currentUser.subscribe(x => {this.currentUser = x; /*console.log('headeruser', this.currentUser);*/ if(this.currentUser) this.loggedIn = true;});
 
      }
 
@@ -70,7 +70,6 @@ export class CartComponent implements OnInit, AfterViewChecked {
 
       this.subTotal = this.products.reduce((a,b)=> a + (b.price * b.quantity), 0);
       if(this.products){
-        console.log('sub total = ', this.subTotal);
       }
       this.total = this.subTotal;
     }
@@ -86,13 +85,11 @@ export class CartComponent implements OnInit, AfterViewChecked {
 
     modifyQty(product, qty){
       if(qty == -1 && product.Quantity == 0){ // dont decrease below zero
-        console.log('hit min quantity');
 
         return;
       }
       if(qty == -1 && product.Quantity == 1){
         //remove item from cart
-        console.log('removing item', product.ProductId);
 
         this.ds.removeItem(product.ProductId);
       }
@@ -102,7 +99,6 @@ export class CartComponent implements OnInit, AfterViewChecked {
       data.ProductName = product.ProductName;
       data.UnitPrice = product.UnitPrice;
       data.ImageUrl = product.ImageUrl;
-      console.log('adding to cart', data);
 
       this.ds.addToCart(data);
     }

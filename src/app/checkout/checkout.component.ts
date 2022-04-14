@@ -37,7 +37,6 @@ export class CheckoutComponent implements OnInit {
         .subscribe(res => {
           this.items = res;
           //this.totalItemsInCart = this.items?.reduce((a, b) => +a + +b.Quantity, 0);
-          console.log('items in checkout',  this.items);
           this.subTotal = this.ds.calculateSubTotal();
           this.total = this.shippingCost + this.subTotal;
         })
@@ -48,7 +47,6 @@ export class CheckoutComponent implements OnInit {
 
     this.customer = this.ps.getCustomerWithAddressesById(this.currentUser?.id)
       .subscribe(res=>{
-        console.log('cus in  checkout', res);
 
         this.customer = res;
         this.setFormWithDefaultAddress();
@@ -72,7 +70,6 @@ export class CheckoutComponent implements OnInit {
       this.showSubmitBtn = true;
       return;
     }
-    console.log(defaultAddress);
 
     this.UseMyShippingAddress = true;
     this.shippingAddressId = defaultAddress?.Id;
@@ -100,7 +97,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   OnCheckboxChange(e){
-    console.log('checkbox', e);
     this.UseMyShippingAddress = e.checked;
     this.showSubmitBtn = !this.UseMyShippingAddress;
     if(this.showSubmitBtn) this.showPlaceOrderBtn = false;
@@ -116,7 +112,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log('submitting shipping info', this.shippingForm.value);
     this.showPlaceOrderBtn = true;
 
     const data: any = {};
@@ -160,7 +155,6 @@ export class CheckoutComponent implements OnInit {
     const data: any = {};
     data.Orders = orders;
     data.ShippingAddressId = this.shippingAddressId;
-    console.log('placing', data);
 
     this.ps.placeOrder(data)
       .subscribe(res => {

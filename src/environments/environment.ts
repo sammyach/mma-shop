@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44331', //http://mmawebapi.somee.com
+  apiUrl: 'http://mmawebapi.somee.com', //https://localhost:44331
   baseImgUrl: 'assets/img/'
 };
 

@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.selectedCategory = params['cat'];
-      console.log('home - selected cat: ', this.selectedCategory);
+      // console.log('home - selected cat: ', this.selectedCategory);
       this.getAllProductItems(this.selectedCategory);
     });
 
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
   getAllProductItems(cat){
     this.ps.getAllProducts()
       .subscribe(res => {
-        console.log(res);
+        // console.log(res);
 
         this.products = res;
         //this.ds.productsStoredFromIndex = this.products;
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
   }
 
   onAddToFavorites(id){
-    console.log(id);
+    // console.log(id);
     const data = {} as any;
     data.ProductId = id;
     this.ps.addItemToWishlist(data)
@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
   }
 
   onViewDetails(id){
-    console.log('details...', id);
+    // console.log('details...', id);
     this.router.navigate(['/product', id, 'details']);
   }
 

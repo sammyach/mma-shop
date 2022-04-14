@@ -18,7 +18,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   search(event) {
-    console.log('filtering...', event.query);
 
     this.ps.searchItem(event.query)
       .subscribe(res => {
@@ -27,7 +26,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   viewItem(item){
-    console.log(item);
     this.router.navigate(['/product', item.ProductId, 'details']);
   }
 
