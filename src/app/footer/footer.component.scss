@@ -62,14 +62,29 @@ h3{
     margin: 0;
   }
 
-  .top, .payment-options, .about{
+  .top, .payment-options{
     display: none;
   }
 
+  // .top, .payment-options, .about{
+  //   display: none;
+  // }
+
   .mid{
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 20px;
+    row-gap: 50px;
   }
+
+  .pr-icon {
+    padding-left: 0;
+  }
+
+  .payment-options-items{
+    flex-direction: column;
+}
 
 
 }
