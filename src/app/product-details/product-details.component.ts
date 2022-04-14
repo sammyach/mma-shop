@@ -18,6 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   sub;
   loading = false;
   productImgs = [];
+  responsiveOptions;
   constructor(private route: ActivatedRoute, public ps: ProductService, private ds: DataService) { }
 
 
@@ -26,6 +27,23 @@ export class ProductDetailsComponent implements OnInit {
     //console.log('data from ds ',this.ds.productsStoredFromIndex);
 
     this.route.paramMap.subscribe(params => {
+      this.responsiveOptions = [
+        {
+            breakpoint: '1024px',
+            numVisible: 3,
+            numScroll: 3
+        },
+        {
+            breakpoint: '768px',
+            numVisible: 2,
+            numScroll: 2
+        },
+        {
+            breakpoint: '560px',
+            numVisible: 1,
+            numScroll: 1
+        }
+    ];
       // console.log('params', params);
 
       let id:number = +params.get('id');
