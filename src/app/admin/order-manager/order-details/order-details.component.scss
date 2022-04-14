@@ -1,0 +1,23 @@
+.container {
+  margin: 30px 200px;
+  min-height: 90vh;
+}
+
+.page-title{
+  display: flex;
+  justify-content: space-between;
+}
+
+.content{
+  background: #fff;
+  border-radius: 3px;
+}
+
+h1{
+  color: #FFC107;
+}
+
+.rw-status{
+  display: flex;
+  justify-content: flex-end;
+}

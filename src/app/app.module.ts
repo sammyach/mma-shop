@@ -56,6 +56,8 @@ import { CustomerOrderDetailsComponent } from './account/customer-orders/custome
 import { CustomerWishlistComponent } from './account/customer-wishlist/customer-wishlist.component';
 import { IndexComponent } from './admin/index/index.component';
 import { ProductManagerComponent } from './admin/product-manager/product-manager.component';
+import { OrderManagerComponent } from './admin/order-manager/order-manager.component';
+import { OrderDetailsComponent } from './admin/order-manager/order-details/order-details.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,9 @@ import { ProductManagerComponent } from './admin/product-manager/product-manager
     CustomerOrderDetailsComponent,
     CustomerWishlistComponent,
     IndexComponent,
-    ProductManagerComponent
+    ProductManagerComponent,
+    OrderManagerComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,

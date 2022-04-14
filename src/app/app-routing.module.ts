@@ -7,6 +7,7 @@ import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { IndexComponent } from './admin/index/index.component';
 import { ProductManagerComponent } from './admin/product-manager/product-manager.component';
+import { OrderManagerComponent } from './admin/order-manager/order-manager.component';
 //import { MakePaymentComponent } from 'flutterwave-angular-v3';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
@@ -16,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { ListProductsComponent } from './list-products/list-products.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import { OrderDetailsComponent } from './admin/order-manager/order-details/order-details.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -34,7 +36,10 @@ const routes: Routes = [
   {path: 'customer/account/orders', component: CustomerOrdersComponent, canActivate: [AuthGuard]},
 
   {path: 'admin', component: IndexComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] }},
-  {path: 'admin/product-manager', component: ProductManagerComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] }},
+  {path: 'admin/manage/products', component: ProductManagerComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] }},
+  {path: 'admin/manage/orders', component: OrderManagerComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] }},
+  {path: 'admin/manage/orders/:id/details', component: OrderDetailsComponent, canActivate: [AuthGuard], data: { roles: ['ADMIN'] }},
+
 
   {path: '**', redirectTo: ''}
 ];

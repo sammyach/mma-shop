@@ -105,5 +105,16 @@ export class ProductService {
     return this.http.get<any[]>(`${this.baseUrl}/api/lovs/categories`);
   }
 
+  getAllOrders(){
+    return this.http.get<any[]>(`${this.baseUrl}/api/orders`);
+  }
+
+  getAllOrderStatuses(){
+    return this.http.get<any[]>(`${this.baseUrl}/api/lovs/orderstatus/all`);
+  }
+
+  updateOrderStatus(data){
+    return this.http.patch<any>(`${this.baseUrl}/api/orders/updatestatus`, data);
+  }
 
 }

@@ -8,7 +8,7 @@
   <p>Total: GHS {{order?.TotalAmount}}</p>
 
   <div class="section">
-    <p class="section-title">ITEMS IN YOUR ORDER</p>
+    <p class="section-title">ITEMS IN ORDER</p>
 
     <div *ngFor="let item of orderItems" class="order-item">
       <img [src]="ps.baseImgUrl + item.ImageUrl" [alt]="item.ProductName"/>

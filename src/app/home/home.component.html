@@ -31,7 +31,7 @@
                 <div class="product-item">
                     <div class="product-item-content">
                         <div class="p-mb-3">
-                            <img (click)="onViewDetails(product.Id)" [src]="ps.baseImgUrl + product.ProductImages[0].ImageUrl" [alt]="product.Name" class="product-image" />
+                            <img (click)="onViewDetails(product.Id)" [src]="ps.baseImgUrl + product.ProductImages[0]?.ImageUrl" [alt]="product.Name" class="product-image" />
                         </div>
                         <div>
                             <h4 class="p-mb-1">{{product.Name}}</h4>

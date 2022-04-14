@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="page-title">
+    <h1>MANAGE ORDER</h1>
+    <!-- <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" (click)="toggleNewProduct()"></button> -->
+
+  </div>
+  <div class="content">
+    <div class="rw-status">
+      <p-dropdown (onChange)="onUpdateOrderStatus($event)" [options]="orderStatusList" [optionValue]="'Id'" [(ngModel)]="selectedStatus" placeholder="Update Status" optionLabel="Status" [showClear]="true"></p-dropdown>
+
+    </div>
+
+    <app-customer-order-details [OrderId]="orderId" ></app-customer-order-details>
+  </div>
+</div>

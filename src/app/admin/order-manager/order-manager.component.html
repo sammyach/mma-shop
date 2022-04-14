@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="page-title">
+    <h1>MANAGE ORDERS</h1>
+    <!-- <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" (click)="toggleNewProduct()"></button> -->
+
+  </div>
+  <div class="content">
+    <p-table [value]="orders" dataKey="Id" styleClass="p-datatable-striped" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+          <tr>
+              <!-- <th style="width: 3rem"></th> -->
+              <th pSortableColumn="Id"> # <p-sortIcon field="Id"></p-sortIcon></th>
+              <th pSortableColumn="DateCreated">Date Created <p-sortIcon field="DateCreated"></p-sortIcon></th>
+              <th pSortableColumn="TotalAmount">Total Amount <p-sortIcon field="TotalAmount"></p-sortIcon></th>
+              <th pSortableColumn="Status">Status <p-sortIcon field="Status"></p-sortIcon></th>
+
+              <!-- <th>Image</th>
+              <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
+              <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
+              <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th>
+              <th pSortableColumn="inventoryStatus">Status <p-sortIcon field="inventoryStatus"></p-sortIcon></th> -->
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-order let-expanded="expanded">
+          <tr style="cursor: pointer;" (click)="onViewDetails(order.Id)">
+              <!-- <td>
+                  <button type="button" pButton pRipple [pRowToggler]="order" class="p-button-text p-button-rounded p-button-plain" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+              </td> -->
+              <td>{{order.Id}}</td>
+              <td>{{order.DateCreated}}</td>
+              <td>{{order.TotalAmount | currency:'GHS'}}</td>
+              <td>
+                <p *ngIf="order?.Status == 1" class="x-pill warning-pill"> PENDING PAYMENT </p>
+                <p *ngIf="order?.Status == 2" class="x-pill info-pill"> AWAITING SHIPMENT </p>
+                <p *ngIf="order?.Status == 5" class="x-pill success-pill"> DELIVERED </p>
+              </td>
+              <!-- <td><img [src]="'assets/showcase/images/demo/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" /></td>
+              <td>{{product.price | currency:'USD'}}</td>
+              <td>{{product.category}}</td>
+              <td><p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+              <td><span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span></td> -->
+          </tr>
+      </ng-template>
+      <!-- <ng-template pTemplate="rowexpansion" let-order>
+          <tr>
+              <td colspan="7">
+                  <div class="p-3">
+                      <p-table [value]="order.OrderItems" dataKey="Id">
+                          <ng-template pTemplate="header">
+                              <tr>
+                                <th pSortableColumn="Id">Id <p-sortIcon field="Id"></p-sortIcon></th>
+                                <th pSortableColumn="ProductName">Product Name <p-sortIcon field="ProductName"></p-sortIcon></th>
+                                <th pSortableColumn="TotalAmount">Total Amount <p-sortIcon field="TotalAmount"></p-sortIcon></th>
+
+                                 <th pSortableColumn="id">Id <p-sortIcon field="price"></p-sortIcon></th>
+                                  <th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
+                                  <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+                                  <th style="width: 4rem"></th>
+                              </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-orderitem>
+                              <tr>
+                                  <td>{{orderitem.Id}}</td>
+                                  <td>{{orderitem.ProductName}}</td>
+                                  <td>{{orderitem.id}}</td>
+                                  <td>{{order.amount | currency:'USD'}}</td>
+                                  <td><span [class]="'order-badge order-' + order.status.toLowerCase()">{{order.status}}</span></td>
+                                  <td><p-button type="button" icon="pi pi-search"></p-button></td>
+                              </tr>
+                          </ng-template>
+                          <ng-template pTemplate="emptymessage">
+                              <tr>
+                                  <td colspan="6">There are no items for this order yet.</td>
+                              </tr>
+                          </ng-template>
+                      </p-table>
+                  </div>
+              </td>
+          </tr>
+      </ng-template> -->
+  </p-table>
+  </div>
+</div>
