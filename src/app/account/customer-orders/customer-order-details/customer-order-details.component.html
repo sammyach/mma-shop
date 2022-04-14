@@ -31,7 +31,7 @@
 
             <p>Items Total: GHS {{order?.OrderPaymentDetails[0]?.AmountPayable}}</p>
             <p class="x-pill success-pill">{{order?.OrderPaymentDetails[0]?.Status == 3 ? 'PAID' : ''}} </p>
-            <p>{{order?.OrderPaymentDetails[0]?.Status == 1 ? 'AWAITING PAYMENT' : ''}} </p>
+            <p class="x-pill warning-pill">{{order?.OrderPaymentDetails[0]?.Status == 1 ? 'AWAITING PAYMENT' : ''}} </p>
             <p (click)="makePayment()" *ngIf="order?.OrderPaymentDetails[0]?.Status == 1" style="color: #FFC107; cursor: pointer; font-weight: 600;">Pay Now</p>
           </div>
 

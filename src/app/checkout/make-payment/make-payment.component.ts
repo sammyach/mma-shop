@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/data.service';
 import { ProductService } from 'src/app/_services/product.service';
@@ -10,12 +10,14 @@ import { ProductService } from 'src/app/_services/product.service';
 })
 export class MakePaymentComponent implements OnInit {
 
+  @ViewChild('btnPay') btnPay: ElementRef
 
   reference = '';
   title;
   order;
   amountInPesewas;
   customerEmail;
+  IsPayOnDelivery = false;
   constructor(private route: ActivatedRoute, private ps: ProductService, private ds: DataService, private router: Router) {}
 
   ngOnInit() {
@@ -31,6 +33,7 @@ export class MakePaymentComponent implements OnInit {
 
     this.reference = `ref-${Math.ceil(Math.random() * 10e13)}`;
     //this.reference = `ref-${new Date().getTime.toString()}`;
+
   }
 
   paymentInit() {
@@ -81,6 +84,27 @@ export class MakePaymentComponent implements OnInit {
   generateReference(): string {
     let date = new Date();
     return date.getTime().toString();
+  }
+
+  OnCheckboxChange(e){
+
+  }
+
+  firePaystackBtn(){
+    console.log('payztack fired');
+    if(this.IsPayOnDelivery){
+      const data: any = {};
+      data.Id = this.order.Id;
+      data.StatusId = 2;// 2- awaiting payment;cuztomer will pay on delivery
+      data.Remarks = 'awaiting payment;cuztomer will pay on delivery';
+      this.ps.updateOrderStatus(data)
+        .subscribe(res => {
+
+        })
+      this.router.navigate(['customer/account'], {queryParams: {q: 'My Orders'}});
+      return;
+    }
+    this.btnPay.nativeElement.click();
   }
 
 }

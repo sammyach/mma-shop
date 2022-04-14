@@ -15,10 +15,16 @@
             </tr>
         </table>
     </div>
+    <div class="pay-options">
+      <div class="p-field-checkbox">
+        <p-checkbox [(ngModel)]="IsPayOnDelivery" binary="true" inputId="binary" (onChange)="OnCheckboxChange($event)"></p-checkbox>
+        <label for="binary">Pay upon delivery</label>
+    </div>
+    </div>
 
     <div class="btns-group">
 
-        <button *ngIf="order" pButton label="PROCEED TO PAY" icon="pi pi-money-bill"
+        <button style="display: none;" #btnPay *ngIf="order" pButton label="PROCEED TO PAY" icon="pi pi-money-bill"
         angular4-paystack
         [email]="customerEmail"
         [amount]="amountInPesewas"
@@ -31,6 +37,7 @@
       >
       </button>
 
+      <button #btnCancel (click)="firePaystackBtn()" class="btn-pay" pButton label="PROCEED" icon="pi pi-chevron-right"></button>
       <button (click)="cancelOrder()" class="p-button-danger" pButton label="CANCEL ORDER" icon="pi pi-times"></button>
 
     </div>
